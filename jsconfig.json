@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./*"],
+      "@/middlewares": ["./src/middlewares/middlewares"]
+    }
+  },
+  "include": ["**/*"]  
+}
