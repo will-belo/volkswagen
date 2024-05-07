@@ -2,7 +2,8 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./*"],
-      "@/middlewares": ["./src/middlewares/middlewares"]
+      "@/middlewares": ["./src/middlewares/middlewares"],
+      "@/actions": ["./app/actions"]
     }
   },
   "include": ["**/*"]  

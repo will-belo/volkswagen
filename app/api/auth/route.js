@@ -1,5 +1,6 @@
-'use serve'
+'use server'
 
+import singlePassValidate from "@/src/validate/singlePassValidate"
 import { cookies } from "next/headers"
 
 export async function POST(req) {
@@ -22,11 +23,21 @@ export async function POST(req) {
             status: 401,
         })
     }
-    
+
+    cookies().set({
+        name: 'user_id',
+        value: response.user_id,
+        path: '/',
+        sameSite: 'lax',
+        httpOnly: false, // Temporariamente para visualização em ferramentas de desenvolvimento
+        secure: false // true em ambientes de produção que usam HTTPS
+    })
+
     cookies().set({
         name: 'singlePassToken',
-        value: response,
+        value: response.token,
         path: '/',
+        sameSite: 'lax',
         httpOnly: false, // Temporariamente para visualização em ferramentas de desenvolvimento
         secure: false // true em ambientes de produção que usam HTTPS
     })
