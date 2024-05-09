@@ -19,7 +19,6 @@ export const UserProvider = ({ children }) => {
             router.push('/')
         }
     }
-
     // Retorna o id do usuário retornado pela API de login
     useEffect(() => {
         (async () => {
@@ -28,7 +27,7 @@ export const UserProvider = ({ children }) => {
     },[])
     
     return (
-        <UserContext.Provider value={{ logoutUser, userIdAPI }}>
+        <UserContext.Provider value={{ userIdAPI, logoutUser }}>
             {children}
         </UserContext.Provider>
     )

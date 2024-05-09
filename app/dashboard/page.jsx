@@ -4,10 +4,10 @@ import UserContext from "@/src/contexts/UserContext"
 import { useContext, useEffect, useState } from "react"
 
 export default function dashboard(){
-    const { logout } = useContext(UserContext)
+    const { logoutUser } = useContext(UserContext)
     
     const logoutHandle = () => {
-        logout()
+        logoutUser()
     }
 
     return(

@@ -3,7 +3,7 @@
     "paths": {
       "@/*": ["./*"],
       "@/middlewares": ["./src/middlewares/middlewares"],
-      "@/actions": ["./app/actions"]
+      "@/actions": ["./app/actions"],
     }
   },
   "include": ["**/*"]  

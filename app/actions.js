@@ -12,5 +12,9 @@ export async function logout(){
 export async function user_API(){
     const user_id = cookies().get('user_id')
     
-    return user_id.value
+    if(user_id){
+        return user_id.value
+    }
+
+    return null
 }

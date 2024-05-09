@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
-import { userIsLoggedInMiddleware, adminIsLoggedInMiddleware } from '@/middlewares';
+import { userIsLoggedInMiddleware, adminIsLoggedInMiddleware, redirectIfLoggedMiddleware } from '@/middlewares';
+import { redirect } from "next/dist/server/api-utils";
 
 export const config = {
     matcher: [
@@ -49,5 +50,9 @@ export async function middleware(req) {
 
     if (req.nextUrl.pathname.startsWith('/admin')){
       return adminIsLoggedInMiddleware(token, url)
+    }
+
+    if (req.nextUrl.pathname.startsWith('/auth')){
+      return redirectIfLoggedMiddleware(token, url)
     }
 }
