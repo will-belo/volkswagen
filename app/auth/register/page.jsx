@@ -2,129 +2,195 @@
 
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Avatar from '@mui/material/Avatar';
+import Step from '@mui/material/Step';
 import Button from '@mui/material/Button';
-import Checkbox from '@mui/material/Checkbox';
-import TextField from '@mui/material/TextField';
-import Container from '@mui/material/Container';
+import Stepper from '@mui/material/Stepper';
+import StepLabel from '@mui/material/StepLabel';
 import Typography from '@mui/material/Typography';
-import CssBaseline from '@mui/material/CssBaseline';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import locations from '@/src/locations.json'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Alert } from '@mui/material';
-import { useRouter } from 'next/navigation';
+import { Checkbox, Container, CssBaseline, FormControlLabel, Grid, InputLabel, Link, Menu, MenuItem, Select, TextField } from '@mui/material';
+import MaskedInput from '@/app/components/mask/inputMask';
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-
-      <Link color="inherit" href="https://oficinabrasil.com.br/">
-        Oficina Brasil
-      </Link>{' '}
-
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  )
-}
-
-// TODO remove, this demo shouldn't need to reset the theme.
+const steps = ['Cadastro básico', 'Adicionar endereço', 'Informações finais'];
 
 const defaultTheme = createTheme();
 
-export default function SignIn(){
-  const [alert, setAlert] = React.useState(null)
-  const router = useRouter()
+export default function HorizontalLinearStepper() {
+  const [activeStep, setActiveStep] = React.useState(0);
+  const [selectedState, setSelectedState] = React.useState('');
+  const [cities, setCities] = React.useState([]);
+  const [isChecked, setIsChecked] = React.useState(false);
 
-  const handleSubmit = async (event) => {
+  const handleCheckboxChange = (event) => {
+    setIsChecked(event.target.checked);
+  };
+
+  const handleCounter = (event) => {
+    console.log(event.target.value.length)
+  }
+  
+  const handleStateChange = (event) => {
+    const state = event.target.value;
+
+    setSelectedState(state);
+
+    const stateData = locations.estados.find(est => est.sigla === state);
+
+    setCities(stateData ? stateData.cidades : []);
+  };
+
+  const handleNext = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
+  };
+
+  const handleSubmit = (event) => {
     event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log({
+      email: data.get('email'),
+      password: data.get('password'),
+    });
+  };
 
-    const formData = new FormData(event.currentTarget);
+  function StepToRender(activeStepVerify){
+    switch(activeStepVerify){
+      case 0:
+        return(
+          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+                <TextField required fullWidth id="name" label="Nome" name="name" />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField name="gender" required fullWidth id="gender" label="Gênero" />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField required fullWidth id="born_at" label="Data de Nascimento" name="born_at" />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField required fullWidth id="email" label="Email" name="email" autoComplete="email" />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField required fullWidth name="password" label="Senha" type="password" id="password" autoComplete="new-password" />
+              </Grid>
+            </Grid>
+          </Box>
+        )
+      case 1:
+        return(
+          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <InputLabel id="state-select-label">Estado</InputLabel>
+                <Select required fullWidth labelId="state-select-label" value={selectedState} onChange={handleStateChange}>
+                  {locations.estados.map((estado) => (
+                    <MenuItem key={estado.sigla} value={estado.sigla}>{estado.nome}</MenuItem>
+                  ))}
+                </Select>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <InputLabel id="city-select-label">Cidade</InputLabel>
+                <Select required fullWidth labelId="city-select-label">
+                  {cities.map((cidade, index) => (
+                    <MenuItem key={index} value={cidade}>{cidade}</MenuItem>
+                  ))}
+                </Select>
+              </Grid>
+              <Grid item xs={12}>
+                <TextField required fullWidth id="name" label="Rua" name="name" />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField required fullWidth id="name" label="Número" name="name" />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField required fullWidth id="name" label="CEP" name="name" />
+              </Grid>
+            </Grid>
+          </Box>
+        )
+      case 2:
+        return(
+          <div>
+            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 8, ml: 5 }}>
+              <Grid container spacing={2}>
+                <FormControlLabel required control={<Checkbox checked={isChecked} onChange={handleCheckboxChange} />} label="Possui ou trabalha em oficina?" />
+              </Grid>
+            </Box>
 
-    const request = await fetch('/api/auth',{
-      method: 'POST',
-      body: formData,
-    })
-
-    const response = await request.text()
-
-    if( ! request.ok ){
-      setAlert(response)
-    }else{
-      setAlert(null)
-      router.push('/dashboard')
+            { isChecked && (
+              <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <TextField required fullWidth id="cnpj" label="CNPJ" name="cnpj" InputProps={{
+                      inputComponent: MaskedInput,
+                      inputProps: {
+                        mask: '00.000.000/0000-00',
+                      },
+                    }}
+                    onChange={handleCounter} />
+                  </Grid>
+                </Grid>
+              </Box>
+            )}
+          </div>
+        )
     }
   }
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="md">
         <CssBaseline />
-
-        <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
-
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-
-          <Typography component="h1" variant="h5">
-            Acessar
-          </Typography>
-
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Senha"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-
-            <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Lembrar senha" />
-
-            { alert && <Alert severity="error">{alert}</Alert> }
-
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} >
-              Login
-            </Button>
-
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Esqueceu a senha?
-                </Link>
-              </Grid>
-
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Ainda não tem uma conta? Cadastre-se"}
-                </Link>
-              </Grid>
-            </Grid>
+        <Box sx={{ marginTop: 8 }}>
+          
+          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <Typography className='mb-5' component="h1" variant="h5">
+              Faça seu cadastro
+            </Typography>
           </Box>
 
-        </Box>
+          <Stepper activeStep={activeStep}>
+            {steps.map((label, index) => {
+              const stepProps = {};
+              const labelProps = {};
+              
+              return (
+                <Step key={label} {...stepProps}>
+                  <StepLabel {...labelProps}>{label}</StepLabel>
+                </Step>
+              );
+            })}
+          </Stepper>
 
-        <Copyright sx={{ mt: 8, mb: 4 }} />
+          {activeStep === steps.length ? (
+            <React.Fragment>
+              <Typography sx={{ mt: 2, mb: 1 }}>
+                Cadastro completo, você será redirecionado em breve.
+              </Typography>
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
+              {StepToRender(activeStep)}
+
+              <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                <Button color="inherit" disabled={activeStep === 0} onClick={handleBack} sx={{ mr: 1 }}>Voltar</Button>
+                
+                <Box sx={{ flex: '1 1 auto' }} />
+
+                <Button onClick={handleNext}>
+                  {activeStep === steps.length - 1 ? 'Finalizar' : 'Próximo'}
+                </Button>
+              </Box>
+            </React.Fragment>
+          )}
+          
+        </Box>
       </Container>
     </ThemeProvider>
-  )
+  );
 }

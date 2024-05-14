@@ -1,12 +1,14 @@
 "use client"
 
 import UserContext from "@/src/contexts/UserContext"
-import { Menu, MenuItem } from "@mui/material"
+import { Link, Menu, MenuItem } from "@mui/material"
+import { useRouter } from "next/navigation"
 import { useContext, useEffect, useState } from "react"
 
 export default function Header() {
-    const { userIdAPI } = useContext(UserContext)
+    const { userIdAPI, logoutUser } = useContext(UserContext)
     const [userState, setUserState] = useState(null)
+    const router = useRouter()
 
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -15,6 +17,12 @@ export default function Header() {
         setUserState(userIdAPI)
     },[userIdAPI])
 
+    const handleLogout = () => {
+        if(logoutUser()){
+            router.refresh
+        }
+    }
+    
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -45,11 +53,11 @@ export default function Header() {
                     <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
                         <MenuItem onClick={handleClose}>Perfil</MenuItem>
                         <MenuItem onClick={handleClose}>Meus treinamentos</MenuItem>
-                        <MenuItem onClick={handleClose}>Sair</MenuItem>
+                        <MenuItem onClick={handleLogout}>Sair</MenuItem>
                     </Menu>
                     </>
                 :
-                    <h1>A</h1>
+                    <Link href="/auth/signin">Login</Link>
                 }
             </div>
         </div>
