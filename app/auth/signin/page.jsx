@@ -66,7 +66,7 @@ export default function SignIn(){
         <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
 
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
+            <img src='https://w7.pngwing.com/pngs/528/129/png-transparent-volkswagen-2019-hd-logo.png' />
           </Avatar>
 
           <Typography component="h1" variant="h5">
@@ -112,7 +112,7 @@ export default function SignIn(){
               </Grid>
 
               <Grid item>
-                <Link href="/auth/register" variant="body2">
+                <Link href="/auth/signup" variant="body2">
                   {"Ainda não tem uma conta? Cadastre-se"}
                 </Link>
               </Grid>
