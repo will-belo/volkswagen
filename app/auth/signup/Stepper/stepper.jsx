@@ -78,11 +78,20 @@ export default function StepToRender(activeStep, formData, setFormData){
                             <Grid item xs={12}>
                                 <TextField onChange={handleInputChange} value={formData.name} key="name" required fullWidth id="name" label="Nome" name="name" />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} sm={6}>
                                 <TextField onChange={handleInputChange} value={formData.document} key="document" required fullWidth id="document" label="CPF" name="document" InputProps={{
                                     inputComponent: MaskedInput,
                                         inputProps: {
                                             mask: '000.000.000-00',
+                                        },
+                                    }}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField onChange={handleInputChange} value={formData.phone} key="phone" required fullWidth id="phone" label="Celular" name="phone" InputProps={{
+                                    inputComponent: MaskedInput,
+                                        inputProps: {
+                                            mask: '(00) 0 0000-0000',
                                         },
                                     }}
                                 />

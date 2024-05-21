@@ -24,6 +24,7 @@ export default function HorizontalLinearStepper() {
   const [formData, setFormData] = React.useState({
     name: '',
     email: '',
+    phone: '',
     gender: '',
     born_at: '',
     document: '',
