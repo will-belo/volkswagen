@@ -19,6 +19,8 @@ export default function StepToRender(activeStep, formData, setFormData){
             ...prevFormData,
             [name]: value
         }));
+
+    console.log(formData)
     };
 
     const handleCheckboxChange = (event) => {

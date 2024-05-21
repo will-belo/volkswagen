@@ -47,7 +47,7 @@ export default function HorizontalLinearStepper() {
     auto_repair_number: '',
     auto_repair_cep: '',
   })    
-    
+
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -72,13 +72,13 @@ export default function HorizontalLinearStepper() {
       body: sendFormData,
     })
 
-    const response = await request.json()
-console.log(response)
+    const response = await request.text()
+    
     if( ! request.ok ){
       setAlert(response)
     }else{
       setAlert(null)
-      router.push('/dashboard')
+      router.push('/auth/signin')
     }
   }
 
