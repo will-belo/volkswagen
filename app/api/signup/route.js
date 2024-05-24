@@ -7,7 +7,9 @@ export async function POST(req) {
         'cep='                 + encodeURIComponent(formData.get('cep')) + 
         '&city='               + encodeURIComponent(formData.get('city')) + 
         '&cnpj='               + encodeURIComponent(formData.get('cnpj')) + 
+        '&role='               + encodeURIComponent(formData.get('role')) + 
         '&name='               + encodeURIComponent(formData.get('name')) + 
+        '&exist='              + encodeURIComponent(formData.get('exist')) + 
         '&email='              + encodeURIComponent(formData.get('email')) + 
         '&state='              + encodeURIComponent(formData.get('state')) + 
         '&check='              + encodeURIComponent(formData.get('check')) +
@@ -18,7 +20,8 @@ export async function POST(req) {
         '&born_at='            + encodeURIComponent(formData.get('born_at')) +
         '&password='           + encodeURIComponent(formData.get('password')) +
         '&document='           + encodeURIComponent(formData.get('document')) +  
-        '&fantasyName='        + encodeURIComponent(formData.get('fantasyName')) + 
+        '&fantasy_name='       + encodeURIComponent(formData.get('fantasy_name')) + 
+        '&auto_repair_id='     + encodeURIComponent(formData.get('auto_repair_id')) + 
         '&branch_activity='    + encodeURIComponent(formData.get('branch_activity')) + 
         '&auto_repair_cep='    + encodeURIComponent(formData.get('auto_repair_cep')) + 
         '&auto_repair_city='   + encodeURIComponent(formData.get('auto_repair_city')) + 

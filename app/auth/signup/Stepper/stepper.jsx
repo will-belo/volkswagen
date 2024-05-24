@@ -8,10 +8,10 @@ import { Checkbox, FormControl, FormControlLabel, Grid, InputLabel, Link, Menu, 
 
 export default function StepToRender(activeStep, formData, setFormData){
     const [cities, setCities] = React.useState([])
+    const [citiesAutoRepair, setCitiesAutoRepair] = React.useState([])
     const [formRender, setformRender] = React.useState(0)
     const [isChecked, setIsChecked] = React.useState(false)
-    const [selectedState, setSelectedState] = React.useState('')
-    const [autoRepairInfo, setautoRepairInfo] = React.useState('')
+    const [autoRepairInfo, setautoRepairInfo] = React.useState(null)
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -20,7 +20,7 @@ export default function StepToRender(activeStep, formData, setFormData){
             [name]: value
         }));
 
-    console.log(formData)
+        console.log(formData)
     };
 
     const handleCheckboxChange = (event) => {
@@ -45,6 +45,7 @@ export default function StepToRender(activeStep, formData, setFormData){
                 body: data,
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
+                    'Access-Control-Allow-Origin': 'no-Cors'
                 }
             })
 
@@ -54,21 +55,40 @@ export default function StepToRender(activeStep, formData, setFormData){
                 setformRender(1)
             }else{
                 setautoRepairInfo(response)
-                setformRender(2)
             }
         }
     }
+    
+    React.useEffect(() => {
+        if(autoRepairInfo != null){
+            setformRender(2)
+
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                exist: true,
+                auto_repair_id: autoRepairInfo.id
+            }));
+        }
+    }, [autoRepairInfo])
       
     const handleStateChange = (event) => {
         const state = event.target.value;
-
-        setSelectedState(state);
 
         handleInputChange(event)
 
         const stateData = locations.estados.find(est => est.sigla === state);
 
         setCities(stateData ? stateData.cidades : []);
+    };
+
+    const handleStateChangeAutoRepair = (event) => {
+        const state = event.target.value;
+
+        handleInputChange(event)
+
+        const stateData = locations.estados.find(est => est.sigla === state);
+
+        setCitiesAutoRepair(stateData ? stateData.cidades : []);
     };
 
     function steps(activeStepVerify){
@@ -132,7 +152,7 @@ export default function StepToRender(activeStep, formData, setFormData){
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
                                 <InputLabel id="state-select-label">Estado</InputLabel>
-                                <Select required fullWidth labelId="state-select-label" value={selectedState} onChange={handleStateChange} name="state">
+                                <Select required fullWidth labelId="state-select-label" value={formData.state} onChange={handleStateChange} name="state">
                                     {locations.estados.map((estado) => (
                                         <MenuItem key={estado.sigla} value={estado.sigla}>{estado.nome}</MenuItem>
                                     ))}
@@ -202,7 +222,10 @@ export default function StepToRender(activeStep, formData, setFormData){
                     <Box component="form" noValidate sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                <TextField onChange={handleInputChange} value={formData.fantasyName} fullWidth id="fantasyName" label="Nome Fantasia" name="fantasyName" />
+                                <TextField onChange={handleInputChange} value={formData.fantasy_name} fullWidth id="fantasy_name" label="Nome Fantasia" name="fantasy_name" />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField onChange={handleInputChange} value={formData.role} fullWidth id="role" label="Cargo" name="role" />
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField onChange={handleInputChange} value={formData.branch_activity} fullWidth id="branch_activity" label="Ramo de atividade" name="branch_activity" />
@@ -217,17 +240,17 @@ export default function StepToRender(activeStep, formData, setFormData){
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
-                                <InputLabel id="state-select-label">Estado</InputLabel>
-                                <Select required fullWidth labelId="state-select-label" value={selectedState} onChange={handleStateChange} name="auto_repair_state">
+                                <InputLabel id="auto-repair-state-select-label">Estado</InputLabel>
+                                <Select required fullWidth labelId="auto-repair-state-select-label" value={formData.auto_repair_state} onChange={handleStateChangeAutoRepair} name="auto_repair_state">
                                     {locations.estados.map((estado) => (
                                         <MenuItem key={estado.sigla} value={estado.sigla}>{estado.nome}</MenuItem>
                                     ))}
                                 </Select>
                             </Grid>
                             <Grid item xs={12} sm={6}>
-                                <InputLabel id="city-select-label">Cidade</InputLabel>
-                                <Select required fullWidth labelId="city-select-label" value={formData.auto_repair_city} onChange={handleInputChange} name="auto_repair_city">
-                                    {cities.map((cidade, index) => (
+                                <InputLabel id="auto-repair-city-select-label">Cidade</InputLabel>
+                                <Select required fullWidth labelId="auto-repair-city-select-label" value={formData.auto_repair_city} onChange={handleInputChange} name="auto_repair_city">
+                                    {citiesAutoRepair.map((cidade, index) => (
                                         <MenuItem key={index} value={cidade}>{cidade}</MenuItem>
                                     ))}
                                 </Select>
@@ -252,7 +275,19 @@ export default function StepToRender(activeStep, formData, setFormData){
                 )
             case 2:
                 return(
-                    <h1>Formulário CNPJ existe</h1>
+                    <Box component="form" noValidate sx={{ mt: 3 }}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <TextField value={autoRepairInfo.fantasy_name} fullWidth id="fantasy_name" label="Nome Fantasia" name="fantasy_name" aria-readonly />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField value={autoRepairInfo.branch_activity} fullWidth id="branch_activity" label="Ramo de atividade" name="branch_activity" aria-readonly />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField onChange={handleInputChange} value={formData.role} fullWidth id="role" label="Cargo" name="role" />
+                            </Grid>
+                        </Grid>
+                    </Box>
                 )
         }
     }
