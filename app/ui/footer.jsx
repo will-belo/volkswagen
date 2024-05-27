@@ -22,6 +22,7 @@ export default function Footer() {
             position: 'relative',
             paddingX: 5,
             paddingY: 5,
+            mt: 20,
             '::before': {
                 content: '""',
                 position: 'absolute',

@@ -57,7 +57,7 @@ export default function Header() {
                 </div>
             :
                 <div className="flex justify-center items-center gap-7">
-                    <Link href="/auth/signin" className="hover:text-volks-blue ease-in-out duration-200 uppercase text-black no-underline px-7 py-1">Cadastre-se</Link>
+                    <Link href="/auth/signup" className="hover:text-volks-blue ease-in-out duration-200 uppercase text-black no-underline px-7 py-1">Cadastre-se</Link>
                     <Button href="/auth/signin" variant="outlined" className="uppercase text-black no-underline px-7 py-1">Entrar</Button>
                 </div>
             }

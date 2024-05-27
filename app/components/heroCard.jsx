@@ -1,33 +1,53 @@
-"use client"
+import { Box, Button, Grid, Typography } from "@mui/material";
 
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+export default function HeroCard(props) {
+    const monthNames = [
+        "Janeiro",
+        "Fevereiro",
+        "Março",
+        "Abril",
+        "Maio",
+        "Junho",
+        "Julho",
+        "Agosto",
+        "Setembro",
+        "Outubro",
+        "Novembro",
+        "Dezembro",
+    ]
 
-export default function HeroCards(props) {
-  return (
-    <Card sx={{ display: 'flex', backgroundColor: 'rgb(56, 54, 219)', color: 'white', minWidth: 420, maxWidth: 420, maxHeight: 150 }}>
-        <CardContent sx={{ width: 150, padding: 1 }}>
-            <img src="https://placehold.co/200" width={150} className="rounded" />
-        </CardContent>
-        <CardContent sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around' }}>
-            <Typography variant="subtitle2" className="uppercase text-amber-500 font-bold">
-                {props.title}
-            </Typography>
-            <Typography sx={{ maxWidth: 250 }} variant="caption" className="uppercase font-bold" gutterBottom>
-                {props.children}
-            </Typography>
-            <Typography variant="caption">
-                {props.date}
-            </Typography>
-            <CardActions sx={{padding: 0}}>
-                <Button fullWidth variant="contained" size="small">{props.button}</Button>
-            </CardActions>
-        </CardContent>
-        <CardActions sx={{padding: 0}}></CardActions>
-    </Card>
-  );
+    const format = (dateStr) => {
+        const [day, month] = dateStr.split('/')
+        const monthName = monthNames[parseInt(month, 10) - 1]
+
+        return `Dia ${day} de ${monthName}`
+    }
+
+    return(
+        <Box>
+            <Box sx={{ backgroundColor: 'blue' }} className="rounded-lg">
+                <Grid container sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+                    <Grid item xs={4} className="p-3">
+                        <Box className="rounded-lg overflow-hidden">
+                            <img src={props.image} width={200} />
+                        </Box>
+                    </Grid>
+                    <Grid item xs={8} className="p-3">
+                        <Typography variant="subtitle1" className="uppercase text-amber-500 font-bold">
+                            {props.subtitle}
+                        </Typography>
+                        <Typography variant="body1" className="uppercase font-bold">
+                            {props.title}
+                        </Typography>
+                        <Typography variant="caption">
+                            {format(props.date)}
+                        </Typography>
+                        <Box className="mt-2">
+                            <Button variant="contained" fullWidth>{props.status ? 'Em Breve' : 'Saiba mais'}</Button>
+                        </Box>
+                    </Grid>
+                </Grid>
+            </Box>
+        </Box>
+    )
 }

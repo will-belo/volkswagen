@@ -1,34 +1,51 @@
 "use client"
 
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
+import { Box, Grid } from '@mui/material';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-export default function Cards() {
+export default function Cards(props) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        component="img"
-        alt="green iguana"
-        height="140"
-        image="https://placehold.co/200"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Lizard
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Card>
+    <Grid item xs={3}>
+      <Box className="drop-shadow-[0_2px_10px_rgba(0,0,0,0.25)]">
+        <Box className="flex items-center justify-center">
+            <img src={props.image} width={200} />
+        </Box>
+        <Box sx={{ paddingX: 4, paddingY: 2, position: 'relative' }}>
+          <Box sx={{
+            position: 'relative',
+            paddingX: 2,
+            my: 2,
+            '::before': {
+              content: '""',
+              position: 'absolute',
+              top: 0,
+              right: 0,
+              left: 0,
+              bottom: 0,
+              width: 5,
+              height: '100%',
+              backgroundColor: 'rgb(30,26,103)',
+              zIndex: 1,
+            },
+          }}>
+            <Typography variant="subtitle1" className="uppercase font-bold">
+              {props.title}
+            </Typography>
+            <Typography variant="overline" className="uppercase">
+              {props.code}
+            </Typography>
+          </Box>
+
+          <Typography variant="body2" sx={{ mb: 3 }}>
+            {props.children}
+          </Typography>
+
+          <Box className="flex justify-center">
+            <Button variant="contained" className="absolute px-8">Saiba Mais</Button>
+          </Box>
+        </Box>
+      </Box>
+    </Grid>
   );
 }

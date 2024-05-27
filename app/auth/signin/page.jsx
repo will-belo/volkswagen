@@ -12,25 +12,9 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import CssBaseline from '@mui/material/CssBaseline';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Alert } from '@mui/material';
 import { useRouter } from 'next/navigation';
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-
-      <Link color="inherit" href="https://oficinabrasil.com.br/">
-        Oficina Brasil
-      </Link>{' '}
-
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  )
-}
 
 const defaultTheme = createTheme();
 
@@ -120,8 +104,6 @@ export default function SignIn(){
           </Box>
 
         </Box>
-
-        <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
     </ThemeProvider>
   )
