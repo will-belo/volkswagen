@@ -6,21 +6,21 @@ import { useRouter } from "next/navigation"
 import { useContext, useEffect, useState } from "react"
 
 export default function Header() {
-    const { userIdAPI, logoutUser } = useContext(UserContext)
-    const [userState, setUserState] = useState(null)
-    const router = useRouter()
-
-    const [anchorEl, setAnchorEl] = useState(null);
+    const { isAuthenticated, userData, logout } = useContext(UserContext)
+    const route = useRouter()
+    const [userState, setUserState] = useState(false)
+    const [anchorEl, setAnchorEl] = useState(null)
     const open = Boolean(anchorEl);
-    
-    useEffect(() => {
-        setUserState(userIdAPI)
-    },[userIdAPI])
 
-    const handleLogout = () => {
-        if(logoutUser()){
-            router.refresh
+    useEffect(() => {
+        if(isAuthenticated){
+            setUserState(isAuthenticated)
+            route.refresh()
         }
+    }, [isAuthenticated])
+    
+    const handleLogout = () => {
+        logout()
     }
     
     const handleClick = (event) => {
@@ -45,8 +45,8 @@ export default function Header() {
             <div className="flex-none">
             { userState ?
                 <div>
-                    <a onClick={handleClick}>
-                        Usuário
+                    <a className="cursor-pointer" onClick={handleClick}>
+                        {userData.name}
                     </a>
 
                     <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>

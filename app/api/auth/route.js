@@ -1,14 +1,13 @@
 'use server'
 
-import singlePassValidate from "@/src/validate/singlePassValidate"
 import { cookies } from "next/headers"
+import UserContext from "@/src/contexts/UserContext"
 
 export async function POST(req) {
     const formData = await req.formData()
-
     const data = 'email=' + encodeURIComponent(formData.get('email')) + '&password=' + encodeURIComponent(formData.get('password'))
 
-    const request = await fetch('http://127.0.0.1:80/api/signin', {
+    const request = await fetch('http://127.0.0.1:8080/api/signin', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -25,7 +24,7 @@ export async function POST(req) {
     }
 
     cookies().set({
-        name: 'user_id',
+        name: 'context',
         value: response.user_id,
         path: '/',
         sameSite: 'lax',
@@ -34,7 +33,7 @@ export async function POST(req) {
     })
 
     cookies().set({
-        name: 'singlePassToken',
+        name: 'token',
         value: response.token,
         path: '/',
         sameSite: 'lax',

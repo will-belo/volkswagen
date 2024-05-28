@@ -38,7 +38,7 @@ export const config = {
 export async function middleware(req) {
     const cookiesStore = cookies()
 
-    let token = cookiesStore.get('singlePassToken')
+    let token = cookiesStore.get('token')
 
     if(!token){ token = '' }
 
