@@ -57,7 +57,7 @@ export default function StepToRender(activeStep, formData, setFormData){
         }
     }
     
-    React.useEffect(() => {
+    React.useEffect((setFormData) => {
         if(autoRepairInfo != null){
             setformRender(2)
 

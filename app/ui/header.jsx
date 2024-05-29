@@ -10,7 +10,19 @@ export default function Header() {
     const [anchorEl, setAnchorEl] = useState(null)
     const open = Boolean(anchorEl);
 
-    useEffect(() => {
+    const handleLogout = () => {
+        logout()
+    }
+    
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    useEffect((handleLogout) => {
         if(isAuthenticated){
             setUserState(
                 <div>
@@ -34,18 +46,6 @@ export default function Header() {
             )
         }
     }, [isAuthenticated, userData, anchorEl, open])
-    
-    const handleLogout = () => {
-        logout()
-    }
-    
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
 
     return (
         <div className="flex flex-row items-center justify-center p-4">

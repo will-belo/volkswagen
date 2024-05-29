@@ -7,11 +7,11 @@ import Videos from '../components/videos';
 import Video from '../components/video';
 import TrainingCard from '../components/trainingCard';
 
-export default function dashboard(){
+export default function Dashboard(){
     const [trainings, setTrainings] = React.useState([])
     const [verify, setVerify] = React.useState(false)
 
-    React.useEffect(() => {
+    React.useEffect((trainings) => {
         if(trainings){
             const getTrainings = async () => {
                 const request = await fetch('/api/trainings',{
