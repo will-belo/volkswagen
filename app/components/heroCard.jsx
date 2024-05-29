@@ -1,4 +1,5 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
+import Image from "next/image";
 
 export default function HeroCard(props) {
     const monthNames = [
@@ -29,7 +30,7 @@ export default function HeroCard(props) {
                 <Grid container sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                     <Grid item xs={4} className="p-3">
                         <Box className="rounded-lg overflow-hidden">
-                            <img src={props.image} width={200} />
+                            <Image src={props.image} width={200} height={200} alt="Hero image" />
                         </Box>
                     </Grid>
                     <Grid item xs={8} className="p-3">

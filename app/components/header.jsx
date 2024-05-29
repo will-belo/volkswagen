@@ -1,6 +1,7 @@
 "use client"
 
 import { Box, Divider } from "@mui/material"
+import Image from "next/image"
 
 export default function PreHeader() {
     return (
@@ -9,7 +10,7 @@ export default function PreHeader() {
                 <Divider sx={{ borderBottomWidth: 1, borderColor: "white" }} />
             </Box>
             <Box px={2}>
-                <img src="https://placehold.co/250x50"></img>
+                <Image src="https://placehold.co/250x50" width={250} height={50} alt="Logo" />
             </Box>
             <Box flexGrow={1}>
                 <Divider sx={{ borderBottomWidth: 1, borderColor: "white" }} />

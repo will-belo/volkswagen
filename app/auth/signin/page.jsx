@@ -15,6 +15,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Alert } from '@mui/material';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 const defaultTheme = createTheme();
 
@@ -50,7 +51,7 @@ export default function SignIn(){
         <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
 
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <img src='https://w7.pngwing.com/pngs/528/129/png-transparent-volkswagen-2019-hd-logo.png' />
+            <Image src='https://w7.pngwing.com/pngs/528/129/png-transparent-volkswagen-2019-hd-logo.png' />
           </Avatar>
 
           <Typography component="h1" variant="h5">

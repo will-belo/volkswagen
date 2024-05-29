@@ -2,6 +2,7 @@
 
 import { Facebook, Instagram, LinkedIn, Twitter, YouTube } from "@mui/icons-material"
 import { Box, Button, Grid, Link, Typography } from "@mui/material"
+import Image from "next/image";
 
 function Copyright(props) {
     return (
@@ -38,7 +39,7 @@ export default function Footer() {
             <Grid container spacing={5}>
                 <Grid item xs={3} className="flex items-center justify-center">
                     <Box>
-                        <img src="https://placehold.co/200x250" width="150" />
+                        <Image src="https://placehold.co/200x250" width={150} height={200} alt="Footer Logo" />
                     </Box>
                 </Grid>
                 <Grid item xs={3} className="flex items-center justify-center">

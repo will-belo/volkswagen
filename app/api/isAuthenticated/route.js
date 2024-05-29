@@ -1,12 +1,17 @@
 'use server'
 
+import singlePassValidate from '@/src/validate/singlePassValidate'
 import { cookies } from 'next/headers'
 
 export async function GET(req) {
     const jwt = cookies().get('token')
     const user = cookies().get('context')
 
-    if(jwt && user){
+    const request = await singlePassValidate(jwt.value)
+    
+    const response = await request.json()
+
+    if(request.status == 200 && response.role == 'common'){
         const data = 'id=' + encodeURIComponent(user.value)
 
         const request = await fetch('http://127.0.0.1:80/api/getInfos', {
@@ -25,7 +30,5 @@ export async function GET(req) {
         }
     }
 
-    return new Response(false,{
-        status: 404,
-    })
+    return Response.json(false)
 }
