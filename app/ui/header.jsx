@@ -2,22 +2,38 @@
 
 import UserContext from "@/src/contexts/UserContext"
 import { Button, Link, Menu, MenuItem } from "@mui/material"
-import { useRouter } from "next/navigation"
 import { useContext, useEffect, useState } from "react"
 
 export default function Header() {
     const { isAuthenticated, userData, logout } = useContext(UserContext)
-    const route = useRouter()
-    const [userState, setUserState] = useState(false)
+    const [userState, setUserState] = useState(null)
     const [anchorEl, setAnchorEl] = useState(null)
     const open = Boolean(anchorEl);
 
     useEffect(() => {
         if(isAuthenticated){
-            setUserState(isAuthenticated)
-            route.refresh()
+            setUserState(
+                <div>
+                    <a className="cursor-pointer" onClick={handleClick}>
+                        {userData.name}
+                    </a>
+
+                    <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+                        <MenuItem onClick={handleClose}>Perfil</MenuItem>
+                        <MenuItem onClick={handleClose}>Meus treinamentos</MenuItem>
+                        <MenuItem onClick={handleLogout}>Sair</MenuItem>
+                    </Menu>
+                </div>
+            )
+        }else{
+            setUserState(
+                <div className="flex justify-center items-center gap-7">
+                    <Link href="/auth/signup" className="hover:text-volks-blue ease-in-out duration-200 uppercase text-black no-underline px-7 py-1">Cadastre-se</Link>
+                    <Button href="/auth/signin" variant="outlined" className="uppercase text-black no-underline px-7 py-1">Entrar</Button>
+                </div>
+            )
         }
-    }, [isAuthenticated])
+    }, [isAuthenticated, userData, anchorEl, open])
     
     const handleLogout = () => {
         logout()
@@ -43,24 +59,7 @@ export default function Header() {
             </div>
 
             <div className="flex-none">
-            { userState ?
-                <div>
-                    <a className="cursor-pointer" onClick={handleClick}>
-                        {userData.name}
-                    </a>
-
-                    <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-                        <MenuItem onClick={handleClose}>Perfil</MenuItem>
-                        <MenuItem onClick={handleClose}>Meus treinamentos</MenuItem>
-                        <MenuItem onClick={handleLogout}>Sair</MenuItem>
-                    </Menu>
-                </div>
-            :
-                <div className="flex justify-center items-center gap-7">
-                    <Link href="/auth/signup" className="hover:text-volks-blue ease-in-out duration-200 uppercase text-black no-underline px-7 py-1">Cadastre-se</Link>
-                    <Button href="/auth/signin" variant="outlined" className="uppercase text-black no-underline px-7 py-1">Entrar</Button>
-                </div>
-            }
+                {userState}
             </div>
         </div>
     )

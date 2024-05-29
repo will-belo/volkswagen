@@ -13,8 +13,8 @@ export default function TrainingCard(props) {
     const [cities, setCities] = React.useState([])
     const [formData, setFormData] = React.useState({
         format: '',
-        auto_repair_state: '',
-        auto_repair_city: ''
+        concessionaire_state: '',
+        concessionaire_city: ''
     })  
 
     const handleFormatChange = (event) => {
@@ -36,27 +36,42 @@ export default function TrainingCard(props) {
     }; 
 
     const handleStateChange = (event) => {
-        const state = event.target.value;
-
         handleInputChange(event)
+
+        const state = event.target.value;
 
         const stateData = locations.estados.find(est => est.sigla === state);
 
         setCities(stateData ? stateData.cidades : []);
     };
 
-    console.log(formData)
+    const handleGetConcessionaire = async (event) => {
+        handleInputChange(event)
+
+        if(event.target.value != ''){
+            const request = await fetch(`/api/getConcessionaires?state=${formData.concessionaire_state}&city=${formData.concessionaire_city}`, {
+                method: 'GET',
+            })
+            
+            const response = await request.json()
+
+            console.log(response)
+        }
+    }
     
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardMedia
                 sx={{ height: 194 }}
                 component="img"
-                image="https://placehold.co/500"
+                image={props.content.cover}
             />
             <CardContent>
                 <Typography variant="h6" color="text.secondary">
                     {props.content.name}
+                </Typography>
+                <Typography variant="body" color="text.secondary">
+                    {props.content.description}
                 </Typography>
             </CardContent>
             <CardActions disableSpacing className="flex justify-between px-5 pb-5">
@@ -112,7 +127,7 @@ export default function TrainingCard(props) {
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
                             <InputLabel id="auto-repair-state-select-label">Estado</InputLabel>
-                            <Select required fullWidth labelId="auto-repair-state-select-label" value={formData.auto_repair_state} onChange={handleStateChange} name="auto_repair_state">
+                            <Select required fullWidth labelId="auto-repair-state-select-label" value={formData.concessionaire_state} onChange={handleStateChange} name="concessionaire_state">
                                 {locations.estados.map((estado) => (
                                     <MenuItem key={estado.sigla} value={estado.sigla}>{estado.nome}</MenuItem>
                                 ))}
@@ -120,7 +135,7 @@ export default function TrainingCard(props) {
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <InputLabel id="auto-repair-city-select-label">Cidade</InputLabel>
-                            <Select required fullWidth labelId="auto-repair-city-select-label" value={formData.auto_repair_city} onChange={handleInputChange} name="auto_repair_city">
+                            <Select required fullWidth labelId="auto-repair-city-select-label" value={formData.concessionaire_city} onChange={handleGetConcessionaire} name="concessionaire_city">
                                 {cities.map((cidade, index) => (
                                     <MenuItem key={index} value={cidade}>{cidade}</MenuItem>
                                 ))}
