@@ -1,4 +1,5 @@
 "use client"
+// @refresh reset
 
 import * as React from 'react';
 import { Box, Typography  } from "@mui/material"
@@ -9,28 +10,26 @@ import TrainingCard from '../components/trainingCard';
 
 export default function Dashboard(){
     const [trainings, setTrainings] = React.useState([])
-    const [verify, setVerify] = React.useState(false)
+    const [verify, setVerify] = React.useState(null)
+    
+    React.useEffect(() => {
+        const getTrainings = async () => {
+            const request = await fetch('/api/trainings',{
+                method: 'GET',
+            })
 
-    React.useEffect((trainings) => {
-        if(trainings){
-            const getTrainings = async () => {
-                const request = await fetch('/api/trainings',{
-                    method: 'GET',
-                })
-    
-                const response = await request.json()
-    
-                if(request.ok){
-                    setTrainings(response)
-                    setVerify(true)
-                }else{
-                    setTrainings(response)
-                    setVerify(false)
-                }
+            const response = await request.json()
+            
+            if(request.ok){
+                setTrainings(response)
+                setVerify(true)
+            }else{
+                setTrainings(response)
+                setVerify(false)
             }
-    
-            getTrainings()
         }
+
+        getTrainings()
     }, [verify])
     
     return(
@@ -39,7 +38,7 @@ export default function Dashboard(){
                 <Video url="https://placehold.co/1360x768" />
             </Videos>
 
-            <Title title="Treinamentos disponíveis" />
+            <Title title="Próximos treinamentos" />
             
             { verify ?
                 trainings.map((training, index) => (

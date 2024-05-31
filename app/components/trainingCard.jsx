@@ -4,29 +4,52 @@ import * as React from 'react';
 import locations from '@/src/locations.json'
 import { Box, Button, Card, CardActions, CardContent, CardMedia, FormControl, Grid, InputLabel, MenuItem, Modal, Select, Typography } from "@mui/material"
 import Title from './title';
+import { format } from 'date-fns';
 
 export default function TrainingCard(props) {
+    const [concessionairesInfos, setConcessionairesInfos] = React.useState(null)
+    const [concessionaires, setConcessionaires] = React.useState([])
+    const [messageRender, setMessageRender] = React.useState(0)
+    const [infosRender, setInfosRender] = React.useState(0)
+    const [formRender, setFormRender] = React.useState(0)
+    const [cities, setCities] = React.useState([])
     const [open, setOpen] = React.useState(false)
     const handleClose = () => setOpen(false)
     const handleOpen = () => setOpen(true)
-    const [formRender, setFormRender] = React.useState(0)
-    const [cities, setCities] = React.useState([])
     const [formData, setFormData] = React.useState({
         format: '',
         concessionaire_state: '',
-        concessionaire_city: ''
-    })  
-
-    const handleFormatChange = (event) => {
+        concessionaire_city: '',
+        concessionaire: '',
+    })
+    
+    const date = format(new Date(props.content.date), 'dd/MM/yyyy')
+    
+    const handleGetConcessionaire = async (event) => {
         handleInputChange(event)
 
-        if(event.target.value === 'inperson'){
-            setFormRender(1)
-        }else{
-            setFormRender(0)
-        }
-    } 
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            concessionaire: '',
+        }))
 
+        if(event.target.value != ''){
+            const request = await fetch(`/api/getConcessionaires?state=${formData.concessionaire_state}&city=${event.target.value}`, {
+                method: 'GET',
+            })
+            
+            const response = await request.json()
+
+            if(request.ok){
+                setConcessionaires(response)
+                setMessageRender(1)
+            }else{
+                setMessageRender(2)
+                setInfosRender(0)
+            }
+        }
+    }
+    
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData((prevFormData) => ({
@@ -35,8 +58,36 @@ export default function TrainingCard(props) {
         }));
     }; 
 
+    const handleFormatChange = (event) => {
+        handleInputChange(event)
+
+        if(event.target.value === 'inperson'){
+            setFormRender(1)
+        }else{
+            setFormRender(2)
+            setInfosRender(0)
+            setMessageRender(0)
+
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                concessionaire_state: '',
+                concessionaire_city: '',
+                concessionaire: '',
+            }))
+        }
+    } 
+
     const handleStateChange = (event) => {
         handleInputChange(event)
+
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            concessionaire_city: '',
+            concessionaire: '',
+        }))
+
+        setInfosRender(0)
+        setMessageRender(0)
 
         const state = event.target.value;
 
@@ -45,20 +96,34 @@ export default function TrainingCard(props) {
         setCities(stateData ? stateData.cidades : []);
     };
 
-    const handleGetConcessionaire = async (event) => {
+    const handleConcessionaireChange = (event) => {
         handleInputChange(event)
 
-        if(event.target.value != ''){
-            const request = await fetch(`/api/getConcessionaires?state=${formData.concessionaire_state}&city=${formData.concessionaire_city}`, {
-                method: 'GET',
-            })
-            
-            const response = await request.json()
-
-            console.log(response)
+        if(event.target.value != null){
+            setConcessionairesInfos(concessionaires[event.target.value])
+            setInfosRender(1)
         }
     }
-    
+
+    const Subscribe = () => {
+        return(
+            <Box noValidate sx={{ mt: 3 }}>
+                <Grid container spacing={2} sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                }}>
+                    <Grid item xs={6} className="text-center">
+                        <Typography className="text-indigo-400 font-bold">Data do evento: </Typography>
+                        <Typography className="">{date}</Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Button variant="outlined">Fazer Inscrição!</Button>
+                    </Grid>
+                </Grid>
+            </Box>
+        )
+    }
+
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardMedia
@@ -106,7 +171,11 @@ export default function TrainingCard(props) {
                                         </Select>
                                     </FormControl>
 
-                                    {formAutoRepair(formRender)}
+                                    {formConcessionaireAddress(formRender)}
+
+                                    {FindConcessionaire(messageRender)}
+
+                                    {ConcessionaireInfos(infosRender)}
                                 </Grid>
                             </Grid>
                         </Box>
@@ -116,13 +185,13 @@ export default function TrainingCard(props) {
         </Card>
     )
 
-    function formAutoRepair(form){
+    function formConcessionaireAddress(form){
         switch(form){
             case 1:
             return(
                 <Box component="form" noValidate sx={{ mt: 3 }}>
 
-                    <Title title="Escolha uma concessionária" mt="7" mb="5" />
+                    <Title title="Escolha uma concessionária" mt="7" mb="5" variant="h6" />
 
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
@@ -135,13 +204,63 @@ export default function TrainingCard(props) {
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <InputLabel id="auto-repair-city-select-label">Cidade</InputLabel>
-                            <Select required fullWidth labelId="auto-repair-city-select-label" value={formData.concessionaire_city} onChange={handleGetConcessionaire} name="concessionaire_city">
+                            <Select required fullWidth labelId="auto-repair-city-select-label" value={formData.concessionaire_city} onChange={handleGetConcessionaire} name="concessionaire_city">      
                                 {cities.map((cidade, index) => (
                                     <MenuItem key={index} value={cidade}>{cidade}</MenuItem>
                                 ))}
                             </Select>
                         </Grid>
                     </Grid>
+                </Box>
+            )
+            case 2:
+            return(
+                <Subscribe />
+            )
+        }
+    }
+
+    function FindConcessionaire(form){
+        switch(form){
+            case 1:
+            return(
+                <Box component="form" noValidate sx={{ mt: 3 }}>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <InputLabel id="concessionaire-select-label">Concessionárias</InputLabel>
+                            <Select required fullWidth labelId="concessionaire-select-label" value={formData.concessionaire} onChange={handleConcessionaireChange} name="concessionaire">                             
+                                {concessionaires.map((concessionaire, index) => (
+                                    <MenuItem key={index} value={index}>{concessionaire.fantasy_name}</MenuItem>
+                                ))}
+                            </Select>
+                        </Grid>
+                    </Grid>
+                </Box>
+            )
+            case 2:
+            return(
+                <Box component="form" noValidate sx={{ mt: 3 }}>
+                    <Typography>Nenhuma concessionária encontrada</Typography>
+                </Box>
+            )
+        }
+    }
+    
+    function ConcessionaireInfos(form){
+        switch(form){
+            case 1:
+            return(
+                <Box component="form" noValidate sx={{ mt: 3 }}>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12} className="text-center">
+
+                            <Title title="Endereço" mt="7" mb="5" variant="h6" />
+                            
+                            <Typography>{concessionairesInfos.street + ', ' + concessionairesInfos.number + '. CEP: ' + concessionairesInfos.cep}</Typography>
+                        </Grid>
+                    </Grid>
+
+                    <Subscribe />
                 </Box>
             )
         }

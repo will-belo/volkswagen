@@ -22,6 +22,8 @@ export const UserProvider = ({ children }) => {
             if(request.ok){
                 setIsAuthenticated(true)
                 setuserData(response)
+            }else{
+                setIsAuthenticated(false)
             }
         }
         verify()

@@ -1,4 +1,5 @@
 "use client"
+// @refresh reset
 
 import UserContext from "@/src/contexts/UserContext"
 import { Button, Link, Menu, MenuItem } from "@mui/material"
@@ -46,7 +47,7 @@ export default function Header() {
             )
         }
     }, [isAuthenticated, userData, anchorEl, open])
-
+    
     return (
         <div className="flex flex-row items-center justify-center p-4">
             <div className="flex-none"></div>
