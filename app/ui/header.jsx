@@ -2,7 +2,7 @@
 // @refresh reset
 
 import UserContext from "@/src/contexts/UserContext";
-import useWindowSize from "@/src/hooks/useWindowsSize";
+import useWindowSize from "@/app/hooks/useWindowsSize";
 import { Button, Link, Menu, MenuItem } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
@@ -37,10 +37,6 @@ export default function Header() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  const handleTraining = () => {
-      router.push('/dashboard')
-  }
   
   useEffect(
     (handleLogout) => {
@@ -53,7 +49,7 @@ export default function Header() {
 
             <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
               <MenuItem onClick={handleClose}>Perfil</MenuItem>
-              <MenuItem onClick={handleTraining}>Meus treinamentos</MenuItem>
+              <MenuItem onClick={router.push('/dashboard')}>Meus treinamentos</MenuItem>
               <MenuItem onClick={handleLogout}>Sair</MenuItem>
             </Menu>
           </div>
@@ -78,7 +74,7 @@ export default function Header() {
         );
       }
     },
-    [isAuthenticated, userData, anchorEl, open, handleTraining]
+    [isAuthenticated, userData, anchorEl, open, router]
   );
 
   return (

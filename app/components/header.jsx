@@ -3,7 +3,7 @@
 import { Box, Divider } from "@mui/material"
 import Image from "next/image"
 import DrawerUI from "./drawer"
-import useWindowSize from "@/src/hooks/useWindowsSize";
+import useWindowSize from "@/app/hooks/useWindowsSize";
 import { useEffect, useState } from "react";
 
 export default function PreHeader() {
@@ -16,7 +16,6 @@ export default function PreHeader() {
         } else {
             setMobile(false)
         }
-        console.log(windowSize.width);
     }, [windowSize])
 
     return (

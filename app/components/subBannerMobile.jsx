@@ -1,6 +1,6 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import EastIcon from '@mui/icons-material/East'
-import useWindowSize from "@/src/hooks/useWindowsSize";
+import useWindowSize from "@/app/hooks/useWindowsSize";
 import { useEffect, useState } from "react";
 
 export default function SubBannerMobile(props) {

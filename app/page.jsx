@@ -20,7 +20,7 @@ import SubBanner from "./components/subBanner";
 import Videos from "./components/videos";
 import Video from "./components/video";
 import HeroCard from "./components/heroCard";
-import useWindowSize from "@/src/hooks/useWindowsSize";
+import useWindowSize from "@/app/hooks/useWindowsSize";
 import { useEffect, useState } from "react";
 import HeroMobile from "./components/heroMobile";
 import SubBannerMobile from "./components/subBannerMobile";
