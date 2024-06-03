@@ -5,11 +5,13 @@ import UserContext from "@/src/contexts/UserContext";
 import useWindowSize from "@/src/hooks/useWindowsSize";
 import { Button, Link, Menu, MenuItem } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
+import { useRouter } from 'next/navigation';
 
 export default function Header() {
   const { isAuthenticated, userData, logout } = useContext(UserContext);
   const [userState, setUserState] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
+  const router = useRouter()
   const [mobile, setMobile] = useState(false);
 
   const open = Boolean(anchorEl);
@@ -37,6 +39,10 @@ export default function Header() {
     setAnchorEl(null);
   };
 
+  const handleTraining = () => {
+      router.push('/dashboard')
+  }
+  
   useEffect(
     (handleLogout) => {
       if (isAuthenticated) {
@@ -48,7 +54,7 @@ export default function Header() {
 
             <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
               <MenuItem onClick={handleClose}>Perfil</MenuItem>
-              <MenuItem onClick={handleClose}>Meus treinamentos</MenuItem>
+              <MenuItem onClick={handleTraining}>Meus treinamentos</MenuItem>
               <MenuItem onClick={handleLogout}>Sair</MenuItem>
             </Menu>
           </div>
