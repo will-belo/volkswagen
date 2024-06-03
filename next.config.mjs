@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    webpack: (config, { dev }) => {
-        if (dev) {
-          config.devtool = 'source-map'; // ou 'inline-source-map'
+    webpack: (config, options) => {
+        if (!options.dev) {
+          config.devtool = options.isServer ? false : 'inline-source-map'; // ou 'inline-source-map'
         }
         
         return config;
