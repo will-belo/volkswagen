@@ -77,7 +77,7 @@ export default function Dashboard(){
             { verifySubscribed ?
                 <Grid container>
                     {subscribedTrainings.map((training, index) => (
-                        <Grid item xs={3}>
+                        <Grid item xs={3} key={index}>
                             <SubscribedCard key={index} content={training} />
                         </Grid>
                     ))}

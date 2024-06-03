@@ -52,7 +52,7 @@ export default function Header() {
                 </div>
             )
         }
-    }, [isAuthenticated, userData, anchorEl, open])
+    }, [isAuthenticated, userData, anchorEl, open, handleLogout, handleTraining])
     
     return (
         <div className="flex flex-row items-center justify-center p-4">

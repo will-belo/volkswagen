@@ -33,7 +33,7 @@ export default function SubscribedCard(props) {
         }else{
             setTrainingFormat('Online')
         }
-    }, [])
+    }, [props.content.concessionaire])
 
     return (
         <Card sx={{ maxWidth: 345 }}>
