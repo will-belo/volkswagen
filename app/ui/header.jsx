@@ -24,7 +24,6 @@ export default function Header() {
     } else {
       setMobile(false);
     }
-    console.log(windowSize.width);
   }, [windowSize]);
 
   const handleLogout = () => {

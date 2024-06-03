@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import {
   Box,
@@ -39,7 +39,6 @@ export default function Home() {
     } else {
       setMobile(false);
     }
-    console.log(windowSize.width);
   }, [windowSize]);
   const className = mobile
     ? "flex flex-col gap-5 my-20 px-5"

@@ -173,8 +173,6 @@ export default function SubscribeModal(props) {
         }
     }
 
-    console.log(concessionairesInfos)
-
     const Subscribe = () => {
         return(
             <Box noValidate sx={{ mt: 3 }}>
