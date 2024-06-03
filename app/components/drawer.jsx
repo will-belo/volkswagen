@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Drawer, Button, List, ListItem, ListItemText, Link, Box } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Image } from '@mui/icons-material';
+import Image from "next/image";
 
 function DrawerUI() {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -37,7 +37,7 @@ function DrawerUI() {
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
         <Box>
 
-      <img src="https://placehold.co/1360x768" width={200} height={700} alt="Video Cover" />
+        <Image src="https://placehold.co/1360x768" width={200} height={700} alt="Video Cover" />
         </Box>
       <Link underline="none" color="inherit" className="hover:text-volks-blue ease-in-out duration-200 cursor-pointer px-7 py-2">Treinamentos</Link>
                 <Link underline="none" color="inherit" className="hover:text-volks-blue ease-in-out duration-200 cursor-pointer px-7 py-2">Peças VW</Link>

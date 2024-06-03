@@ -78,7 +78,7 @@ export default function Header() {
         );
       }
     },
-    [isAuthenticated, userData, anchorEl, open]
+    [isAuthenticated, userData, anchorEl, open, handleTraining]
   );
 
   return (
