@@ -8,7 +8,7 @@ import { format } from 'date-fns';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export default function TrainingCard(props) {
+export default function SubscribedCard(props) {
     const [concessionairesInfos, setConcessionairesInfos] = React.useState(null)
     const [concessionaires, setConcessionaires] = React.useState([])
     const [messageRender, setMessageRender] = React.useState(0)
@@ -174,7 +174,7 @@ export default function TrainingCard(props) {
                         <Typography className="">{date}</Typography>
                     </Grid>
                     <Grid item xs={6}>
-                        <Button variant="outlined" onClick={handleSubmit}>Fazer Inscrição!</Button>
+                        <Button variant="outlined" onClick={handleSubmit}>Atualizar</Button>
                     </Grid>
                 </Grid>
             </Box>
@@ -198,10 +198,7 @@ export default function TrainingCard(props) {
                 </Typography>
             </CardContent>
             <CardActions disableSpacing className="flex justify-between px-5 pb-5">
-                <Typography variant="button" color="text.secondary">
-                    Gratis
-                </Typography>
-                <Button variant="contained" onClick={handleOpen}>Inscreva-se</Button>
+                <Button variant="contained" onClick={handleOpen}>Atualizar inscrição</Button>
                 <Modal
                     open={open}
                     onClose={handleClose}
