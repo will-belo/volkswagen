@@ -1,185 +1,39 @@
 "use client"
 
 import * as React from 'react';
-import locations from '@/src/locations.json'
 import { Box, Button, Card, CardActions, CardContent, CardMedia, FormControl, Grid, InputLabel, MenuItem, Modal, Select, Typography } from "@mui/material"
 import Title from './title';
 import { format } from 'date-fns';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import SubscribeModal from './subscribe';
 
 export default function SubscribedCard(props) {
-    const [concessionairesInfos, setConcessionairesInfos] = React.useState(null)
-    const [concessionaires, setConcessionaires] = React.useState([])
-    const [messageRender, setMessageRender] = React.useState(0)
-    const [infosRender, setInfosRender] = React.useState(0)
-    const [formRender, setFormRender] = React.useState(0)
-    const [cities, setCities] = React.useState([])
-    const [open, setOpen] = React.useState(false)
-    const handleClose = () => setOpen(false)
-    const handleOpen = () => setOpen(true)
-    const [formData, setFormData] = React.useState({
-        format: '',
-        concessionaire_state: '',
-        concessionaire_city: '',
-        concessionaireID: '',
-        concessionaire: '',
-        trainingID: '',
-    })
-    
     const date = format(new Date(props.content.date), 'dd/MM/yyyy')
+
+    const [trainingAddress, setTrainingAddress] = React.useState('')
+    const [trainingFormat, setTrainingFormat] = React.useState('')
+    const [trainingLocal, setTrainingLocal] = React.useState('')
+    const [verifyLocal, setVerifyLocal] = React.useState(false)
     
-    const handleGetConcessionaire = async (event) => {
-        handleInputChange(event)
+    React.useEffect(() => {
+        if(props.content.concessionaire[0].id != 0){
+            setTrainingFormat('Presencial')
+            setTrainingLocal(`
+                ${props.content.concessionaire[0].fantasy_name}
+            `)
+            setTrainingAddress(`
+                ${props.content.concessionaire[0].address.street},  
+                ${props.content.concessionaire[0].address.number} - 
+                ${props.content.concessionaire[0].address.city.value}/
+                ${props.content.concessionaire[0].address.city.state.value} 
+            `)
 
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            concessionaire: '',
-        }))
-
-        if(event.target.value != ''){
-            const request = await fetch(`/api/getConcessionaires?state=${formData.concessionaire_state}&city=${event.target.value}`, {
-                method: 'GET',
-            })
-            
-            const response = await request.json()
-
-            if(request.ok){
-                setConcessionaires(response)
-                setMessageRender(1)
-            }else{
-                setMessageRender(2)
-                setInfosRender(0)
-            }
-        }
-    }
-    
-    const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            [name]: value
-        }));
-    }; 
-
-    const handleFormatChange = (event) => {
-        handleInputChange(event)
-
-        if(event.target.value === 'inperson'){
-            setFormRender(1)
+            setVerifyLocal(true)
         }else{
-            setFormRender(2)
-            setInfosRender(0)
-            setMessageRender(0)
-            
-            setFormData((prevFormData) => ({
-                ...prevFormData,
-                trainingID: props.content.id,
-                concessionaire_state: '',
-                concessionaire_city: '',
-                concessionaire: '',
-            }))
+            setTrainingFormat('Online')
         }
-    }
-
-    const handleStateChange = (event) => {
-        handleInputChange(event)
-
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            concessionaire_city: '',
-            concessionaire: '',
-        }))
-
-        setInfosRender(0)
-        setMessageRender(0)
-
-        const state = event.target.value;
-
-        const stateData = locations.estados.find(est => est.sigla === state);
-
-        setCities(stateData ? stateData.cidades : []);
-    };
-
-    const handleConcessionaireChange = (event) => {
-        handleInputChange(event)
-
-        if(event.target.value != null){
-            setConcessionairesInfos(concessionaires[event.target.value])
-            setFormData((prev) => ({
-                ...prev,
-                concessionaireID: concessionaires[event.target.value].id,
-                trainingID: props.content.id,
-            }))
-            setInfosRender(1)
-        }
-    }
-    
-    const handleSubmit = async (event) => {
-        event.preventDefault()
-
-        const sendFormData = new FormData();
-
-        for (const key in formData) {
-            if (formData.hasOwnProperty(key)) {
-                sendFormData.append(key, formData[key]);
-            }
-        }
-
-        const request = await fetch('/api/registerTraining', {
-            method: 'POST',
-            body: sendFormData,
-        })
-        
-        const response = await request.json()
-
-        if(request.ok){
-            setOpen(false)
-            toast.success(response, {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: false,
-                progress: undefined,
-                theme: "light",
-                transition: Bounce,
-            })
-        }else{
-            setOpen(false)
-            toast.error(response, {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: false,
-                progress: undefined,
-                theme: "light",
-                transition: Bounce,
-            })
-        }
-    }
-
-    const Subscribe = () => {
-        return(
-            <Box noValidate sx={{ mt: 3 }}>
-                <Grid container spacing={2} sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                }}>
-                    <Grid item xs={6} className="text-center">
-                        <Typography className="text-indigo-400 font-bold">Data do evento: </Typography>
-                        <Typography className="">{date}</Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <Button variant="outlined" onClick={handleSubmit}>Atualizar</Button>
-                    </Grid>
-                </Grid>
-            </Box>
-        )
-    }
+    }, [])
 
     return (
         <Card sx={{ maxWidth: 345 }}>
@@ -193,131 +47,34 @@ export default function SubscribedCard(props) {
                 <Typography variant="h6" color="text.secondary">
                     {props.content.name}
                 </Typography>
-                <Typography variant="body" color="text.secondary">
-                    {props.content.description}
-                </Typography>
+                <Box>
+                    <Typography variant="body" color="text.secondary">
+                        Data: {date}
+                    </Typography>
+                </Box>
+                <Box>
+                    <Typography variant="body" color="text.secondary">
+                        Formato: {trainingFormat}
+                    </Typography>
+                </Box>
+                { verifyLocal &&
+                <>
+                    <Box>
+                        <Typography variant="body" color="text.secondary">
+                            Local: {trainingLocal}
+                        </Typography>
+                    </Box>
+                    <Box className="text-center mt-5">
+                        <Typography variant="body" color="text.secondary">
+                            {trainingAddress}
+                        </Typography>
+                    </Box>
+                </>
+                }
             </CardContent>
             <CardActions disableSpacing className="flex justify-between px-5 pb-5">
-                <Button variant="contained" onClick={handleOpen}>Atualizar inscrição</Button>
-                <Modal
-                    open={open}
-                    onClose={handleClose}
-                    aria-labelledby="modal-modal-title"
-                    aria-describedby="modal-modal-description"
-                >
-                    <Box sx={{
-                        position: 'absolute',
-                        top: '50%',
-                        left: '50%',
-                        width: 450,
-                        bgcolor: 'background.paper',
-                        transform: 'translate(-50%, -50%)',
-                        borderRadius: 2,
-                        p: 4,
-                    }}>
-                        <Box noValidate>
-                            <Grid container spacing={2}>
-                                <Grid item xs={12}>
-                                    <FormControl variant="outlined" fullWidth>
-                                        <InputLabel id="format">Formato do treinamento</InputLabel>
-                                        <Select required fullWidth labelId="format" label="Formato do treinamento" value={formData.format} onChange={handleFormatChange} name="format">
-                                            <MenuItem key="format-online" value="online">Online</MenuItem>
-                                            <MenuItem key="format-inperson" value="inperson">Presencial</MenuItem>
-                                        </Select>
-                                    </FormControl>
-
-                                    {formConcessionaireAddress(formRender)}
-
-                                    {FindConcessionaire(messageRender)}
-
-                                    {ConcessionaireInfos(infosRender)}
-                                </Grid>
-                            </Grid>
-                        </Box>
-                    </Box>
-                </Modal>
+                <SubscribeModal content={props.content} type="update" id={props.content.users[0].pivot.id}>Atualizar Inscrição</SubscribeModal>
             </CardActions>
         </Card>
     )
-
-    function formConcessionaireAddress(form){
-        switch(form){
-            case 1:
-            return(
-                <Box component="form" noValidate sx={{ mt: 3 }}>
-
-                    <Title title="Escolha uma concessionária" mt="7" mb="5" variant="h6" />
-
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} sm={6}>
-                            <InputLabel id="auto-repair-state-select-label">Estado</InputLabel>
-                            <Select required fullWidth labelId="auto-repair-state-select-label" value={formData.concessionaire_state} onChange={handleStateChange} name="concessionaire_state">
-                                {locations.estados.map((estado) => (
-                                    <MenuItem key={estado.sigla} value={estado.sigla}>{estado.nome}</MenuItem>
-                                ))}
-                            </Select>
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <InputLabel id="auto-repair-city-select-label">Cidade</InputLabel>
-                            <Select required fullWidth labelId="auto-repair-city-select-label" value={formData.concessionaire_city} onChange={handleGetConcessionaire} name="concessionaire_city">      
-                                {cities.map((cidade, index) => (
-                                    <MenuItem key={index} value={cidade}>{cidade}</MenuItem>
-                                ))}
-                            </Select>
-                        </Grid>
-                    </Grid>
-                </Box>
-            )
-            case 2:
-            return(
-                <Subscribe />
-            )
-        }
-    }
-
-    function FindConcessionaire(form){
-        switch(form){
-            case 1:
-            return(
-                <Box component="form" noValidate sx={{ mt: 3 }}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <InputLabel id="concessionaire-select-label">Concessionárias</InputLabel>
-                            <Select required fullWidth labelId="concessionaire-select-label" value={formData.concessionaire} onChange={handleConcessionaireChange} name="concessionaire">                             
-                                {concessionaires.map((concessionaire, index) => (
-                                    <MenuItem key={index} value={index}>{concessionaire.fantasy_name}</MenuItem>
-                                ))}
-                            </Select>
-                        </Grid>
-                    </Grid>
-                </Box>
-            )
-            case 2:
-            return(
-                <Box component="form" noValidate sx={{ mt: 3 }}>
-                    <Typography>Nenhuma concessionária encontrada</Typography>
-                </Box>
-            )
-        }
-    }
-    
-    function ConcessionaireInfos(form){
-        switch(form){
-            case 1:
-            return(
-                <Box component="form" noValidate sx={{ mt: 3 }}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} className="text-center">
-
-                            <Title title="Endereço" mt="7" mb="5" variant="h6" />
-                            
-                            <Typography>{concessionairesInfos.street + ', ' + concessionairesInfos.number + '. CEP: ' + concessionairesInfos.cep}</Typography>
-                        </Grid>
-                    </Grid>
-
-                    <Subscribe />
-                </Box>
-            )
-        }
-    }
 }
