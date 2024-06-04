@@ -103,7 +103,7 @@ export default function SubscribeModal(props) {
 
     const handleConcessionaireChange = (event) => {
         handleInputChange(event)
-
+        
         if(event.target.value != null){
             setConcessionairesInfos(concessionaires[event.target.value])
             setFormData((prev) => ({
@@ -308,7 +308,9 @@ export default function SubscribeModal(props) {
                 <Box component="form" noValidate sx={{ mt: 3 }}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} className="text-center">
-
+                            <Title title={`Vagas disponiveis: ${concessionairesInfos.vacancies}`} mt="7" mb="5" variant="h6" />
+                        </Grid>
+                        <Grid item xs={12} className="text-center">
                             <Title title="Endereço" mt="7" mb="5" variant="h6" />
                             
                             <Typography>{concessionairesInfos.address.street + ', ' + concessionairesInfos.address.number + '. CEP: ' + concessionairesInfos.address.cep}</Typography>
