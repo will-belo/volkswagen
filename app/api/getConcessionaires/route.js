@@ -8,7 +8,7 @@ export async function GET(req) {
     if(jwt){
         const { searchParams } =  new URL(req.url)
         
-        const request = await fetch(`http://127.0.0.1:80/api/getConcessionaireByAddress?state=${searchParams.get('state')}&city=${searchParams.get('city')}&training=${searchParams.get('training')}`, {
+        const request = await fetch(`https://apivw.oficinabrasil.com.br/api/getConcessionaireByAddress?state=${searchParams.get('state')}&city=${searchParams.get('city')}&training=${searchParams.get('training')}`, {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + jwt.value

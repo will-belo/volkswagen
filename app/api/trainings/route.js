@@ -1,7 +1,7 @@
 'use server'
 
 export async function GET(req) {
-    const request = await fetch('http://127.0.0.1:80/api/trainings', {
+    const request = await fetch('https://apivw.oficinabrasil.com.br/api/trainings', {
         method: 'GET',
     })
 
