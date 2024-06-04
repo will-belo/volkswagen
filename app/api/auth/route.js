@@ -7,7 +7,7 @@ export async function POST(req) {
     const formData = await req.formData()
     const data = 'email=' + encodeURIComponent(formData.get('email')) + '&password=' + encodeURIComponent(formData.get('password'))
 
-    const request = await fetch('http://127.0.0.1:8080/api/signin', {
+    const request = await fetch('http://login.oficinabrasil.com.br/api/signin', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
