@@ -52,7 +52,7 @@ export async function middleware(req) {
       return adminIsLoggedInMiddleware(token, url)
     }
 
-    // if (req.nextUrl.pathname.startsWith('/auth')){
-    //   return redirectIfLoggedMiddleware(token, url)
-    // }
+    if (req.nextUrl.pathname.startsWith('/auth')){
+      return redirectIfLoggedMiddleware(token, url)
+    }
 }
