@@ -141,12 +141,6 @@ export default function Home() {
             <CoverBox image="https://placehold.co/50" />
           </Cover>
         )}
-        {/* <Cover>
-          <CoverBox image="https://placehold.co/50" />
-          <CoverBox image="https://placehold.co/50" />
-          <CoverBox image="https://placehold.co/50" />
-          <CoverBox image="https://placehold.co/50" />
-        </Cover> */}
 
         {mobile ? (
           <SubBannerMobile

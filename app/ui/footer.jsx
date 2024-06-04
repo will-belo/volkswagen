@@ -41,7 +41,7 @@ export default function Footer() {
           bottom: 0,
           width: "100%",
           height: 30,
-          backgroundColor: "rgb(30,26,103)",
+          backgroundColor: "rgb(8,74,176)",
           zIndex: 1,
         },
       }}

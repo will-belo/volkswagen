@@ -22,7 +22,7 @@ export default function SubBanner(props) {
                         right: -60,
                         bottom: 0,
                         width: 50,
-                        background: 'linear-gradient(to right, rgba(30,26,103,1) 75%, rgba(51,51,237,1) 75%)',
+                        background: 'linear-gradient(to right, rgba(2,39,96,1) 75%, rgba(8,74,176,1) 75%)',
                         zIndex: 1,
                         },
                     }}>

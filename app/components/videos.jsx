@@ -4,7 +4,7 @@ export default function Videos(props) {
   return (
     <Box
       sx={{
-        backgroundColor: "rgb(56, 54, 219)",
+        backgroundColor: "#023489",
         color: "white",
         padding: 5,
         borderRadius: 2,

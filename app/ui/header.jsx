@@ -39,7 +39,7 @@ export default function Header() {
   };
   
   useEffect(
-    (handleLogout) => {
+    () => {
       if (isAuthenticated) {
         setUserState(
           <div>
@@ -48,7 +48,6 @@ export default function Header() {
             </a>
 
             <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-              <MenuItem onClick={handleClose}>Perfil</MenuItem>
               <MenuItem onClick={router.push('/dashboard')}>Meus treinamentos</MenuItem>
               <MenuItem onClick={handleLogout}>Sair</MenuItem>
             </Menu>
