@@ -103,15 +103,22 @@ export default function SubscribeModal(props) {
 
     const handleConcessionaireChange = (event) => {
         handleInputChange(event)
-
+        
         if(event.target.value != null){
             setConcessionairesInfos(concessionaires[event.target.value])
+
             setFormData((prev) => ({
                 ...prev,
                 concessionaireID: concessionaires[event.target.value].id,
                 trainingID: props.content.id,
             }))
-            setInfosRender(1)
+
+            if(concessionaires[event.target.value].vacancies != 0){
+                setInfosRender(1)
+            }else{
+                setInfosRender(2)
+            }
+
         }
     }
     
@@ -172,8 +179,6 @@ export default function SubscribeModal(props) {
             })
         }
     }
-
-    console.log(concessionairesInfos)
 
     const Subscribe = () => {
         return(
@@ -310,7 +315,9 @@ export default function SubscribeModal(props) {
                 <Box component="form" noValidate sx={{ mt: 3 }}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} className="text-center">
-
+                            <Title title={`Vagas disponiveis: ${concessionairesInfos.vacancies}`} mt="7" mb="5" variant="h6" />
+                        </Grid>
+                        <Grid item xs={12} className="text-center">
                             <Title title="Endereço" mt="7" mb="5" variant="h6" />
                             
                             <Typography>{concessionairesInfos.address.street + ', ' + concessionairesInfos.address.number + '. CEP: ' + concessionairesInfos.address.cep}</Typography>
@@ -318,6 +325,16 @@ export default function SubscribeModal(props) {
                     </Grid>
 
                     <Subscribe />
+                </Box>
+            )
+            case 2:
+            return(
+                <Box component="form" noValidate sx={{ mt: 3 }}>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12} className="text-center">
+                            <Typography>Sem vagas disponíveis para essa concessionária</Typography>
+                        </Grid>
+                    </Grid>
                 </Box>
             )
         }
