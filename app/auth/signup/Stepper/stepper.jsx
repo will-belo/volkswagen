@@ -38,7 +38,7 @@ export default function StepToRender(activeStep, formData, setFormData){
 
             const data = 'cnpj=' + encodeURIComponent(event.target.value)
 
-            const request = await fetch('http://127.0.0.1:80/api/getByCNPJ', {
+            const request = await fetch('https://apivw.oficinabrasil.com.br/api/getByCNPJ', {
                 method: 'POST',
                 body: data,
                 headers: {
