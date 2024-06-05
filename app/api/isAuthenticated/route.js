@@ -18,6 +18,7 @@ export async function GET(req) {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': 'Bearer ' + jwt.value
             },
+            cache: 'no-store',
         })
     
         const response = await request.json()

@@ -35,6 +35,7 @@ export async function POST(req) {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
+        cache: 'no-store',
         body: data,
     })
     

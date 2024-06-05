@@ -12,6 +12,7 @@ export async function GET(req) {
             headers: {
                 'Authorization': 'Bearer ' + jwt.value
             },
+            cache: 'no-store',
         })
         
         const response = await request.json()

@@ -10,8 +10,11 @@ export default function StepToRender(activeStep, formData, setFormData){
     const [cities, setCities] = React.useState([])
     const [citiesAutoRepair, setCitiesAutoRepair] = React.useState([])
     const [formRender, setformRender] = React.useState(0)
-    const [isChecked, setIsChecked] = React.useState(false)
+    const [isChecked, setIsChecked] = React.useState(true)
     const [autoRepairInfo, setautoRepairInfo] = React.useState(null)
+
+    const [isLegacy, setIsLegacy] = React.useState(false)
+    const [legacyData, setLegacyData] = React.useState([])
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -20,7 +23,7 @@ export default function StepToRender(activeStep, formData, setFormData){
             [name]: value
         }));
     };
-
+console.log(formData)
     const handleCheckboxChange = (event) => {
         setIsChecked(event.target.checked)
         
@@ -29,6 +32,58 @@ export default function StepToRender(activeStep, formData, setFormData){
             ...prevFormData,
             [name]: checked
         }));
+    }
+
+    const handleSearchDocument = async (event) => {
+        handleInputChange(event)
+        
+        if(event.target.value.length >= 14){
+
+            const data = 'cpf=' + encodeURIComponent(event.target.value)
+
+            const request = await fetch('https://apivw.oficinabrasil.com.br/api/getByCpf', { // 127.0.0.1:80
+                cache: 'no-store',
+                method: 'POST',
+                body: data,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Access-Control-Allow-Origin': 'no-Cors'
+                }
+            })
+
+            const response = await request.json()
+            
+            if(request.ok){
+                setIsLegacy(true)
+                setLegacyData(response)
+
+                setFormData((prevFormData) => ({
+                    ...prevFormData,
+                    nome: response.Nome,
+                    phone: response.Celular,
+                    born_at: response.Nascimento,
+                    email: response.Email,
+                }));
+            }else{
+                setIsLegacy(false)
+                setFormData((prevFormData) => ({
+                    ...prevFormData,
+                    nome: '',
+                    phone: '',
+                    born_at: '',
+                    email: '',
+                }));
+            }
+        }else{
+            setIsLegacy(false)
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                nome: '',
+                phone: '',
+                born_at: '',
+                email: '',
+            }));
+        }
     }
     
     const handleCNPJVerify = async (event) => {
@@ -39,6 +94,7 @@ export default function StepToRender(activeStep, formData, setFormData){
             const data = 'cnpj=' + encodeURIComponent(event.target.value)
 
             const request = await fetch('https://apivw.oficinabrasil.com.br/api/getByCNPJ', {
+                cache: 'no-store',
                 method: 'POST',
                 body: data,
                 headers: {
@@ -96,10 +152,7 @@ export default function StepToRender(activeStep, formData, setFormData){
                     <Box noValidate sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                <TextField onChange={handleInputChange} value={formData.name} key="name" required fullWidth id="name" label="Nome" name="name" />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <TextField onChange={handleInputChange} value={formData.document} key="document" required fullWidth id="document" label="CPF" name="document" InputProps={{
+                                <TextField onChange={handleSearchDocument} value={formData.document} key="document" required fullWidth id="document" label="CPF" name="document" InputProps={{
                                     inputComponent: MaskedInput,
                                         inputProps: {
                                             mask: '000.000.000-00',
@@ -108,7 +161,10 @@ export default function StepToRender(activeStep, formData, setFormData){
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
-                                <TextField onChange={handleInputChange} value={formData.phone} key="phone" required fullWidth id="phone" label="Celular" name="phone" InputProps={{
+                                <TextField onChange={handleInputChange} value={isLegacy ? legacyData.Nome : formData.name} key="name" required fullWidth id="name" label="Nome" name="name" />
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <TextField onChange={handleInputChange} value={isLegacy ? legacyData.Celular : formData.phone} key="phone" required fullWidth id="phone" label="Celular" name="phone" InputProps={{
                                     inputComponent: MaskedInput,
                                         inputProps: {
                                             mask: '(00) 0 0000-0000',
@@ -127,7 +183,7 @@ export default function StepToRender(activeStep, formData, setFormData){
                                 </FormControl>
                             </Grid>
                             <Grid item xs={12} sm={6}>
-                                <TextField onChange={handleInputChange} value={formData.born_at} key="born_at" required fullWidth id="born_at" label="Data de Nascimento" name="born_at" InputProps={{
+                                <TextField onChange={handleInputChange} value={isLegacy ? legacyData.Nascimento : formData.born_at} key="born_at" required fullWidth id="born_at" label="Data de Nascimento" name="born_at" InputProps={{
                                     inputComponent: MaskedInput,
                                         inputProps: {
                                             mask: '00/00/0000',
@@ -136,7 +192,7 @@ export default function StepToRender(activeStep, formData, setFormData){
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField onChange={handleInputChange} value={formData.email} key="email" required fullWidth id="email" label="Email" name="email" />
+                                <TextField onChange={handleInputChange} value={isLegacy ? legacyData.Email : formData.email} key="email" required fullWidth id="email" label="Email" name="email" />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField onChange={handleInputChange} key="password" required fullWidth id="password" label="Senha" name="password" type="password" />
