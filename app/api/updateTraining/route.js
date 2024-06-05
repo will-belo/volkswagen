@@ -15,6 +15,7 @@ export async function PUT(req) {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': 'Bearer ' + jwt.value
             },
+            cache: 'no-store',
             body: 'concessionaireId=' + encodeURIComponent(training.get('concessionaireID'))
         })
         

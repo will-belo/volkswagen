@@ -20,6 +20,7 @@ export async function POST(req) {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': 'Bearer ' + jwt.value
             },
+            cache: 'no-store',
             body: data
         })
         

@@ -41,6 +41,7 @@ export default function StepToRender(activeStep, formData, setFormData){
             const request = await fetch('https://apivw.oficinabrasil.com.br/api/getByCNPJ', {
                 method: 'POST',
                 body: data,
+                cache: 'no-store',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                     'Access-Control-Allow-Origin': 'no-Cors'
