@@ -10,8 +10,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import SubscribeModal from './subscribe';
 
 export default function TrainingCard(props) {
-    const date = format(new Date(props.content.date), 'dd/MM/yyyy')
-
     return (
         <Card sx={{ maxWidth: 345 }}>
             <ToastContainer />
@@ -32,7 +30,7 @@ export default function TrainingCard(props) {
                 <Typography variant="button" color="text.secondary">
                     Gratis
                 </Typography>
-                
+
                 <SubscribeModal content={props.content} type="insert">Fazer Inscrição</SubscribeModal>
             </CardActions>
         </Card>

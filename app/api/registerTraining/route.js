@@ -14,7 +14,7 @@ export async function POST(req) {
             '&trainingId='      + encodeURIComponent(training.get('trainingID')) +
             '&userId='          + encodeURIComponent(user.value)
             
-        const request = await fetch('http://127.0.0.1:80/api/training', {
+        const request = await fetch('https://apivw.oficinabrasil.com.br/api/training', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',

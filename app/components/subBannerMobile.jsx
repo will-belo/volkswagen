@@ -1,35 +1,38 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import EastIcon from '@mui/icons-material/East'
+import useWindowSize from "@/app/hooks/useWindowsSize";
+import { useEffect, useState } from "react";
 
-export default function SubBanner(props) {
+export default function SubBannerMobile(props) {
+
     return(
         <Box className="my-20">
             <Grid container spacing={7}>
-                <Grid item xs={8}>
+                <Grid item xs={12}>
                     <Box sx={{
                         position: 'relative',
                         backgroundImage: 'url('+(props.image)+')',
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'center',
                         backgroundSize: 'cover',
-                        minHeight: 500,
+                        height: 200,
                         width: '100%',
                         padding: 0,
                         '::before': {
                         content: '""',
                         position: 'absolute',
                         top: 0,
-                        right: -60,
+                        right: 0,
                         bottom: 0,
                         width: 50,
-                        background: 'linear-gradient(to right, rgba(2,39,96,1) 75%, rgba(8,74,176,1) 75%)',
+                        background: 'linear-gradient(to right, rgba(30,26,103,1) 75%, rgba(51,51,237,1) 75%)',
                         zIndex: 1,
                         },
                     }}>
                         
                     </Box>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={12}>
                     <Box sx={{ 
                         backgroundColor: 'rgb(250, 250, 250)',
                         width: '100%',

@@ -1,7 +1,7 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import Image from "next/image";
 
-export default function HeroCard(props) {
+export default function HeroCardMobile(props) {
     const monthNames = [
         "Janeiro",
         "Fevereiro",
@@ -25,8 +25,8 @@ export default function HeroCard(props) {
     }
 
     return(
-        <Box>
-            <Box sx={{ background: 'linear-gradient(90deg, rgba(8,74,176,1) 0%, rgba(2,39,96,1) 100%)' }} className="rounded-lg">
+        <Box className="my-10"  >
+            <Box sx={{ backgroundColor: 'blue' }} className="rounded-lg">
                 <Grid container sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                     <Grid item xs={4} className="p-3">
                         <Box className="rounded-lg overflow-hidden">

@@ -12,7 +12,7 @@ export async function GET(req) {
     const response = await request.json()
     
     if(request.status == 200 && response.role == 'common'){
-        const request = await fetch(`http://127.0.0.1:80/api/users/${user.value}`, {
+        const request = await fetch(`https://apivw.oficinabrasil.com.br/api/users/${user.value}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',

@@ -30,7 +30,7 @@ export async function POST(req) {
         '&auto_repair_number=' + encodeURIComponent(formData.get('auto_repair_number')) +
         '&auto_repair_street=' + encodeURIComponent(formData.get('auto_repair_street'))
 
-    const request = await fetch('http://127.0.0.1:80/api/signup', {
+    const request = await fetch('https://apivw.oficinabrasil.com.br/api/signup', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',

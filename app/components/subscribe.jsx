@@ -112,13 +112,14 @@ export default function SubscribeModal(props) {
                 concessionaireID: concessionaires[event.target.value].id,
                 trainingID: props.content.id,
             }))
-
+          
             if(concessionaires[event.target.value].vacancies != 0){
                 setInfosRender(1)
             }else{
                 setInfosRender(2)
             }
-
+          
+            setInfosRender(1)
         }
     }
     
