@@ -10,8 +10,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import SubscribeModal from './subscribe';
 
 export default function TrainingCard(props) {
-    const date = format(new Date(props.content.date), 'dd/MM/yyyy')
-
     return (
         <Card sx={{ maxWidth: 345 }}>
             <ToastContainer />
