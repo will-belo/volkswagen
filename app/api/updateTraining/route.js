@@ -9,6 +9,7 @@ export async function PUT(req) {
         const training =  await req.formData()
 
         const request = await fetch(`https://apivw.oficinabrasil.com.br/api/training/${training.get('id')}`, {
+
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',

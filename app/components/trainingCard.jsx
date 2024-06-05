@@ -30,7 +30,8 @@ export default function TrainingCard(props) {
                 <Typography variant="button" color="text.secondary">
                     Gratis
                 </Typography>
-                <SubscribeModal  content={props.content} type="insert">Inscreva-se</SubscribeModal>
+
+                <SubscribeModal content={props.content} type="insert">Fazer Inscrição</SubscribeModal>
             </CardActions>
         </Card>
     )
