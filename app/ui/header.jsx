@@ -38,8 +38,7 @@ export default function Header() {
         setAnchorEl(null);
     };
   
-    useEffect(
-        () => {
+    useEffect(() => {
         if (isAuthenticated) {
             setUserState(
             <div>
@@ -48,7 +47,7 @@ export default function Header() {
                 </a>
 
                 <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-                <MenuItem onClick={router.push('/dashboard')}>Meus treinamentos</MenuItem>
+                <MenuItem onClick={() => { router.push('/dashboard') }}>Meus treinamentos</MenuItem>
                 <MenuItem onClick={handleLogout}>Sair</MenuItem>
                 </Menu>
             </div>

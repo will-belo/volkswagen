@@ -56,10 +56,10 @@ console.log(formData)
             if(request.ok){
                 setIsLegacy(true)
                 setLegacyData(response)
-
+                
                 setFormData((prevFormData) => ({
                     ...prevFormData,
-                    nome: response.Nome,
+                    name: response.Nome,
                     phone: response.Celular,
                     born_at: response.Nascimento,
                     email: response.Email,
