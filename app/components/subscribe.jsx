@@ -1,14 +1,18 @@
 "use client"
 
 import * as React from 'react';
+import UserContext from "@/src/contexts/UserContext";
 import locations from '@/src/locations.json'
 import { Box, Button, Card, CardActions, CardContent, CardMedia, FormControl, Grid, InputLabel, MenuItem, Modal, Select, Typography } from "@mui/material"
 import Title from './title';
 import { format } from 'date-fns';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Route } from '@mui/icons-material';
+import { useRouter } from 'next/navigation';
 
 export default function SubscribeModal(props) {
+    const { isAuthenticated, userData, logout } = React.useContext(UserContext);
     const [concessionairesInfos, setConcessionairesInfos] = React.useState(null)
     const [concessionaires, setConcessionaires] = React.useState([])
     const [messageRender, setMessageRender] = React.useState(0)
@@ -18,6 +22,7 @@ export default function SubscribeModal(props) {
     const [open, setOpen] = React.useState(false)
     const handleClose = () => setOpen(false)
     const handleOpen = () => setOpen(true)
+    const router = useRouter()
     const [formData, setFormData] = React.useState({
         format: '',
         concessionaire_state: '',
@@ -26,9 +31,9 @@ export default function SubscribeModal(props) {
         concessionaire: '',
         trainingID: '',
     })
-    
+
     const date = format(new Date(props.content.date), 'dd/MM/yyyy')
-    
+
     const handleGetConcessionaire = async (event) => {
         handleInputChange(event)
 
@@ -37,17 +42,17 @@ export default function SubscribeModal(props) {
             concessionaire: '',
         }))
 
-        if(event.target.value != ''){
+        if (event.target.value != '') {
             const request = await fetch(`/api/getConcessionaires?state=${formData.concessionaire_state}&city=${event.target.value}&training=${props.content.id}`, {
                 method: 'GET',
             })
-            
+
             const response = await request.json()
 
-            if(request.ok){
+            if (request.ok) {
                 setConcessionaires(response)
                 setMessageRender(1)
-            }else{
+            } else {
                 setMessageRender(2)
                 setInfosRender(0)
             }
@@ -60,18 +65,18 @@ export default function SubscribeModal(props) {
             ...prevFormData,
             [name]: value
         }));
-    }; 
+    };
 
     const handleFormatChange = (event) => {
         handleInputChange(event)
 
-        if(event.target.value === 'inperson'){
+        if (event.target.value === 'inperson') {
             setFormRender(1)
-        }else{
+        } else {
             setFormRender(2)
             setInfosRender(0)
             setMessageRender(0)
-            
+
             setFormData((prevFormData) => ({
                 ...prevFormData,
                 trainingID: props.content.id,
@@ -103,8 +108,8 @@ export default function SubscribeModal(props) {
 
     const handleConcessionaireChange = (event) => {
         handleInputChange(event)
-        
-        if(event.target.value != null){
+
+        if (event.target.value != null) {
             setConcessionairesInfos(concessionaires[event.target.value])
 
             setFormData((prev) => ({
@@ -112,17 +117,17 @@ export default function SubscribeModal(props) {
                 concessionaireID: concessionaires[event.target.value].id,
                 trainingID: props.content.id,
             }))
-          
-            if(concessionaires[event.target.value].vacancies != 0){
+
+            if (concessionaires[event.target.value].vacancies != 0) {
                 setInfosRender(1)
-            }else{
+            } else {
                 setInfosRender(2)
             }
-          
+
             setInfosRender(1)
         }
     }
-    
+
     const handleSubmit = async (event) => {
         event.preventDefault()
 
@@ -136,12 +141,12 @@ export default function SubscribeModal(props) {
             }
         }
 
-        if(props.type == 'insert'){
+        if (props.type == 'insert') {
             request = await fetch('/api/registerTraining', {
                 method: 'POST',
                 body: sendFormData,
             })
-        }else{
+        } else {
             sendFormData.append('id', props.id);
 
             request = await fetch('/api/updateTraining', {
@@ -149,10 +154,10 @@ export default function SubscribeModal(props) {
                 body: sendFormData,
             })
         }
-        
+
         const response = await request.json()
-        
-        if(request.ok){
+
+        if (request.ok) {
             setOpen(false)
             toast.success(response, {
                 position: "top-right",
@@ -165,7 +170,7 @@ export default function SubscribeModal(props) {
                 theme: "light",
                 transition: Bounce,
             })
-        }else{
+        } else {
             setOpen(false)
             toast.error(response, {
                 position: "top-right",
@@ -182,7 +187,7 @@ export default function SubscribeModal(props) {
     }
 
     const Subscribe = () => {
-        return(
+        return (
             <Box noValidate sx={{ mt: 3 }}>
                 <Grid container spacing={2} sx={{
                     display: 'flex',
@@ -193,12 +198,12 @@ export default function SubscribeModal(props) {
                         <Typography className="">{date}</Typography>
                     </Grid>
                     <Grid item xs={6}>
-                        { props.type == 'insert' ?
+                        {props.type == 'insert' ?
                             <Button variant="outlined" onClick={handleSubmit}>Fazer Inscrição!</Button>
-                        :
+                            :
                             <Button variant="outlined" onClick={handleSubmit}>Atualizar!</Button>
                         }
-                        
+
                     </Grid>
                 </Grid>
             </Box>
@@ -207,7 +212,13 @@ export default function SubscribeModal(props) {
 
     return (
         <Box>
-            <Button variant="contained" onClick={handleOpen}>{props.children}</Button>
+            <Button variant="contained" onClick={() => {
+                isAuthenticated ?
+                    handleOpen() :
+                    router.push('/auth/login')
+            }}>
+                {props.children}
+            </Button>
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -248,96 +259,96 @@ export default function SubscribeModal(props) {
         </Box>
     )
 
-    function formConcessionaireAddress(form){
-        switch(form){
+    function formConcessionaireAddress(form) {
+        switch (form) {
             case 1:
-            return(
-                <Box component="form" noValidate sx={{ mt: 3 }}>
+                return (
+                    <Box component="form" noValidate sx={{ mt: 3 }}>
 
-                    <Title title="Escolha uma concessionária" mt="7" mb="5" variant="h6" />
+                        <Title title="Escolha uma concessionária" mt="7" mb="5" variant="h6" />
 
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} sm={6}>
-                            <InputLabel id="auto-repair-state-select-label">Estado</InputLabel>
-                            <Select required fullWidth labelId="auto-repair-state-select-label" value={formData.concessionaire_state} onChange={handleStateChange} name="concessionaire_state">
-                                {locations.estados.map((estado) => (
-                                    <MenuItem key={estado.sigla} value={estado.sigla}>{estado.nome}</MenuItem>
-                                ))}
-                            </Select>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} sm={6}>
+                                <InputLabel id="auto-repair-state-select-label">Estado</InputLabel>
+                                <Select required fullWidth labelId="auto-repair-state-select-label" value={formData.concessionaire_state} onChange={handleStateChange} name="concessionaire_state">
+                                    {locations.estados.map((estado) => (
+                                        <MenuItem key={estado.sigla} value={estado.sigla}>{estado.nome}</MenuItem>
+                                    ))}
+                                </Select>
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <InputLabel id="auto-repair-city-select-label">Cidade</InputLabel>
+                                <Select required fullWidth labelId="auto-repair-city-select-label" value={formData.concessionaire_city} onChange={handleGetConcessionaire} name="concessionaire_city">
+                                    {cities.map((cidade, index) => (
+                                        <MenuItem key={index} value={cidade}>{cidade}</MenuItem>
+                                    ))}
+                                </Select>
+                            </Grid>
                         </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <InputLabel id="auto-repair-city-select-label">Cidade</InputLabel>
-                            <Select required fullWidth labelId="auto-repair-city-select-label" value={formData.concessionaire_city} onChange={handleGetConcessionaire} name="concessionaire_city">      
-                                {cities.map((cidade, index) => (
-                                    <MenuItem key={index} value={cidade}>{cidade}</MenuItem>
-                                ))}
-                            </Select>
-                        </Grid>
-                    </Grid>
-                </Box>
-            )
+                    </Box>
+                )
             case 2:
-            return(
-                <Subscribe />
-            )
-        }
-    }
-
-    function FindConcessionaire(form){
-        switch(form){
-            case 1:
-            return(
-                <Box component="form" noValidate sx={{ mt: 3 }}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <InputLabel id="concessionaire-select-label">Concessionárias</InputLabel>
-                            <Select required fullWidth labelId="concessionaire-select-label" value={formData.concessionaire} onChange={handleConcessionaireChange} name="concessionaire">                             
-                                {concessionaires.map((concessionaire, index) => (
-                                    <MenuItem key={index} value={index}>{concessionaire.fantasy_name}</MenuItem>
-                                ))}
-                            </Select>
-                        </Grid>
-                    </Grid>
-                </Box>
-            )
-            case 2:
-            return(
-                <Box component="form" noValidate sx={{ mt: 3 }}>
-                    <Typography>Nenhuma concessionária encontrada</Typography>
-                </Box>
-            )
-        }
-    }
-
-    function ConcessionaireInfos(form){
-        switch(form){
-            case 1:
-            return(
-                <Box component="form" noValidate sx={{ mt: 3 }}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} className="text-center">
-                            <Title title={`Vagas disponiveis: ${concessionairesInfos.vacancies}`} mt="7" mb="5" variant="h6" />
-                        </Grid>
-                        <Grid item xs={12} className="text-center">
-                            <Title title="Endereço" mt="7" mb="5" variant="h6" />
-                            
-                            <Typography>{concessionairesInfos.address.street + ', ' + concessionairesInfos.address.number + '. CEP: ' + concessionairesInfos.address.cep}</Typography>
-                        </Grid>
-                    </Grid>
-
+                return (
                     <Subscribe />
-                </Box>
-            )
-            case 2:
-            return(
-                <Box component="form" noValidate sx={{ mt: 3 }}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} className="text-center">
-                            <Typography>Sem vagas disponíveis para essa concessionária</Typography>
+                )
+        }
+    }
+
+    function FindConcessionaire(form) {
+        switch (form) {
+            case 1:
+                return (
+                    <Box component="form" noValidate sx={{ mt: 3 }}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12}>
+                                <InputLabel id="concessionaire-select-label">Concessionárias</InputLabel>
+                                <Select required fullWidth labelId="concessionaire-select-label" value={formData.concessionaire} onChange={handleConcessionaireChange} name="concessionaire">
+                                    {concessionaires.map((concessionaire, index) => (
+                                        <MenuItem key={index} value={index}>{concessionaire.fantasy_name}</MenuItem>
+                                    ))}
+                                </Select>
+                            </Grid>
                         </Grid>
-                    </Grid>
-                </Box>
-            )
+                    </Box>
+                )
+            case 2:
+                return (
+                    <Box component="form" noValidate sx={{ mt: 3 }}>
+                        <Typography>Nenhuma concessionária encontrada</Typography>
+                    </Box>
+                )
+        }
+    }
+
+    function ConcessionaireInfos(form) {
+        switch (form) {
+            case 1:
+                return (
+                    <Box component="form" noValidate sx={{ mt: 3 }}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} className="text-center">
+                                <Title title={`Vagas disponiveis: ${concessionairesInfos.vacancies}`} mt="7" mb="5" variant="h6" />
+                            </Grid>
+                            <Grid item xs={12} className="text-center">
+                                <Title title="Endereço" mt="7" mb="5" variant="h6" />
+
+                                <Typography>{concessionairesInfos.address.street + ', ' + concessionairesInfos.address.number + '. CEP: ' + concessionairesInfos.address.cep}</Typography>
+                            </Grid>
+                        </Grid>
+
+                        <Subscribe />
+                    </Box>
+                )
+            case 2:
+                return (
+                    <Box component="form" noValidate sx={{ mt: 3 }}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} className="text-center">
+                                <Typography>Sem vagas disponíveis para essa concessionária</Typography>
+                            </Grid>
+                        </Grid>
+                    </Box>
+                )
         }
     }
 }
