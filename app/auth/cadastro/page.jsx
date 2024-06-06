@@ -81,7 +81,7 @@ export default function HorizontalLinearStepper() {
       setAlert(response)
     }else{
       setAlert(null)
-      router.push('/auth/signin')
+      router.push('/auth/login')
     }
   }
 

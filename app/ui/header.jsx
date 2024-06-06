@@ -56,13 +56,13 @@ export default function Header() {
             setUserState(
             <div className="flex justify-center items-center gap-7">
                 <Link
-                href="/auth/signup"
+                href="/auth/cadastro"
                 className="hover:text-volks-blue ease-in-out duration-200 uppercase text-black no-underline px-7 py-1"
                 >
                     Cadastre-se
                 </Link>
                 <Button
-                href="/auth/signin"
+                href="/auth/login"
                 variant="outlined"
                 className="uppercase text-black no-underline px-7 py-1"
                 >

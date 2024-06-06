@@ -23,7 +23,7 @@ export default function StepToRender(activeStep, formData, setFormData){
             [name]: value
         }));
     };
-console.log(formData)
+    
     const handleCheckboxChange = (event) => {
         setIsChecked(event.target.checked)
         
