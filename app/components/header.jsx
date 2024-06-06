@@ -11,7 +11,7 @@ export default function PreHeader() {
     const windowSize = useWindowSize();
 
     useEffect(() => {
-        if(windowSize.width <= 1080){
+        if (windowSize.width <= 1080) {
             setMobile(true)
         } else {
             setMobile(false)
@@ -20,13 +20,13 @@ export default function PreHeader() {
 
     return (
         <Box className="flex items-center justify-center bg-volks-blue text-white p-4">
-            {mobile && <DrawerUI/> }
+            {mobile && <DrawerUI />}
             {/* <DrawerUI /> */}
             <Box flexGrow={1}>
                 <Divider sx={{ borderBottomWidth: 1, borderColor: "white" }} />
             </Box>
             <Box px={2}>
-                <Image src="https://placehold.co/250x50" width={250} height={50} alt="Logo" />
+                <Image src="https://www.noticiasdaoficinavw.com.br/webinar/public/img/logo-volkswagen.png" width={250} height={50} alt="Logo" />
             </Box>
             <Box flexGrow={1}>
                 <Divider sx={{ borderBottomWidth: 1, borderColor: "white" }} />
