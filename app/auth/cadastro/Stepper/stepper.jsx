@@ -68,7 +68,7 @@ export default function StepToRender(activeStep, formData, setFormData){
                 setIsLegacy(false)
                 setFormData((prevFormData) => ({
                     ...prevFormData,
-                    nome: '',
+                    name: '',
                     phone: '',
                     born_at: '',
                     email: '',
@@ -78,7 +78,7 @@ export default function StepToRender(activeStep, formData, setFormData){
             setIsLegacy(false)
             setFormData((prevFormData) => ({
                 ...prevFormData,
-                nome: '',
+                name: '',
                 phone: '',
                 born_at: '',
                 email: '',
@@ -161,10 +161,10 @@ export default function StepToRender(activeStep, formData, setFormData){
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
-                                <TextField onChange={handleInputChange} value={isLegacy ? legacyData.Nome : formData.name} key="name" required fullWidth id="name" label="Nome" name="name" />
+                                <TextField onChange={handleInputChange} value={formData.name} key="name" required fullWidth id="name" label="Nome" name="name" />
                             </Grid>
                             <Grid item xs={12} sm={6}>
-                                <TextField onChange={handleInputChange} value={isLegacy ? legacyData.Celular : formData.phone} key="phone" required fullWidth id="phone" label="Celular" name="phone" InputProps={{
+                                <TextField onChange={handleInputChange} value={formData.phone} key="phone" required fullWidth id="phone" label="Celular" name="phone" InputProps={{
                                     inputComponent: MaskedInput,
                                         inputProps: {
                                             mask: '(00) 0 0000-0000',
@@ -183,7 +183,7 @@ export default function StepToRender(activeStep, formData, setFormData){
                                 </FormControl>
                             </Grid>
                             <Grid item xs={12} sm={6}>
-                                <TextField onChange={handleInputChange} value={isLegacy ? legacyData.Nascimento : formData.born_at} key="born_at" required fullWidth id="born_at" label="Data de Nascimento" name="born_at" InputProps={{
+                                <TextField onChange={handleInputChange} value={formData.born_at} key="born_at" required fullWidth id="born_at" label="Data de Nascimento" name="born_at" InputProps={{
                                     inputComponent: MaskedInput,
                                         inputProps: {
                                             mask: '00/00/0000',
@@ -192,7 +192,7 @@ export default function StepToRender(activeStep, formData, setFormData){
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField onChange={handleInputChange} value={isLegacy ? legacyData.Email : formData.email} key="email" required fullWidth id="email" label="Email" name="email" />
+                                <TextField onChange={handleInputChange} value={formData.email} key="email" required fullWidth id="email" label="Email" name="email" />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField onChange={handleInputChange} key="password" required fullWidth id="password" label="Senha" name="password" type="password" />
