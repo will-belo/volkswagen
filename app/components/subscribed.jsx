@@ -17,23 +17,23 @@ export default function SubscribedCard(props) {
     const [verifyLocal, setVerifyLocal] = React.useState(false)
     
     React.useEffect(() => {
-        if(props.content.concessionaire[0].id != 0){
+        if(props.content.concessionaire_id != 0){
             setTrainingFormat('Presencial')
             setTrainingLocal(`
-                ${props.content.concessionaire[0].fantasy_name}
+                ${props.content.fantasy_name}
             `)
             setTrainingAddress(`
-                ${props.content.concessionaire[0].address.street},  
-                ${props.content.concessionaire[0].address.number} - 
-                ${props.content.concessionaire[0].address.city.value}/
-                ${props.content.concessionaire[0].address.city.state.value} 
+                ${props.content.street},  
+                ${props.content.number} - 
+                ${props.content.city}/
+                ${props.content.state} 
             `)
 
             setVerifyLocal(true)
         }else{
             setTrainingFormat('Online')
         }
-    }, [props.content.concessionaire])
+    }, [props.content])
 
     return (
         <Card sx={{ maxWidth: 345 }}>
@@ -73,7 +73,7 @@ export default function SubscribedCard(props) {
                 }
             </CardContent>
             <CardActions disableSpacing className="flex justify-between px-5 pb-5">
-                <SubscribeModal content={props.content} type="update" id={props.content.users[0].pivot.id}>Atualizar Inscrição</SubscribeModal>
+                <SubscribeModal content={props.content} type="update" id={props.content.pivot_id}>Atualizar Inscrição</SubscribeModal>
             </CardActions>
         </Card>
     )
