@@ -78,17 +78,14 @@ export default function Dashboard() {
             </div>
             <Title title="Seus treinamentos" />
             <div className='grid grid-cols-3 gap-10 lg:mx-20'>
-                {
-                    verifySubscribed ?
-                        <Grid container>
-                            {subscribedTrainings.map((training, index) => (
-                                <Grid item xs={3} key={index}>
-                                    <SubscribedCard key={index} content={training} />
-                                </Grid>
-                            ))}
+                {verifySubscribed ?
+                    subscribedTrainings.map((training, index) => (
+                        <Grid item xs={3} key={index}>
+                            <SubscribedCard key={index} content={training} />
                         </Grid>
-                        :
-                        <Typography variant='h6'>{subscribedTrainings}</Typography>
+                    ))
+                    :
+                    <Typography variant='h6'>{subscribedTrainings}</Typography>
                 }
             </div>
         </main >
