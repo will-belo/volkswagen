@@ -3,7 +3,7 @@ import EastIcon from '@mui/icons-material/East'
 
 export default function SubBanner(props) {
     return(
-        <Box className="my-20">
+        <Box className="mb-20 mt-36">
             <Grid container spacing={7}>
                 <Grid item xs={8}>
                     <Box sx={{

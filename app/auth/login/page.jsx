@@ -16,6 +16,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Alert } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import VolksButton from '@/app/components/defaultButton';
 
 const defaultTheme = createTheme();
 
@@ -68,6 +69,7 @@ export default function SignIn(){
               name="email"
               autoComplete="email"
               autoFocus
+              sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
             />
 
             <TextField
@@ -79,15 +81,16 @@ export default function SignIn(){
               type="password"
               id="password"
               autoComplete="current-password"
+              sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
             />
 
             <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Lembrar senha" />
 
             { alert && <Alert severity="error">{alert}</Alert> }
 
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} >
+            <VolksButton type="submit" fullWidth>
               Login
-            </Button>
+            </VolksButton>
 
             <Grid container>
               <Grid item xs>
