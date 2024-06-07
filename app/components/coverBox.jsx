@@ -6,7 +6,7 @@ export default function CoverBox(props) {
         <Grid item xs={3}>
             <Box>
                 <Box className="overflow-hidden">
-                    <Image src="https://placehold.co/500" width={500} height={500} alt="Cover Box"/>
+                    <Image src={props.image.src} width={500} height={500} alt="Cover Box"/>
                 </Box>
             </Box>
         </Grid>

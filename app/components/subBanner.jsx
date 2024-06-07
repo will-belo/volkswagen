@@ -8,7 +8,7 @@ export default function SubBanner(props) {
                 <Grid item xs={8}>
                     <Box sx={{
                         position: 'relative',
-                        backgroundImage: 'url('+(props.image)+')',
+                        backgroundImage: `url(${props.image.src})`,
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'center',
                         backgroundSize: 'cover',

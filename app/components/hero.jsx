@@ -9,7 +9,7 @@ export default function Hero(props) {
         sx={{
             width: '85%',
             position: 'relative',
-            backgroundImage: 'url('+(props.background)+')',
+            backgroundImage: `url(${props.background.src})`,
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'left',
             backgroundSize: 'cover',

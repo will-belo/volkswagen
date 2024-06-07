@@ -10,7 +10,7 @@ export default function HeroMobile(props) {
           width: "100%",
           position: "relative",
           // backgroundImage: `url(${props.background})`,
-          backgroundImage: `linear-gradient(to bottom, transparent 90%, white 100%), url(${props.background})`,
+          backgroundImage: `linear-gradient(to bottom, transparent 90%, white 100%), url(${props.background.src})`,
           backgroundRepeat: "no-repeat",
           backgroundPosition: "left",
           backgroundSize: "cover",

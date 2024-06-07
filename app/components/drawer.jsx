@@ -39,10 +39,10 @@ function DrawerUI() {
 
         <Image src="https://placehold.co/1360x768" width={200} height={700} alt="Video Cover" />
         </Box>
-      <Link underline="none" color="inherit" className="hover:text-volks-blue ease-in-out duration-200 cursor-pointer px-7 py-2">Treinamentos</Link>
-                <Link underline="none" color="inherit" className="hover:text-volks-blue ease-in-out duration-200 cursor-pointer px-7 py-2">Peças VW</Link>
-                <Link underline="none" color="inherit" className="hover:text-volks-blue ease-in-out duration-200 cursor-pointer px-7 py-2">Catálogo Economy</Link>
-                <Link underline="none" color="inherit" className="hover:text-volks-blue ease-in-out duration-200 cursor-pointer px-7 py-2">Notícias</Link>
+      <Link underline="none" color="inherit" className="hover:text-volks-blue-800 ease-in-out duration-200 cursor-pointer px-7 py-2">Treinamentos</Link>
+                <Link underline="none" color="inherit" className="hover:text-volks-blue-800 ease-in-out duration-200 cursor-pointer px-7 py-2">Peças VW</Link>
+                <Link underline="none" color="inherit" className="hover:text-volks-blue-800 ease-in-out duration-200 cursor-pointer px-7 py-2">Catálogo Economy</Link>
+                <Link underline="none" color="inherit" className="hover:text-volks-blue-800 ease-in-out duration-200 cursor-pointer px-7 py-2">Notícias</Link>
       </Drawer>
     </div>
   );

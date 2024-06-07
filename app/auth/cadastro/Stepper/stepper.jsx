@@ -158,10 +158,13 @@ export default function StepToRender(activeStep, formData, setFormData){
                                             mask: '000.000.000-00',
                                         },
                                     }}
+                                    sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
-                                <TextField onChange={handleInputChange} value={formData.name} key="name" required fullWidth id="name" label="Nome" name="name" />
+                                <TextField onChange={handleInputChange} value={formData.name} key="name" required fullWidth id="name" label="Nome" name="name"
+                                    sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
+                                />
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField onChange={handleInputChange} value={formData.phone} key="phone" required fullWidth id="phone" label="Celular" name="phone" InputProps={{
@@ -170,12 +173,15 @@ export default function StepToRender(activeStep, formData, setFormData){
                                             mask: '(00) 0 0000-0000',
                                         },
                                     }}
+                                    sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <FormControl variant="outlined" fullWidth>
                                     <InputLabel id="gender">Gênero</InputLabel>
-                                    <Select required fullWidth labelId="gender" label="Gênero" value={formData.gender} onChange={handleInputChange} name="gender">
+                                    <Select required fullWidth labelId="gender" label="Gênero" value={formData.gender} onChange={handleInputChange} name="gender"
+                                        sx={{backgroundColor: '#F8F8F8','& .MuiOutlinedInput-notchedOutline': {border: 'none'},}}
+                                    >
                                         <MenuItem key="gender-female" value="Feminino">Feminino</MenuItem>
                                         <MenuItem key="gender-male" value="Masculino">Masculino</MenuItem>
                                         <MenuItem key="gender-other" value="Outros">Outros</MenuItem>
@@ -189,13 +195,18 @@ export default function StepToRender(activeStep, formData, setFormData){
                                             mask: '00/00/0000',
                                         },
                                     }}
+                                    sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField onChange={handleInputChange} value={formData.email} key="email" required fullWidth id="email" label="Email" name="email" />
+                                <TextField onChange={handleInputChange} value={formData.email} key="email" required fullWidth id="email" label="Email" name="email" 
+                                    sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
+                                />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField onChange={handleInputChange} key="password" required fullWidth id="password" label="Senha" name="password" type="password" />
+                                <TextField onChange={handleInputChange} key="password" required fullWidth id="password" label="Senha" name="password" type="password" 
+                                    sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
+                                />
                             </Grid>
                         </Grid>
                     </Box>
@@ -206,7 +217,9 @@ export default function StepToRender(activeStep, formData, setFormData){
                         <Grid container spacing={2}>
                             <Grid item xs={12} sm={6}>
                                 <InputLabel id="state-select-label">Estado</InputLabel>
-                                <Select required fullWidth labelId="state-select-label" value={formData.state} onChange={handleStateChange} name="state">
+                                <Select required fullWidth labelId="state-select-label" value={formData.state} onChange={handleStateChange} name="state"
+                                    sx={{backgroundColor: '#F8F8F8','& .MuiOutlinedInput-notchedOutline': {border: 'none'},}}
+                                >
                                     {locations.estados.map((estado) => (
                                         <MenuItem key={estado.sigla} value={estado.sigla}>{estado.nome}</MenuItem>
                                     ))}
@@ -214,17 +227,23 @@ export default function StepToRender(activeStep, formData, setFormData){
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <InputLabel id="city-select-label">Cidade</InputLabel>
-                                <Select required fullWidth labelId="city-select-label" value={formData.city} onChange={handleInputChange} name="city">
+                                <Select required fullWidth labelId="city-select-label" value={formData.city} onChange={handleInputChange} name="city"
+                                    sx={{backgroundColor: '#F8F8F8','& .MuiOutlinedInput-notchedOutline': {border: 'none'},}}
+                                >
                                     {cities.map((cidade, index) => (
                                         <MenuItem key={index} value={cidade}>{cidade}</MenuItem>
                                     ))}
                                 </Select>
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField onChange={handleInputChange} value={formData.street} required fullWidth id="street" label="Rua" name="street" />
+                                <TextField onChange={handleInputChange} value={formData.street} required fullWidth id="street" label="Rua" name="street" 
+                                    sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
+                                />
                             </Grid>
                             <Grid item xs={12} sm={6}>
-                                <TextField onChange={handleInputChange} value={formData.number} required fullWidth id="number" label="Número" name="number" />
+                                <TextField onChange={handleInputChange} value={formData.number} required fullWidth id="number" label="Número" name="number"
+                                    sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
+                                />
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField onChange={handleInputChange} value={formData.cep} required fullWidth id="cep" label="CEP" name="cep" InputProps={{
@@ -233,6 +252,7 @@ export default function StepToRender(activeStep, formData, setFormData){
                                             mask: '00000-000',
                                         },
                                     }}
+                                    sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
                                 />
                             </Grid>
                         </Grid>
@@ -257,7 +277,9 @@ export default function StepToRender(activeStep, formData, setFormData){
                                                 mask: '00.000.000/0000-00',
                                             },
                                         }}
-                                    onChange={handleCNPJVerify} />
+                                        sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
+                                        onChange={handleCNPJVerify}
+                                    />
     
                                     {formAutoRepair(formRender)}
                                 </Grid>
@@ -276,13 +298,19 @@ export default function StepToRender(activeStep, formData, setFormData){
                     <Box component="form" noValidate sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                <TextField onChange={handleInputChange} value={formData.fantasy_name} fullWidth id="fantasy_name" label="Nome Fantasia" name="fantasy_name" />
+                                <TextField onChange={handleInputChange} value={formData.fantasy_name} fullWidth id="fantasy_name" label="Nome Fantasia" name="fantasy_name" 
+                                    sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
+                                />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField onChange={handleInputChange} value={formData.role} fullWidth id="role" label="Cargo" name="role" />
+                                <TextField onChange={handleInputChange} value={formData.role} fullWidth id="role" label="Cargo" name="role" 
+                                    sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
+                                />
                             </Grid>
                             <Grid item xs={12} sm={6}>
-                                <TextField onChange={handleInputChange} value={formData.branch_activity} fullWidth id="branch_activity" label="Ramo de atividade" name="branch_activity" />
+                                <TextField onChange={handleInputChange} value={formData.branch_activity} fullWidth id="branch_activity" label="Ramo de atividade" name="branch_activity" 
+                                    sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
+                                />
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField onChange={handleInputChange} value={formData.auto_repair_phone} fullWidth id="auto_repair_phone" label="Telefone da oficina" name="auto_repair_phone" InputProps={{
@@ -291,11 +319,14 @@ export default function StepToRender(activeStep, formData, setFormData){
                                             mask: '(00) 0 0000-0000',
                                         },
                                     }}
+                                    sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <InputLabel id="auto-repair-state-select-label">Estado</InputLabel>
-                                <Select required fullWidth labelId="auto-repair-state-select-label" value={formData.auto_repair_state} onChange={handleStateChangeAutoRepair} name="auto_repair_state">
+                                <Select required fullWidth labelId="auto-repair-state-select-label" value={formData.auto_repair_state} onChange={handleStateChangeAutoRepair} name="auto_repair_state"
+                                    sx={{backgroundColor: '#F8F8F8','& .MuiOutlinedInput-notchedOutline': {border: 'none'},}}
+                                >
                                     {locations.estados.map((estado) => (
                                         <MenuItem key={estado.sigla} value={estado.sigla}>{estado.nome}</MenuItem>
                                     ))}
@@ -303,17 +334,23 @@ export default function StepToRender(activeStep, formData, setFormData){
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <InputLabel id="auto-repair-city-select-label">Cidade</InputLabel>
-                                <Select required fullWidth labelId="auto-repair-city-select-label" value={formData.auto_repair_city} onChange={handleInputChange} name="auto_repair_city">
+                                <Select required fullWidth labelId="auto-repair-city-select-label" value={formData.auto_repair_city} onChange={handleInputChange} name="auto_repair_city"
+                                    sx={{backgroundColor: '#F8F8F8','& .MuiOutlinedInput-notchedOutline': {border: 'none'},}}
+                                >
                                     {citiesAutoRepair.map((cidade, index) => (
                                         <MenuItem key={index} value={cidade}>{cidade}</MenuItem>
                                     ))}
                                 </Select>
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField onChange={handleInputChange} value={formData.auto_repair_street} required fullWidth id="auto_repair_street" label="Rua" name="auto_repair_street" />
+                                <TextField onChange={handleInputChange} value={formData.auto_repair_street} required fullWidth id="auto_repair_street" label="Rua" name="auto_repair_street" 
+                                    sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
+                                />
                             </Grid>
                             <Grid item xs={12} sm={6}>
-                                <TextField onChange={handleInputChange} value={formData.auto_repair_number} required fullWidth id="auto_repair_number" label="Número" name="auto_repair_number" />
+                                <TextField onChange={handleInputChange} value={formData.auto_repair_number} required fullWidth id="auto_repair_number" label="Número" name="auto_repair_number" 
+                                    sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
+                                />
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField onChange={handleInputChange} value={formData.auto_repair_cep} required fullWidth id="auto_repair_cep" label="CEP" name="auto_repair_cep" InputProps={{
@@ -322,6 +359,7 @@ export default function StepToRender(activeStep, formData, setFormData){
                                             mask: '00000-000',
                                         },
                                     }}
+                                    sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
                                 />
                             </Grid>
                         </Grid>
@@ -332,13 +370,19 @@ export default function StepToRender(activeStep, formData, setFormData){
                     <Box component="form" noValidate sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                <TextField value={autoRepairInfo.fantasy_name} fullWidth id="fantasy_name" label="Nome Fantasia" name="fantasy_name" aria-readonly />
+                                <TextField value={autoRepairInfo.fantasy_name} fullWidth id="fantasy_name" label="Nome Fantasia" name="fantasy_name" aria-readonly 
+                                    sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
+                                />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField value={autoRepairInfo.branch_activity} fullWidth id="branch_activity" label="Ramo de atividade" name="branch_activity" aria-readonly />
+                                <TextField value={autoRepairInfo.branch_activity} fullWidth id="branch_activity" label="Ramo de atividade" name="branch_activity" aria-readonly 
+                                    sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
+                                />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField onChange={handleInputChange} value={formData.role} fullWidth id="role" label="Cargo" name="role" />
+                                <TextField onChange={handleInputChange} value={formData.role} fullWidth id="role" label="Cargo" name="role" 
+                                    sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
+                                />
                             </Grid>
                         </Grid>
                     </Box>

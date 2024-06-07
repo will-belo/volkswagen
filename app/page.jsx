@@ -29,6 +29,17 @@ import CoverBoxMobile from "./components/coverBoxMobile";
 import CoverMobile from "./components/coverMobile";
 import PiecesMobile from "./components/piecesMobile";
 
+import banner from "@/images/banner.png"
+import economy from "@/images/economy.png"
+import cardImage1 from "@/images/card-image-1.png"
+import cardImage2 from "@/images/card-image-2.png"
+import cardImage3 from "@/images/card-image-3.png"
+import partsBanner1 from "@/images/parts-banner-1.png"
+import partsCover1 from "@/images/parts-cover-1.png"
+import partsCover2 from "@/images/parts-cover-2.png"
+import partsCover3 from "@/images/parts-cover-3.png"
+import partsCover4 from "@/images/parts-cover-4.png"
+
 export default function Home() {
   const [mobile, setMobile] = useState(false);
   const windowSize = useWindowSize();
@@ -51,27 +62,27 @@ export default function Home() {
           title="T-Cross Tecnologias em motores turbo"
           subtitle="2º Treinamento"
           dateTime="Dia 16 de Abril | às 00:00"
-          background="https://t.ctcdn.com.br/n5EmxtRS2sDQHvi-JFF9C_im8Lk=/4320x2430/smart/i558323.jpeg"
+          background={banner}
         >
           <HeroCard
             title="Motor V6 - Amarok"
             subtitle="2º Treinamento"
             date="16/04"
-            image="https://placehold.co/250"
+            image={cardImage1}
             status={false}
           />
           <HeroCard
             title="Motor V6 - Amarok"
             subtitle="2º Treinamento"
             date="16/04"
-            image="https://placehold.co/250"
+            image={cardImage2}
             status={false}
           />
           <HeroCard
             title="Motor V6 - Amarok"
             subtitle="2º Treinamento"
             date="16/04"
-            image="https://placehold.co/250"
+            image={cardImage3}
             status={false}
           />
         </Hero>
@@ -83,7 +94,7 @@ export default function Home() {
             title="T-Cross Tecnologias em motores turbo"
             subtitle="2º Treinamento"
             dateTime="Dia 16 de Abril | às 00:00"
-            background="https://t.ctcdn.com.br/n5EmxtRS2sDQHvi-JFF9C_im8Lk=/4320x2430/smart/i558323.jpeg"
+            background={banner}
           ></HeroMobile>
           <div
             style={{
@@ -95,21 +106,21 @@ export default function Home() {
               title="Motor V6 - Amarok"
               subtitle="2º Treinamento"
               date="16/04"
-              image="https://placehold.co/250"
+              image={cardImage1}
               status={false}
             />
             <HeroCardMobile
               title="Motor V6 - Amarok"
               subtitle="2º Treinamento"
               date="16/04"
-              image="https://placehold.co/250"
+              image={cardImage2}
               status={false}
             />
             <HeroCardMobile
               title="Motor V6 - Amarok"
               subtitle="2º Treinamento"
               date="16/04"
-              image="https://placehold.co/250"
+              image={cardImage3}
               status={false}
             />
           </div>
@@ -128,17 +139,17 @@ export default function Home() {
         </Box>
         {mobile ? (
           <CoverMobile>
-            <CoverBoxMobile image="https://placehold.co/50" />
-            <CoverBoxMobile image="https://placehold.co/50" />
-            <CoverBoxMobile image="https://placehold.co/50" />
-            <CoverBoxMobile image="https://placehold.co/50" />
+            <CoverBoxMobile image={partsBanner1} />
+            <CoverBoxMobile image={partsBanner1} />
+            <CoverBoxMobile image={partsBanner1} />
+            <CoverBoxMobile image={partsBanner1} />
           </CoverMobile>
         ) : (
           <Cover>
-            <CoverBox image="https://placehold.co/50" />
-            <CoverBox image="https://placehold.co/50" />
-            <CoverBox image="https://placehold.co/50" />
-            <CoverBox image="https://placehold.co/50" />
+            <CoverBox image={partsBanner1} />
+            <CoverBox image={partsBanner1} />
+            <CoverBox image={partsBanner1} />
+            <CoverBox image={partsBanner1} />
           </Cover>
         )}
 
@@ -146,7 +157,7 @@ export default function Home() {
           <SubBannerMobile
             title="Economy"
             subtitle="Catálogo"
-            image="https://placehold.co/1920x1080"
+            image={economy}
           >
             A eficiência de manutenção da Volkswagen não se discute. Um serviço
             para veículos com mais de 3 anos que garante a mesma segurança das
@@ -157,7 +168,7 @@ export default function Home() {
           <SubBanner
             title="Economy"
             subtitle="Catálogo"
-            image="https://placehold.co/1920x1080"
+            image={economy}
           >
             A eficiência de manutenção da Volkswagen não se discute. Um serviço
             para veículos com mais de 3 anos que garante a mesma segurança das
@@ -174,7 +185,7 @@ export default function Home() {
             <Cards
               title="Óleo Hidráulico"
               code="GASEADS"
-              image="https://placehold.co/250"
+              image={partsCover1}
             >
               Amarok, Bora, Fox, Fusca, Gol, Golf, Jetta, New Beetle, Passat,
               Polo, Santana, Saveiro, SpaceFox, Tourareg
@@ -182,7 +193,7 @@ export default function Home() {
             <Cards
               title="Óleo Hidráulico"
               code="GASEADS"
-              image="https://placehold.co/250"
+              image={partsCover2}
             >
               Amarok, Bora, Fox, Fusca, Gol, Golf, Jetta, New Beetle, Passat,
               Polo, Santana, Saveiro, SpaceFox, Tourareg
@@ -190,7 +201,7 @@ export default function Home() {
             <Cards
               title="Óleo Hidráulico"
               code="GASEADS"
-              image="https://placehold.co/250"
+              image={partsCover3}
             >
               Amarok, Bora, Fox, Fusca, Gol, Golf, Jetta, New Beetle, Passat,
               Polo, Santana, Saveiro, SpaceFox, Tourareg
@@ -198,7 +209,7 @@ export default function Home() {
             <Cards
               title="Óleo Hidráulico"
               code="GASEADS"
-              image="https://placehold.co/250"
+              image={partsCover4}
             >
               Amarok, Bora, Fox, Fusca, Gol, Golf, Jetta, New Beetle, Passat,
               Polo, Santana, Saveiro, SpaceFox, Tourareg
@@ -209,7 +220,7 @@ export default function Home() {
             <Cards
               title="Óleo Hidráulico"
               code="GASEADS"
-              image="https://placehold.co/250"
+              image={partsCover1}
             >
               Amarok, Bora, Fox, Fusca, Gol, Golf, Jetta, New Beetle, Passat,
               Polo, Santana, Saveiro, SpaceFox, Tourareg
@@ -217,7 +228,7 @@ export default function Home() {
             <Cards
               title="Óleo Hidráulico"
               code="GASEADS"
-              image="https://placehold.co/250"
+              image={partsCover2}
             >
               Amarok, Bora, Fox, Fusca, Gol, Golf, Jetta, New Beetle, Passat,
               Polo, Santana, Saveiro, SpaceFox, Tourareg
@@ -225,7 +236,7 @@ export default function Home() {
             <Cards
               title="Óleo Hidráulico"
               code="GASEADS"
-              image="https://placehold.co/250"
+              image={partsCover3}
             >
               Amarok, Bora, Fox, Fusca, Gol, Golf, Jetta, New Beetle, Passat,
               Polo, Santana, Saveiro, SpaceFox, Tourareg
@@ -233,7 +244,7 @@ export default function Home() {
             <Cards
               title="Óleo Hidráulico"
               code="GASEADS"
-              image="https://placehold.co/250"
+              image={partsCover4}
             >
               Amarok, Bora, Fox, Fusca, Gol, Golf, Jetta, New Beetle, Passat,
               Polo, Santana, Saveiro, SpaceFox, Tourareg
