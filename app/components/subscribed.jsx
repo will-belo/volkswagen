@@ -7,6 +7,7 @@ import { format } from 'date-fns';
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SubscribeModal from './subscribe';
+import VolksButton from './defaultButton';
 
 export default function SubscribedCard(props) {
     const date = format(new Date(props.content.date), 'dd/MM/yyyy')
@@ -73,7 +74,11 @@ export default function SubscribedCard(props) {
                 }
             </CardContent>
             <CardActions disableSpacing className="flex justify-between px-5 pb-5">
-                <SubscribeModal content={props.content} type="update" id={props.content.pivot_id}>Atualizar Inscrição</SubscribeModal>
+                {props.content.active ?
+                    <SubscribeModal content={props.content} type="update" id={props.content.pivot_id}>Atualizar Inscrição</SubscribeModal>
+                    :
+                    <VolksButton>Gerar certificado</VolksButton>
+                }
             </CardActions>
         </Card>
     )
