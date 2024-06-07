@@ -57,7 +57,7 @@ export default function Header() {
             <div className="flex justify-center items-center gap-7">
                 <Link
                 href="/auth/cadastro"
-                className="hover:text-volks-blue ease-in-out duration-200 uppercase text-black no-underline px-7 py-1"
+                className="hover:text-volks-blue-800 ease-in-out duration-200 uppercase text-black no-underline px-7 py-1"
                 >
                     Cadastre-se
                 </Link>
@@ -85,28 +85,28 @@ export default function Header() {
                         <Link
                         underline="none"
                         color="inherit"
-                        className="hover:text-volks-blue ease-in-out duration-200 cursor-pointer px-7 py-2"
+                        className="hover:text-volks-blue-800 ease-in-out duration-200 cursor-pointer px-7 py-2"
                         >
                             Treinamentos
                         </Link>
                         <Link
                         underline="none"
                         color="inherit"
-                        className="hover:text-volks-blue ease-in-out duration-200 cursor-pointer px-7 py-2"
+                        className="hover:text-volks-blue-800 ease-in-out duration-200 cursor-pointer px-7 py-2"
                         >
                             Peças VW
                         </Link>
                         <Link
                         underline="none"
                         color="inherit"
-                        className="hover:text-volks-blue ease-in-out duration-200 cursor-pointer px-7 py-2"
+                        className="hover:text-volks-blue-800 ease-in-out duration-200 cursor-pointer px-7 py-2"
                         >
                             Catálogo Economy
                         </Link>
                         <Link
                         underline="none"
                         color="inherit"
-                        className="hover:text-volks-blue ease-in-out duration-200 cursor-pointer px-7 py-2"
+                        className="hover:text-volks-blue-800 ease-in-out duration-200 cursor-pointer px-7 py-2"
                         >
                             Notícias
                         </Link>

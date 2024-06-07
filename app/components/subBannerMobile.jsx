@@ -11,7 +11,7 @@ export default function SubBannerMobile(props) {
                 <Grid item xs={12}>
                     <Box sx={{
                         position: 'relative',
-                        backgroundImage: 'url('+(props.image)+')',
+                        backgroundImage: `url(${props.image.src})`,
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'center',
                         backgroundSize: 'cover',

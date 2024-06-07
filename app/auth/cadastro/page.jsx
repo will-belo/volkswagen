@@ -92,7 +92,7 @@ export default function HorizontalLinearStepper() {
         <Box sx={{ marginTop: 8 }}>
           
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <Typography className='mb-5' component="h1" variant="h5">
+            <Typography className='mb-5 text-volks-blue-900 font-bold' component="h1" variant="h5">
               Faça seu cadastro
             </Typography>
           </Box>

@@ -10,6 +10,8 @@ import {
 import { Box, Button, Grid, Link, Typography } from "@mui/material";
 import Image from "next/image";
 
+import ibama from "@/images/Ibama-logo.png"
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="white" align="left" {...props}>
@@ -26,7 +28,7 @@ function Copyright(props) {
 export default function Footer() {
   return (
     <Box
-      className="flex bg-volks-blue text-white mb-6"
+      className="flex bg-volks-blue-800 text-white mb-6"
       sx={{
         justifyContent: "center",
         position: "relative",
@@ -58,7 +60,7 @@ export default function Footer() {
         <Grid item xs={3} className="flex items-center justify-center">
           <Box>
             <Image
-              src="https://placehold.co/200x250"
+              src={ibama}
               width={150}
               height={200}
               alt="Footer Logo"

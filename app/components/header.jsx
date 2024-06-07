@@ -6,6 +6,9 @@ import DrawerUI from "./drawer"
 import useWindowSize from "@/app/hooks/useWindowsSize";
 import { useEffect, useState } from "react";
 
+import logo from "@/images/logo.png"
+import Link from "next/link";
+
 export default function PreHeader() {
     const [mobile, setMobile] = useState(false)
     const windowSize = useWindowSize();
@@ -19,14 +22,16 @@ export default function PreHeader() {
     }, [windowSize])
 
     return (
-        <Box className="flex items-center justify-center bg-volks-blue text-white p-4">
+        <Box className="flex items-center justify-center bg-volks-blue-800 text-white px-4 py-6">
             {mobile && <DrawerUI />}
             {/* <DrawerUI /> */}
             <Box flexGrow={1}>
                 <Divider sx={{ borderBottomWidth: 1, borderColor: "white" }} />
             </Box>
-            <Box px={2}>
-                <Image src="https://www.noticiasdaoficinavw.com.br/webinar/public/img/logo-volkswagen.png" width={250} height={50} alt="Logo" />
+            <Box px={3}>
+                <Link href="/">
+                    <Image src={logo} width={250} height={50} alt="Logo" />
+                </Link>
             </Box>
             <Box flexGrow={1}>
                 <Divider sx={{ borderBottomWidth: 1, borderColor: "white" }} />

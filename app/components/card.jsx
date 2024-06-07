@@ -9,7 +9,7 @@ export default function Cards(props) {
   return (
     <Grid item xs={3}>
       <Box className="drop-shadow-[0_2px_10px_rgba(0,0,0,0.25)]">
-        <Box className="flex items-center justify-center">
+        <Box className="flex items-center justify-center pt-5">
             <Image src={props.image} width={200} height={200} alt='card' />
         </Box>
         <Box sx={{ paddingX: 4, paddingY: 2, position: 'relative' }}>

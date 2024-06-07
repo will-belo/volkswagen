@@ -26,14 +26,14 @@ export default function HeroCardMobile(props) {
 
     return(
         <Box className="my-10"  >
-            <Box sx={{ backgroundColor: 'blue' }} className="rounded-lg">
+            <Box sx={{ background: 'linear-gradient(90deg, rgba(8,74,176,1) 0%, rgba(2,39,96,1) 100%)' }} className="rounded-lg">
                 <Grid container sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                     <Grid item xs={4} className="p-3">
                         <Box className="rounded-lg overflow-hidden">
                             <Image src={props.image} width={200} height={200} alt="Hero image" />
                         </Box>
                     </Grid>
-                    <Grid item xs={8} className="p-3">
+                    <Grid item xs={8} className="p-3 text-white">
                         <Typography variant="subtitle1" className="uppercase text-amber-500 font-bold">
                             {props.subtitle}
                         </Typography>
