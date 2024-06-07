@@ -215,7 +215,7 @@ export default function SubscribeModal(props) {
             <Button variant="contained" onClick={() => {
                 isAuthenticated ?
                     handleOpen() :
-                    router.push('/auth/login')
+                    router.push('/autenticacao/login')
             }}>
                 {props.children}
             </Button>
