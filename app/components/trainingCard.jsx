@@ -11,7 +11,7 @@ import SubscribeModal from './subscribe';
 
 export default function TrainingCard(props) {
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card className="flex flex-col justify-between" sx={{ maxWidth: 345 }}>
             <ToastContainer />
             <CardMedia
                 sx={{ height: 194 }}

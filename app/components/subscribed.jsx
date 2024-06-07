@@ -35,51 +35,62 @@ export default function SubscribedCard(props) {
             setTrainingFormat('Online')
         }
     }, [props.content])
-
+    
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card className="flex flex-col justify-between" sx={{ maxWidth: 345 }}>
             <ToastContainer />
             <CardMedia
                 sx={{ height: 194 }}
                 component="img"
                 image={props.content.cover}
             />
-            <CardContent>
-                <Typography variant="h6" color="text.secondary">
-                    {props.content.name}
-                </Typography>
-                <Box>
-                    <Typography variant="body" color="text.secondary">
-                        Data: {date}
-                    </Typography>
-                </Box>
-                <Box>
-                    <Typography variant="body" color="text.secondary">
-                        Formato: {trainingFormat}
-                    </Typography>
-                </Box>
-                { verifyLocal &&
+            {Boolean(parseInt(props.content.active)) ?
                 <>
-                    <Box>
-                        <Typography variant="body" color="text.secondary">
-                            Local: {trainingLocal}
+                    <CardContent>
+                        <Typography variant="h6" color="text.secondary">
+                            {props.content.name}
                         </Typography>
-                    </Box>
-                    <Box className="text-center mt-5">
-                        <Typography variant="body" color="text.secondary">
-                            {trainingAddress}
-                        </Typography>
-                    </Box>
+                        <Box>
+                            <Typography variant="body" color="text.secondary">
+                                Data: {date}
+                            </Typography>
+                        </Box>
+                        <Box>
+                            <Typography variant="body" color="text.secondary">
+                                Formato: {trainingFormat}
+                            </Typography>
+                        </Box>
+                        { verifyLocal &&
+                        <>
+                            <Box>
+                                <Typography variant="body" color="text.secondary">
+                                    Local: {trainingLocal}
+                                </Typography>
+                            </Box>
+                            <Box className="text-center mt-5">
+                                <Typography variant="body" color="text.secondary">
+                                    {trainingAddress}
+                                </Typography>
+                            </Box>
+                        </>
+                        }
+                    </CardContent>
+                    <CardActions disableSpacing className="flex justify-between px-5 pb-5">
+                            <SubscribeModal content={props.content} type="update" id={props.content.pivot_id}>Atualizar Inscrição</SubscribeModal>
+                    </CardActions>
                 </>
-                }
-            </CardContent>
-            <CardActions disableSpacing className="flex justify-between px-5 pb-5">
-                {props.content.active ?
-                    <SubscribeModal content={props.content} type="update" id={props.content.pivot_id}>Atualizar Inscrição</SubscribeModal>
-                    :
-                    <VolksButton>Gerar certificado</VolksButton>
-                }
-            </CardActions>
+            :
+                <>
+                    <CardContent>
+                        <Typography variant="h6" color="text.secondary">
+                            {props.content.name}
+                        </Typography>
+                    </CardContent>
+                    <CardActions disableSpacing className="flex justify-between px-5 pb-5">
+                            <VolksButton spacing={{ m: 0 }}>Gerar certificado</VolksButton>
+                    </CardActions>
+                </>
+            }
         </Card>
     )
 }

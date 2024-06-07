@@ -65,29 +65,29 @@ export default function Dashboard() {
             </Videos> */}
 
             <Title title="Treinamentos" />
-            <div className='grid xl:grid-cols-3 md:grid-cols-2  gap-10 lg:mx-20'>
+            <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 1, sm: 8, md: 12 }}>
                 {verify ?
                     [...trainings].reverse().map((training, index) => (
-                        <div className='xl:col-span-1 col-span-3'>
+                        <Grid item xs={1} sm={4} md={3} key={index} className='flex content-center justify-center'>
                             <TrainingCard key={index} content={training} />
-                        </div>
+                        </Grid>
                     ))
                     :
                     <Typography variant='h6'>{trainings}</Typography>
                 }
-            </div>
+            </Grid>
             <Title title="Seus treinamentos" />
-            <div className='grid grid-cols-3 gap-10 lg:mx-20'>
+            <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 1, sm: 8, md: 12 }}>
                 {verifySubscribed ?
                     subscribedTrainings.map((training, index) => (
-                        <Grid item xs={3} key={index}>
+                        <Grid item xs={1} sm={4} md={3} key={index} className='flex content-center justify-center'>
                             <SubscribedCard key={index} content={training} />
                         </Grid>
                     ))
                     :
                     <Typography variant='h6'>{subscribedTrainings}</Typography>
                 }
-            </div>
+            </Grid>
         </main >
     )
 }
