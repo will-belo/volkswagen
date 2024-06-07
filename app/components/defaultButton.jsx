@@ -6,7 +6,7 @@ const DefaultButton = styled(Button) ({
 
 export default function VolksButton({ type, fullWidth, children, ...rest }){
     return(
-        <DefaultButton type={type} variant="contained" sx={{ mt: 3, mb: 2 }} fullWidth={fullWidth} {...rest}>
+        <DefaultButton type={type && type} variant="contained" sx={{ mt: 3, mb: 2 }} fullWidth={fullWidth} {...rest}>
             {children}
         </DefaultButton>
     )
