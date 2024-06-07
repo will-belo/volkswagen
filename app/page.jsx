@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   Box,
@@ -29,16 +29,17 @@ import CoverBoxMobile from "./components/coverBoxMobile";
 import CoverMobile from "./components/coverMobile";
 import PiecesMobile from "./components/piecesMobile";
 
-import banner from "@/images/banner.png"
-import economy from "@/images/economy.png"
-import cardImage1 from "@/images/card-image-1.png"
-import cardImage2 from "@/images/card-image-2.png"
-import cardImage3 from "@/images/card-image-3.png"
-import partsBanner1 from "@/images/parts-banner-1.png"
-import partsCover1 from "@/images/parts-cover-1.png"
-import partsCover2 from "@/images/parts-cover-2.png"
-import partsCover3 from "@/images/parts-cover-3.png"
-import partsCover4 from "@/images/parts-cover-4.png"
+import banner from "@/images/banner.png";
+import economy from "@/images/economy.png";
+import cardImage1 from "@/images/card-image-1.png";
+import cardImage2 from "@/images/card-image-2.png";
+import cardImage3 from "@/images/card-image-3.png";
+import partsBanner1 from "@/images/parts-banner-1.png";
+import partsCover1 from "@/images/parts-cover-1.png";
+import partsCover2 from "@/images/parts-cover-2.png";
+import partsCover3 from "@/images/parts-cover-3.png";
+import partsCover4 from "@/images/parts-cover-4.png";
+import Link from "next/link";
 
 export default function Home() {
   const [mobile, setMobile] = useState(false);
@@ -128,7 +129,7 @@ export default function Home() {
       )}
 
       <main className={className}>
-        <Videos>
+        {/* <Videos>
           <Video url="https://placehold.co/1360x768" />
           <Video url="https://placehold.co/1360x768" />
           <Video url="https://placehold.co/1360x768" />
@@ -151,25 +152,17 @@ export default function Home() {
             <CoverBox image={partsBanner1} />
             <CoverBox image={partsBanner1} />
           </Cover>
-        )}
+        )} */}
 
         {mobile ? (
-          <SubBannerMobile
-            title="Economy"
-            subtitle="Catálogo"
-            image={economy}
-          >
+          <SubBannerMobile title="Economy" subtitle="Catálogo" image={economy}>
             A eficiência de manutenção da Volkswagen não se discute. Um serviço
             para veículos com mais de 3 anos que garante a mesma segurança das
             peças aplicadas em veículos zero quilômetro. Acesse o guia gratuito
             do Catálogo Economy e saiba mais.
           </SubBannerMobile>
         ) : (
-          <SubBanner
-            title="Economy"
-            subtitle="Catálogo"
-            image={economy}
-          >
+          <SubBanner title="Economy" subtitle="Catálogo" image={economy}>
             A eficiência de manutenção da Volkswagen não se discute. Um serviço
             para veículos com mais de 3 anos que garante a mesma segurança das
             peças aplicadas em veículos zero quilômetro. Acesse o guia gratuito
@@ -183,33 +176,48 @@ export default function Home() {
         {mobile ? (
           <PiecesMobile>
             <Cards
-              title="Óleo Hidráulico"
-              code="GASEADS"
-              image={partsCover1}
-            >
-              Amarok, Bora, Fox, Fusca, Gol, Golf, Jetta, New Beetle, Passat,
-              Polo, Santana, Saveiro, SpaceFox, Tourareg
-            </Cards>
-            <Cards
-              title="Óleo Hidráulico"
-              code="GASEADS"
-              image={partsCover2}
-            >
-              Amarok, Bora, Fox, Fusca, Gol, Golf, Jetta, New Beetle, Passat,
-              Polo, Santana, Saveiro, SpaceFox, Tourareg
-            </Cards>
-            <Cards
-              title="Óleo Hidráulico"
-              code="GASEADS"
-              image={partsCover3}
-            >
-              Amarok, Bora, Fox, Fusca, Gol, Golf, Jetta, New Beetle, Passat,
-              Polo, Santana, Saveiro, SpaceFox, Tourareg
-            </Cards>
-            <Cards
-              title="Óleo Hidráulico"
+              title="Óleo de Direção Hidráulica Semissintético VW G004000M2"
               code="GASEADS"
               image={partsCover4}
+              link={
+                "https://pecas.vw.com.br/produto/oleo-de-direcao-hidraulica-g004000m2/808?utm_source=vwob&utm_medium=siteutm_campaign%3Dsiteob"
+              }
+            >
+              Amarok, Bora, Fox, Fusca, Gol, Golf, Jetta, New Beetle, Passat,
+              Polo, Santana, Saveiro, SpaceFox, Tourareg
+            </Cards>
+
+            <Cards
+              title="Óleo Lubrificante de Motor SN 5W-40 Sintético VW GJZZ502M2BRA"
+              code="GASEADS"
+              image={partsCover3}
+              link={
+                "https://pecas.vw.com.br/produto/oleo-lubrificante-de-motor-gjzz502m2bra/61?utm_source=vwob&utm_medium=siteutm_campaign=siteob"
+              }
+            >
+              Amarok, Bora, Fox, Fusca, Gol, Golf, Jetta, New Beetle, Passat,
+              Polo, Santana, Saveiro, SpaceFox, Tourareg
+            </Cards>
+
+            <Cards
+              title="Separador de Óleo Anti-chama de Motor VW 030103464A"
+              code="GASEADS"
+              image={partsCover3}
+              link={
+                "https://pecas.vw.com.br/produto/separador-de-oleo-anti-chama-de-motor-030103464a/789?utm_source=vwob&utm_medium=siteutm_campaign=siteob"
+              }
+            >
+              Amarok, Bora, Fox, Fusca, Gol, Golf, Jetta, New Beetle, Passat,
+              Polo, Santana, Saveiro, SpaceFox, Tourareg
+            </Cards>
+
+            <Cards
+              title="Atuador Hidráulico de Embreagem VW 6QE721261D"
+              code="GASEADS"
+              image={partsCover3}
+              link={
+                "https://pecas.vw.com.br/produto/atuador-hidraulico-de-embreagem-6qe721261d/1192?utm_source=vwob&utm_medium=siteutm_campaign=siteob"
+              }
             >
               Amarok, Bora, Fox, Fusca, Gol, Golf, Jetta, New Beetle, Passat,
               Polo, Santana, Saveiro, SpaceFox, Tourareg
@@ -218,33 +226,48 @@ export default function Home() {
         ) : (
           <Pieces>
             <Cards
-              title="Óleo Hidráulico"
-              code="GASEADS"
-              image={partsCover1}
-            >
-              Amarok, Bora, Fox, Fusca, Gol, Golf, Jetta, New Beetle, Passat,
-              Polo, Santana, Saveiro, SpaceFox, Tourareg
-            </Cards>
-            <Cards
-              title="Óleo Hidráulico"
-              code="GASEADS"
-              image={partsCover2}
-            >
-              Amarok, Bora, Fox, Fusca, Gol, Golf, Jetta, New Beetle, Passat,
-              Polo, Santana, Saveiro, SpaceFox, Tourareg
-            </Cards>
-            <Cards
-              title="Óleo Hidráulico"
-              code="GASEADS"
-              image={partsCover3}
-            >
-              Amarok, Bora, Fox, Fusca, Gol, Golf, Jetta, New Beetle, Passat,
-              Polo, Santana, Saveiro, SpaceFox, Tourareg
-            </Cards>
-            <Cards
-              title="Óleo Hidráulico"
+              title="Óleo de Direção Hidráulica Semissintético VW G004000M2"
               code="GASEADS"
               image={partsCover4}
+              link={
+                "https://pecas.vw.com.br/produto/oleo-de-direcao-hidraulica-g004000m2/808?utm_source=vwob&utm_medium=siteutm_campaign%3Dsiteob"
+              }
+            >
+              Amarok, Bora, Fox, Fusca, Gol, Golf, Jetta, New Beetle, Passat,
+              Polo, Santana, Saveiro, SpaceFox, Tourareg
+            </Cards>
+
+            <Cards
+              title="Óleo Lubrificante de Motor SN 5W-40 Sintético VW GJZZ502M2BRA"
+              code="GASEADS"
+              image={partsCover3}
+              link={
+                "https://pecas.vw.com.br/produto/oleo-lubrificante-de-motor-gjzz502m2bra/61?utm_source=vwob&utm_medium=siteutm_campaign=siteob"
+              }
+            >
+              Amarok, Bora, Fox, Fusca, Gol, Golf, Jetta, New Beetle, Passat,
+              Polo, Santana, Saveiro, SpaceFox, Tourareg
+            </Cards>
+
+            <Cards
+              title="Separador de Óleo Anti-chama de Motor VW 030103464A"
+              code="GASEADS"
+              image={partsCover2}
+              link={
+                "https://pecas.vw.com.br/produto/separador-de-oleo-anti-chama-de-motor-030103464a/789?utm_source=vwob&utm_medium=siteutm_campaign=siteob"
+              }
+            >
+              Amarok, Bora, Fox, Fusca, Gol, Golf, Jetta, New Beetle, Passat,
+              Polo, Santana, Saveiro, SpaceFox, Tourareg
+            </Cards>
+
+            <Cards
+              title="Atuador Hidráulico de Embreagem VW 6QE721261D"
+              code="GASEADS"
+              image={partsCover1}
+              link={
+                "https://pecas.vw.com.br/produto/atuador-hidraulico-de-embreagem-6qe721261d/1192?utm_source=vwob&utm_medium=siteutm_campaign=siteob"
+              }
             >
               Amarok, Bora, Fox, Fusca, Gol, Golf, Jetta, New Beetle, Passat,
               Polo, Santana, Saveiro, SpaceFox, Tourareg
