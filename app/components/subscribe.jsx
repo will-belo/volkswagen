@@ -22,6 +22,8 @@ export default function SubscribeModal(props) {
     const [open, setOpen] = React.useState(false)
     const handleClose = () => setOpen(false)
     const handleOpen = () => setOpen(true)
+    const [cityState, setCityState] = React.useState([])
+    const [nameState, setNameState] = React.useState([])
     const router = useRouter()
     const [formData, setFormData] = React.useState({
         format: '',
@@ -32,8 +34,30 @@ export default function SubscribeModal(props) {
         trainingID: '',
     })
 
-    const date = format(new Date(props.content.date), 'dd/MM/yyyy')
+    const estadosCidade = {};
 
+    React.useEffect(() => {
+        if(props.content.concessionaires){
+            props.content.concessionaires.forEach(element => {
+                if(element.address){
+                    const estado = element.address.city.state.value
+                    const cidade = element.address.city.value
+
+                    if(!estadosCidade[estado]) {
+                        estadosCidade[estado] = new Set()
+                    }
+
+                    estadosCidade[estado].add(cidade)
+
+                    setCityState(estadosCidade)
+                }
+            })
+            
+        }
+    }, [props.content.concessionaires])
+
+    const date = format(new Date(props.content.date), 'dd/MM/yyyy')
+    
     const handleGetConcessionaire = async (event) => {
         handleInputChange(event)
 
@@ -86,7 +110,7 @@ export default function SubscribeModal(props) {
             }))
         }
     }
-
+    
     const handleStateChange = (event) => {
         handleInputChange(event)
 
@@ -99,13 +123,13 @@ export default function SubscribeModal(props) {
         setInfosRender(0)
         setMessageRender(0)
 
-        const state = event.target.value;
+        const state = event.target.value
 
-        const stateData = locations.estados.find(est => est.sigla === state);
+        const stateData = cityState[state]
 
-        setCities(stateData ? stateData.cidades : []);
-    };
-
+        setCities(stateData ? Array.from(stateData) : [])
+    }
+    
     const handleConcessionaireChange = (event) => {
         handleInputChange(event)
 
