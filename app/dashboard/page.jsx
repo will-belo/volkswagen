@@ -59,10 +59,6 @@ export default function Dashboard() {
 
     return (
         <main className="flex flex-col gap-5 my-5 px-20">
-            {/*             
-            <Videos>
-                <Video url="https://placehold.co/1360x768" />
-            </Videos> */}
 
             <Title title="Treinamentos" />
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 1, sm: 8, md: 12 }}>
