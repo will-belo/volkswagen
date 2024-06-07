@@ -26,11 +26,11 @@ export default function HeroCard(props) {
 
     return(
         <Box>
-            <Box sx={{ background: 'linear-gradient(90deg, rgba(8,74,176,1) 0%, rgba(2,39,96,1) 100%)' }} className="rounded-lg">
+            <Box sx={{ background: 'linear-gradient(90deg, rgba(8,74,176,1) 0%, rgba(2,39,96,1) 100%)' }} className="rounded-2xl">
                 <Grid container sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
                     <Grid item xs={4} className="p-3">
                         <Box className="rounded-lg overflow-hidden">
-                            <Image src={props.image} width={200} height={200} alt="Hero image" />
+                            <Image src={props.image} width={350} height={200} alt="Hero image" />
                         </Box>
                     </Grid>
                     <Grid item xs={8} className="p-3">

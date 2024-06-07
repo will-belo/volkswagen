@@ -53,7 +53,7 @@ export default function Home() {
   }, [windowSize]);
   const className = mobile
     ? "flex flex-col gap-5 my-20 px-5"
-    : "flex flex-col gap-5 my-20 px-20";
+    : "flex flex-col gap-5 my-20 px-28";
 
   return (
     <div>
