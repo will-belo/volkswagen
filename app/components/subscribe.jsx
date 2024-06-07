@@ -27,54 +27,74 @@ import { useRouter } from "next/navigation";
 import moment from "moment";
 
 export default function SubscribeModal(props) {
-  const { isAuthenticated, userData, logout } = React.useContext(UserContext);
-  const [concessionairesInfos, setConcessionairesInfos] = React.useState(null);
-  const [concessionaires, setConcessionaires] = React.useState([]);
-  const [messageRender, setMessageRender] = React.useState(0);
-  const [infosRender, setInfosRender] = React.useState(0);
-  const [formRender, setFormRender] = React.useState(0);
-  const [cities, setCities] = React.useState([]);
-  const [open, setOpen] = React.useState(false);
-  const handleClose = () => setOpen(false);
-  const handleOpen = () => setOpen(true);
-  const router = useRouter();
-  const [formData, setFormData] = React.useState({
-    format: "",
-    concessionaire_state: "",
-    concessionaire_city: "",
-    concessionaireID: 0,
-    concessionaire: "",
-    trainingID: "",
-  });
 
-  const date = moment(props.content.date).format("DD/MM/YYYY");
+    const { isAuthenticated, userData, logout } = React.useContext(UserContext);
+    const [concessionairesInfos, setConcessionairesInfos] = React.useState(null)
+    const [concessionaires, setConcessionaires] = React.useState([])
+    const [messageRender, setMessageRender] = React.useState(0)
+    const [infosRender, setInfosRender] = React.useState(0)
+    const [formRender, setFormRender] = React.useState(0)
+    const [cities, setCities] = React.useState([])
+    const [open, setOpen] = React.useState(false)
+    const handleClose = () => setOpen(false)
+    const handleOpen = () => setOpen(true)
+    const [cityState, setCityState] = React.useState([])
+    const [nameState, setNameState] = React.useState([])
+    const router = useRouter()
+    const [formData, setFormData] = React.useState({
+        format: '',
+        concessionaire_state: '',
+        concessionaire_city: '',
+        concessionaireID: 0,
+        concessionaire: '',
+        trainingID: '',
+    })
 
-  const handleGetConcessionaire = async (event) => {
-    handleInputChange(event);
+    const estadosCidade = {};
+    const date = moment(props.content.date).format("DD/MM/YYYY");
+  
+    React.useEffect(() => {
+        if(props.content.concessionaires){
+            props.content.concessionaires.forEach(element => {
+                if(element.address){
+                    const estado = element.address.city.state.value
+                    const cidade = element.address.city.value
 
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      concessionaire: "",
-    }));
+                    if(!estadosCidade[estado]) {
+                        estadosCidade[estado] = new Set()
+                    }
 
-    if (event.target.value != "") {
-      const request = await fetch(
-        `/api/getConcessionaires?state=${formData.concessionaire_state}&city=${event.target.value}&training=${props.content.id}`,
-        {
-          method: "GET",
+                    estadosCidade[estado].add(cidade)
+
+                    setCityState(estadosCidade)
+                }
+            })
+            
         }
-      );
+    }, [props.content.concessionaires])
+    
+    const handleGetConcessionaire = async (event) => {
+        handleInputChange(event)
 
-      const response = await request.json();
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            concessionaire: '',
+        }))
 
-      if (request.ok) {
-        setConcessionaires(response);
-        setMessageRender(1);
-      } else {
-        setMessageRender(2);
-        setInfosRender(0);
-      }
-    }
+        if (event.target.value != '') {
+            const request = await fetch(`/api/getConcessionaires?state=${formData.concessionaire_state}&city=${event.target.value}&training=${props.content.id}`, {
+                method: 'GET',
+            })
+
+            const response = await request.json()
+
+            if (request.ok) {
+                setConcessionaires(response)
+                setMessageRender(1)
+            } else {
+                setMessageRender(2)
+                setInfosRender(0)
+            }
   };
 
   const handleInputChange = (event) => {
@@ -117,15 +137,15 @@ export default function SubscribeModal(props) {
     setInfosRender(0);
     setMessageRender(0);
 
-    const state = event.target.value;
+        const state = event.target.value
 
-    const stateData = locations.estados.find((est) => est.sigla === state);
+        const stateData = cityState[state]
 
-    setCities(stateData ? stateData.cidades : []);
-  };
-
-  const handleConcessionaireChange = (event) => {
-    handleInputChange(event);
+        setCities(stateData ? Array.from(stateData) : [])
+    }
+    
+    const handleConcessionaireChange = (event) => {
+        handleInputChange(event)
 
     if (event.target.value != null) {
       setConcessionairesInfos(concessionaires[event.target.value]);
