@@ -67,7 +67,7 @@ export default function Dashboard() {
             <Title title="Treinamentos" />
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 1, sm: 8, md: 12 }}>
                 {verify ?
-                    [...trainings].reverse().map((training, index) => (
+                    trainings.map((training, index) => (
                         <Grid item xs={1} sm={4} md={3} key={index} className='flex content-center justify-center'>
                             <TrainingCard key={index} content={training} />
                         </Grid>
@@ -79,7 +79,7 @@ export default function Dashboard() {
             <Title title="Seus treinamentos" />
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 1, sm: 8, md: 12 }}>
                 {verifySubscribed ?
-                    subscribedTrainings.map((training, index) => (
+                    [...subscribedTrainings].reverse().map((training, index) => (
                         <Grid item xs={1} sm={4} md={3} key={index} className='flex content-center justify-center'>
                             <SubscribedCard key={index} content={training} />
                         </Grid>
