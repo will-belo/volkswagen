@@ -121,14 +121,14 @@ export default function HorizontalLinearStepper() {
               {StepToRender(activeStep, formData, setFormData, alert)}
 
               <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                <Button color="inherit" disabled={activeStep === 0} onClick={handleBack} sx={{ mr: 1 }}>Voltar</Button>
+                <Button disabled={activeStep === 0} onClick={handleBack} variant="contained" sx={{ mr: 1, backgroundColor: "#022663", ":hover": { backgroundColor: "#184a9b" } }}>Voltar</Button>
                 
                 <Box sx={{ flex: '1 1 auto' }} />
 
                 {activeStep === steps.length - 1 ?
-                  <Button onClick={handleSubmit}>Finalizar</Button>
+                  <Button onClick={handleSubmit} variant="contained" sx={{ mr: 1, backgroundColor: "#022663", ":hover": { backgroundColor: "#184a9b" } }}>Finalizar</Button>
                   :
-                  <Button onClick={handleNext}>Próximo</Button>
+                  <Button onClick={handleNext} variant="contained" sx={{ backgroundColor: "#022663", ":hover": { backgroundColor: "#184a9b" } }}>Próximo</Button>
                 }
               </Box>
 
