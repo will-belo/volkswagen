@@ -46,8 +46,7 @@ export default function Training() {
 
   return (
     <main className="flex flex-col gap-5 px-5">
-      {/* <Title title="Treinamento" /> */}
-      <div className="relative h-80 bg-blue-900 flex justify-center items-center py-28 rounded-3xl">
+      <div className="relative lg:h-80 bg-blue-900 flex justify-center items-center lg:py-28 py-20 rounded-3xl">
         <Image
           src={kombiHeader}
           layout="fill"
@@ -56,13 +55,13 @@ export default function Training() {
           alt="Background Image"
           className="z-0 rounded-3xl"
         />
-        <div className="relative z-10 text-white font-bold text-6xl">
+        <div className="relative z-10 text-white font-bold lg:text-6xl text-4xl">
           Treinamento
         </div>
       </div>
 
       <div className="lg:px-40">
-        <div className="grid grid-cols-2 gap-x-20">
+        <div className="grid lg:grid-cols-2 grid-cols-1 gap-x-20 gap-y-5">
           <div className="col-span-1">
             <div className="flex flex-col items-center gap-5">
               <div className="bg-slate-200 rounded-xl font-bold text-blue-900 py-1 px-3 shadow shadow-slate-500">
@@ -80,13 +79,13 @@ export default function Training() {
               </div>
 
               <div className="bg-blue-900 flex flex-col gap-y-5 w-full rounded-xl py-10 px-5 shadow shadow-slate-500">
-                <div className="text-white text-center font-bold text-4xl">
+                <div className="text-white text-center font-bold text-2xl lg:text-4xl">
                   Treinamento - Volkswagen
                 </div>
-                <div className="text-center text-white font-semibold text-3xl">
+                <div className="text-center text-white font-semibold lg:text-3xl">
                   {training.name}
                 </div>
-                <div className="text-center text-white font-thin text-3xl">
+                <div className="text-center text-white font-thin lg:text-3xl text-xl">
                   {moment(training.date).format("DD/MM/YYYY")} - às 19:30
                 </div>
 
@@ -104,7 +103,7 @@ export default function Training() {
                 Cronograma
               </div>
 
-              <div className="bg-slate-200 rounded-tr-3xl rounded-bl-3xl flex flex-col gap-y-5 justify-center text-blue-900 w-full px-32 py-10">
+              <div className="bg-slate-200 shadow shadow-slate-500 rounded-tr-3xl rounded-bl-3xl flex flex-col gap-y-5 justify-center text-blue-900 w-full lg:px-32 px-4 py-10">
                 <div className="w-full flex items-center justify-between text-2xl">
                   <div className="font-bold ">19h30</div>
                   <div className="font-extralight flex flex-col items-center">
