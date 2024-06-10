@@ -41,39 +41,37 @@ export default function Header() {
     useEffect(() => {
         if (isAuthenticated) {
             setUserState(
-            <div>
-                <a className="cursor-pointer" onClick={handleClick}>
-                {userData.name}
-                </a>
+                <div>
+                    <a className="cursor-pointer" onClick={handleClick}>
+                    {userData.name}
+                    </a>
 
-                <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-                <MenuItem onClick={() => { router.push('/dashboard') }}>Meus treinamentos</MenuItem>
-                <MenuItem onClick={handleLogout}>Sair</MenuItem>
-                </Menu>
-            </div>
+                    <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+                    <MenuItem onClick={() => { router.push('/dashboard') }}>Meus treinamentos</MenuItem>
+                    <MenuItem onClick={handleLogout}>Sair</MenuItem>
+                    </Menu>
+                </div>
             );
         } else {
             setUserState(
-            <div className="flex justify-center items-center gap-7">
-                <Link
-                href="/autenticacao/cadastro"
-                className="hover:text-volks-blue-800 ease-in-out duration-200 uppercase text-black no-underline px-7 py-1"
-                >
-                    Cadastre-se
-                </Link>
-                <Button
-                href="/autenticacao/login"
-                variant="outlined"
-                className="uppercase text-black no-underline px-7 py-1"
-                >
-                    Entrar
-                </Button>
-            </div>
+                <div className="flex justify-center items-center gap-7">
+                    <Link
+                    href="/autenticacao/cadastro"
+                    className="hover:text-volks-blue-800 ease-in-out duration-200 uppercase text-black no-underline px-7 py-1"
+                    >
+                        Cadastre-se
+                    </Link>
+                    <Button
+                    href="/autenticacao/login"
+                    variant="outlined"
+                    className="uppercase text-black no-underline px-7 py-1"
+                    >
+                        Entrar
+                    </Button>
+                </div>
             );
         }
-        },
-        [isAuthenticated, userData, anchorEl, open, router]
-    );
+    },[isAuthenticated, userData, anchorEl, open, router]);
 
     return (
         <>
