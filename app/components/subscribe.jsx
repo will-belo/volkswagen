@@ -33,6 +33,7 @@ export default function SubscribeModal(props) {
     const [messageRender, setMessageRender] = React.useState(0)
     const [infosRender, setInfosRender] = React.useState(0)
     const [formRender, setFormRender] = React.useState(0)
+    const [stateName, setstateName] = React.useState([])
     const [cities, setCities] = React.useState([])
     const [open, setOpen] = React.useState(false)
     const handleClose = () => setOpen(false)
@@ -48,9 +49,9 @@ export default function SubscribeModal(props) {
         trainingID: '',
     })
 
-    const estadosCidade = {};
-    const date = moment(props.content.date).format("DD/MM/YYYY");
-  
+    const estadosCidade = {}
+    const date = moment(props.content.date).format("DD/MM/YYYY")
+    
     React.useEffect(() => {
         if(props.content.concessionaires){
             props.content.concessionaires.forEach(element => {
@@ -70,7 +71,15 @@ export default function SubscribeModal(props) {
             
         }
     }, [props.content.concessionaires])
-    
+
+    React.useEffect(() => {
+        const arraySearch = locations.estados.filter(object => Object.keys(cityState).includes(object.sigla))
+
+        const arrayFind = arraySearch.map(objeto => ({ sigla: objeto.sigla, nome: objeto.nome }))
+
+        setstateName(arrayFind)
+    }, [cityState])
+
     const handleGetConcessionaire = async (event) => {
         handleInputChange(event)
 
@@ -345,7 +354,7 @@ export default function SubscribeModal(props) {
                                 onChange={handleStateChange}
                                 name="concessionaire_state"
                             >
-                                {locations.estados.map((estado) => (
+                                {stateName.map((estado) => (
                                         <MenuItem key={estado.sigla} value={estado.sigla}>
                                             {estado.nome}
                                         </MenuItem>
