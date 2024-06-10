@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container';
@@ -40,7 +39,7 @@ export default function SignIn(){
       setAlert(response)
     }else{
       setAlert(null)
-      router.push('/dashboard')
+      router.push('/redirect')
     }
   }
 

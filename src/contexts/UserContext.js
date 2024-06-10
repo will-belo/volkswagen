@@ -11,23 +11,24 @@ export const UserProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [userData, setuserData] = useState(null)
 
-    useEffect(() => {
-        const verify = async () => {
-            const request = await fetch('/api/isAuthenticated',{
-                method: 'GET',
-            })
+    const verify = async () => {
+        const request = await fetch('/api/isAuthenticated',{
+            method: 'GET',
+        })
 
-            const response = await request.json()
+        const response = await request.json()
 
-            if(request.ok){
-                setIsAuthenticated(true)
-                setuserData(response)
-            }else{
-                setIsAuthenticated(false)
-            }
+        if(request.ok){
+            setIsAuthenticated(true)
+            setuserData(response)
+
+            return true
         }
-        verify()
-    }, [isAuthenticated])
+        
+        setIsAuthenticated(false)
+
+        return false
+    }
     
     const logout = async () => {
         const request = await fetch('/api/logout',{
@@ -41,7 +42,7 @@ export const UserProvider = ({ children }) => {
     }
     
     return (
-        <UserContext.Provider value={{ isAuthenticated, userData, logout }}>
+        <UserContext.Provider value={{ isAuthenticated, userData, logout, verify }}>
             {children}
         </UserContext.Provider>
     )
