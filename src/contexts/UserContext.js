@@ -41,6 +41,29 @@ export const UserProvider = ({ children }) => {
         }
     }
     
+    useEffect(() => {
+        const verify = async () => {
+            const request = await fetch('/api/isAuthenticated',{
+                method: 'GET',
+            })
+    
+            const response = await request.json()
+    
+            if(request.ok){
+                setIsAuthenticated(true)
+                setuserData(response)
+    
+                return true
+            }
+            
+            setIsAuthenticated(false)
+    
+            return false
+        }
+
+        verify()
+    }, [])
+
     return (
         <UserContext.Provider value={{ isAuthenticated, userData, logout, verify }}>
             {children}

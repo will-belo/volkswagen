@@ -44,15 +44,18 @@ export async function middleware(req) {
 
     const url = req.nextUrl.clone()
     
+    // Redireciona caso o usuário esteja logado
     if (req.nextUrl.pathname.startsWith('/dashboard')){
       return userIsLoggedInMiddleware(token, url)
     }
 
+    // Redireciona caso o usuário não seja um administrador
     if (req.nextUrl.pathname.startsWith('/admin')){
       return adminIsLoggedInMiddleware(token, url)
     }
 
-    if (req.nextUrl.pathname.startsWith('/autenticacao')){
+    // Redirecionamento caso o usuário esteja logado
+    if (req.nextUrl.pathname.startsWith('/login') || req.nextUrl.pathname.startsWith('/cadastro')){
       return redirectIfLoggedMiddleware(token, url)
     }
 }
