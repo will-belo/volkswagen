@@ -4,15 +4,13 @@
 import * as React from 'react';
 import { Box, Grid, Typography } from "@mui/material"
 import Title from '../components/title';
-import Videos from '../components/videos';
-import Video from '../components/video';
 import TrainingCard from '../components/trainingCard';
 import SubscribedCard from '../components/subscribed';
 
 export default function Dashboard() {
     const [trainings, setTrainings] = React.useState([])
     const [subscribedTrainings, setSubscribedTrainingss] = React.useState([])
-    const [concessionaireTransfer, setConcessionaireTransfer] = React.useState(null)
+    const [concessionaireTransfer, setConcessionaireTransfer] = React.useState([])
 
     const [verifySubscribed, setVerifySubscribed] = React.useState(null)
     const [verify, setVerify] = React.useState(null)
@@ -57,6 +55,15 @@ export default function Dashboard() {
 
         getTrainings()
     }, [verifySubscribed])
+    
+    React.useEffect(() => {
+        trainings.map((training, index) => {
+            if(Boolean(parseInt(training.active))){
+                setConcessionaireTransfer(training)
+            }
+        })
+    })
+    
     // Corrigir o card de atualização de inscrição (Estados e cidade não estão aparecendo)
     return (
         <main className="flex flex-col gap-5 my-5 px-20">
@@ -78,7 +85,7 @@ export default function Dashboard() {
                 {verifySubscribed ?
                     [...subscribedTrainings].reverse().map((training, index) => (
                         <Grid item xs={1} sm={4} md={3} key={index} className='flex content-center justify-center'>
-                            <SubscribedCard key={index} content={training} />
+                            <SubscribedCard key={index} content={training} concessionaire={concessionaireTransfer} />
                         </Grid>
                     ))
                     :
