@@ -51,10 +51,11 @@ export default function SubscribeModal(props) {
 
     const estadosCidade = {}
     const date = moment(props.content.date).format("DD/MM/YYYY")
-
+    const concessionaireAddress = props.content.concessionaires ? props.content.concessionaires : props.concessionaire.concessionaires
+    
     React.useEffect(() => {
-        if(props.content.concessionaires){
-            props.content.concessionaires.forEach(element => {
+        if(concessionaireAddress){
+            concessionaireAddress.forEach(element => {
                 if(element.address){
                     const estado = element.address.city.state.value
                     const cidade = element.address.city.value
@@ -69,7 +70,7 @@ export default function SubscribeModal(props) {
                 }
             })
         }
-    }, [props.content.concessionaires])
+    }, [concessionaireAddress])
 
     React.useEffect(() => {
         const arraySearch = locations.estados.filter(object => Object.keys(cityState).includes(object.sigla))

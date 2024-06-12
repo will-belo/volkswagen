@@ -30,7 +30,7 @@ export default function SubscribedCard(props) {
   const [trainingFormat, setTrainingFormat] = React.useState("");
   const [trainingLocal, setTrainingLocal] = React.useState("");
   const [verifyLocal, setVerifyLocal] = React.useState(false);
-
+  
   React.useEffect(() => {
     if (props.content.concessionaire_id != 0) {
       setTrainingFormat("Presencial");
@@ -49,7 +49,7 @@ export default function SubscribedCard(props) {
       setTrainingFormat("Online");
     }
   }, [props.content]);
-
+  
   return (
     <Card className="flex flex-col" sx={{ maxWidth: 345 }}>
       <ToastContainer />
@@ -99,6 +99,7 @@ export default function SubscribedCard(props) {
               content={props.content}
               type="update"
               id={props.content.pivot_id}
+              concessionaire={props.concessionaire}
             >
               Atualizar Inscrição
             </SubscribeModal>
