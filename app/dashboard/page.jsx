@@ -12,6 +12,7 @@ import SubscribedCard from '../components/subscribed';
 export default function Dashboard() {
     const [trainings, setTrainings] = React.useState([])
     const [subscribedTrainings, setSubscribedTrainingss] = React.useState([])
+    const [concessionaireTransfer, setConcessionaireTransfer] = React.useState(null)
 
     const [verifySubscribed, setVerifySubscribed] = React.useState(null)
     const [verify, setVerify] = React.useState(null)
@@ -56,7 +57,7 @@ export default function Dashboard() {
 
         getTrainings()
     }, [verifySubscribed])
-
+    // Corrigir o card de atualização de inscrição (Estados e cidade não estão aparecendo)
     return (
         <main className="flex flex-col gap-5 my-5 px-20">
 

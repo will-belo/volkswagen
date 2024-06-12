@@ -6,15 +6,12 @@ import locations from '@/src/locations.json'
 import MaskedInput from '@/app/components/mask/inputMask';
 import { Checkbox, FormControl, FormControlLabel, Grid, InputLabel, Link, Menu, MenuItem, Select, TextField } from '@mui/material';
 
-export default function StepToRender(activeStep, formData, setFormData){
+export default function StepToRender(activeStep, register, formData){
     const [cities, setCities] = React.useState([])
     const [citiesAutoRepair, setCitiesAutoRepair] = React.useState([])
     const [formRender, setformRender] = React.useState(0)
     const [isChecked, setIsChecked] = React.useState(true)
     const [autoRepairInfo, setautoRepairInfo] = React.useState(null)
-
-    const [isLegacy, setIsLegacy] = React.useState(false)
-    const [legacyData, setLegacyData] = React.useState([])
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -54,9 +51,6 @@ export default function StepToRender(activeStep, formData, setFormData){
             const response = await request.json()
             
             if(request.ok){
-                setIsLegacy(true)
-                setLegacyData(response)
-                
                 setFormData((prevFormData) => ({
                     ...prevFormData,
                     name: response.Nome,
@@ -65,7 +59,6 @@ export default function StepToRender(activeStep, formData, setFormData){
                     email: response.Email,
                 }));
             }else{
-                setIsLegacy(false)
                 setFormData((prevFormData) => ({
                     ...prevFormData,
                     name: '',
@@ -75,7 +68,6 @@ export default function StepToRender(activeStep, formData, setFormData){
                 }));
             }
         }else{
-            setIsLegacy(false)
             setFormData((prevFormData) => ({
                 ...prevFormData,
                 name: '',
@@ -152,13 +144,14 @@ export default function StepToRender(activeStep, formData, setFormData){
                     <Box noValidate sx={{ mt: 3 }}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                <TextField onChange={handleSearchDocument} value={formData.document} key="document" required fullWidth id="document" label="CPF" name="document" InputProps={{
+                                <TextField key="document" required fullWidth id="document" label="CPF" name="document" InputProps={{
                                     inputComponent: MaskedInput,
                                         inputProps: {
                                             mask: '000.000.000-00',
                                         },
                                     }}
                                     sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
+                                    {...register("document", { required: true })}
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>

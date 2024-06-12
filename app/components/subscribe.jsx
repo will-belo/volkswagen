@@ -51,7 +51,7 @@ export default function SubscribeModal(props) {
 
     const estadosCidade = {}
     const date = moment(props.content.date).format("DD/MM/YYYY")
-    
+
     React.useEffect(() => {
         if(props.content.concessionaires){
             props.content.concessionaires.forEach(element => {
@@ -68,7 +68,6 @@ export default function SubscribeModal(props) {
                     setCityState(estadosCidade)
                 }
             })
-            
         }
     }, [props.content.concessionaires])
 
@@ -270,7 +269,7 @@ export default function SubscribeModal(props) {
             <Button
                 variant="contained"
                 onClick={() => {
-                isAuthenticated ? handleOpen() : router.push("/auth/login");
+                isAuthenticated ? handleOpen() : router.push("/login");
                 }}
             >
                 {props.children}

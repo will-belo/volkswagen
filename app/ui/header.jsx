@@ -47,8 +47,8 @@ export default function Header() {
                     </a>
 
                     <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-                    <MenuItem onClick={() => { router.push('/dashboard') }}>Meus treinamentos</MenuItem>
-                    <MenuItem onClick={handleLogout}>Sair</MenuItem>
+                        <MenuItem onClick={() => { router.push('/dashboard') }}>Meus treinamentos</MenuItem>
+                        <MenuItem onClick={handleLogout}>Sair</MenuItem>
                     </Menu>
                 </div>
             );
@@ -56,13 +56,13 @@ export default function Header() {
             setUserState(
                 <div className="flex justify-center items-center gap-7">
                     <Link
-                    href="/autenticacao/cadastro"
+                    href="/cadastro"
                     className="hover:text-volks-blue-800 ease-in-out duration-200 uppercase text-black no-underline px-7 py-1"
                     >
                         Cadastre-se
                     </Link>
                     <Button
-                    href="/autenticacao/login"
+                    href="/login"
                     variant="outlined"
                     className="uppercase text-black no-underline px-7 py-1"
                     >
