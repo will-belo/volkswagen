@@ -101,7 +101,7 @@ export default function Header() {
                         </Typography>
                     </Box>
                     <Box>
-                        <Grid container className="flex items-center justify-center py-3 border-b-2 border-black" gap={20}>
+                        <Grid container className="flex items-center justify-center py-3 border-b border-black" gap={20}>
                             <Grid item>
                                 <Link href="/treinamento" className="hover:text-volks-blue-800 ease-in-out duration-200">
                                     Treinamentos
