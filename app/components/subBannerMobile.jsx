@@ -14,8 +14,8 @@ export default function SubBannerMobile(props) {
                         backgroundImage: `url(${props.image.src})`,
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'right',
-                        backgroundSize: 'cover',
-                        height: 200,
+                        backgroundSize: 'contain',
+                        height: 159,
                         width: '100%',
                         padding: 0,
                         '::before': {
@@ -57,7 +57,9 @@ export default function SubBannerMobile(props) {
                             <Typography variant="body1" className="" gutterBottom>
                                 {props.children}
                             </Typography>
-                            <Button variant="text" endIcon={<EastIcon />}>Saiba Mais</Button>
+                            <a href="/documents/CATALOGO_ECONOMY.pdf" download="CATALOGO_ECONOMY.pdf">
+                                <Button variant="text" endIcon={<EastIcon />}>Saiba Mais</Button>
+                            </a>
                         </Box>
                     </Box>
                 </Grid>

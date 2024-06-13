@@ -125,14 +125,12 @@ export default function Home() {
             do Catálogo Economy e saiba mais.
           </SubBannerMobile>
         ) : (
-          <a href="/documents/CATALOGO_ECONOMY.pdf" download="CATALOGO_ECONOMY.pdf">
-            <SubBanner title="Economy" subtitle="Catálogo" image={economy}>
-              A eficiência de manutenção da Volkswagen não se discute. Um serviço
-              para veículos com mais de 3 anos que garante a mesma segurança das
-              peças aplicadas em veículos zero quilômetro. Acesse o guia gratuito
-              do Catálogo Economy e saiba mais.
-            </SubBanner>
-          </a>
+          <SubBanner title="Economy" subtitle="Catálogo" image={economy}>
+            A eficiência de manutenção da Volkswagen não se discute. Um serviço
+            para veículos com mais de 3 anos que garante a mesma segurança das
+            peças aplicadas em veículos zero quilômetro. Acesse o guia gratuito
+            do Catálogo Economy e saiba mais.
+          </SubBanner>
         )}
 
         <Box>
