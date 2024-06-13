@@ -17,6 +17,7 @@ export async function POST(req) {
         '&gender='             + encodeURIComponent(formData.get('gender')) + 
         '&street='             + encodeURIComponent(formData.get('street')) +
         '&number='             + encodeURIComponent(formData.get('number')) + 
+        '&complement='         + encodeURIComponent(formData.get('complement')) + 
         '&born_at='            + encodeURIComponent(formData.get('born_at')) +
         '&password='           + encodeURIComponent(formData.get('password')) +
         '&document='           + encodeURIComponent(formData.get('document')) +  

@@ -3,9 +3,13 @@
 
 import UserContext from "@/src/contexts/UserContext";
 import useWindowSize from "@/app/hooks/useWindowsSize";
-import { Button, Link, Menu, MenuItem } from "@mui/material";
+import { Box, Button, Grid, Menu, MenuItem, Typography } from "@mui/material";
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
+import logo from '@/images/oficinaLogo.jpeg';
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Header() {
     const { isAuthenticated, userData, logout } = useContext(UserContext);
@@ -43,7 +47,7 @@ export default function Header() {
             setUserState(
                 <div>
                     <a className="cursor-pointer" onClick={handleClick}>
-                    {userData.name}
+                        {userData.name}
                     </a>
 
                     <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
@@ -54,20 +58,20 @@ export default function Header() {
             );
         } else {
             setUserState(
-                <div className="flex justify-center items-center gap-7">
+                <div className="flex justify-end items-center gap-2">
                     <Link
-                    href="/cadastro"
-                    className="hover:text-volks-blue-800 ease-in-out duration-200 uppercase text-black no-underline px-7 py-1"
+                        href="/cadastro"
+                        className="hover:text-volks-blue-800 ease-in-out duration-200 uppercase text-black no-underline px-7 py-1 flex items-center"
                     >
                         Cadastre-se
                     </Link>
-                    <Button
-                    href="/login"
-                    variant="outlined"
-                    className="uppercase text-black no-underline px-7 py-1"
+                    <Link
+                        href="/login"
+                        className="hover:text-volks-blue-800 ease-in-out duration-200 uppercase text-black no-underline px-7 py-1 flex items-center"
                     >
-                        Entrar
-                    </Button>
+                        Acessar
+                        <PersonOutlineOutlinedIcon className="ml-1" />
+                    </Link>
                 </div>
             );
         }
@@ -76,42 +80,41 @@ export default function Header() {
     return (
         <>
             {!mobile ? (
-                <div className="flex flex-row items-center justify-center p-4">
-                    <div className="flex-none"></div>
+                <>
+                    <Box className="flex flex-row items-center justify-center p-5">
+                        <Box className="flex-1"></Box>
 
-                    <div className="grow flex justify-center divide-x divide-black">
-                        <Link
-                        underline="none"
-                        color="inherit"
-                        className="hover:text-volks-blue-800 ease-in-out duration-200 cursor-pointer px-7 py-2"
-                        >
-                            Treinamentos
-                        </Link>
-                        <Link
-                        underline="none"
-                        color="inherit"
-                        className="hover:text-volks-blue-800 ease-in-out duration-200 cursor-pointer px-7 py-2"
-                        >
-                            Peças VW
-                        </Link>
-                        <Link
-                        underline="none"
-                        color="inherit"
-                        className="hover:text-volks-blue-800 ease-in-out duration-200 cursor-pointer px-7 py-2"
-                        >
-                            Catálogo Economy
-                        </Link>
-                        <Link
-                        underline="none"
-                        color="inherit"
-                        className="hover:text-volks-blue-800 ease-in-out duration-200 cursor-pointer px-7 py-2"
-                        >
-                            Notícias
-                        </Link>
-                    </div>
+                        <Box className="shrink-0">
+                            <Image src={logo} width={250} height={200} alt="card" />
+                        </Box>
 
-                    <div className="flex-none">{userState}</div>
-                </div>
+                        <Box className="flex-1">{userState}</Box>
+                    </Box>
+                    <Box className="flex items-center justify-center bg-volks-blue-900">
+                        <Typography variant="overline" className="uppercase font-bold text-white">
+                            TV Notícias da Oficina VW
+                        </Typography>
+                    </Box>
+                    <Box>
+                        <Grid container className="flex items-center justify-center py-3" gap={20}>
+                            <Grid item>
+                                <Link href="/treinamento" className="hover:text-volks-blue-800 ease-in-out duration-200">
+                                    Treinamentos
+                                </Link>
+                            </Grid>
+                            <Grid item>
+                                <Link href="#economy" className="hover:text-volks-blue-800 ease-in-out duration-200">
+                                    Catálogo Economy
+                                </Link>
+                            </Grid>
+                            <Grid item>
+                                <Link href="/" className="hover:text-volks-blue-800 ease-in-out duration-200">
+                                    Notícias
+                                </Link>
+                            </Grid>
+                        </Grid>
+                    </Box>
+                </>
             ) : (
                 <div className="flex flex-row items-center justify-center p-4">
                     <div className="justify-items-center">{userState}</div>

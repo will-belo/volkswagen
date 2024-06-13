@@ -38,6 +38,7 @@ export default function HorizontalLinearStepper() {
       state: '',
       street: '',
       number: '',
+      complement: '',
       city: '',
       cep: '',
 
@@ -423,6 +424,19 @@ export default function HorizontalLinearStepper() {
                     }
                   />
                 </Grid>
+
+                <Grid item xs={12}>
+                  <Controller
+                    name="complement"
+                    control={control}
+                    render={({ field }) => 
+                      <TextField key="complement" id="complement" label="Complemento" fullWidth required
+                        sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
+                        {...field} 
+                      />
+                    }
+                  />
+                </Grid>
               </Grid>
             </Box>
 
@@ -512,10 +526,29 @@ export default function HorizontalLinearStepper() {
                 name="role"
                 control={control}
                 render={({ field }) => 
-                  <TextField key="role" id="role" label="Cargo" fullWidth
-                    sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
-                    {...field}
-                  />
+                  <FormControl variant="outlined" fullWidth>
+                    <InputLabel id="role">Cargo</InputLabel>
+                    <Select labelId="role" label="Cargo" fullWidth required
+                      sx={{backgroundColor: '#F8F8F8','& .MuiOutlinedInput-notchedOutline': {border: 'none'},}}
+                      {...field}
+                    >
+                      <MenuItem key="chefe" value="chefe">Chefe de Oficina</MenuItem>
+                      <MenuItem key="comprador" value="comprador">Comprador</MenuItem>
+                      <MenuItem key="eletricista" value="eletricista">Eletricista</MenuItem>
+                      <MenuItem key="funileiro" value="funileiro">Funileiro</MenuItem>
+                      <MenuItem key="garantista" value="garantista">Garantista</MenuItem>
+                      <MenuItem key="gerente" value="gerente">Gerente</MenuItem>
+                      <MenuItem key="instalador" value="instalador">Instalador</MenuItem>
+                      <MenuItem key="mecanico" value="mecanico">Mecânico</MenuItem>
+                      <MenuItem key="pintor" value="pintor">Pintor</MenuItem>
+                      <MenuItem key="proprietario" value="proprietario">Proprietário</MenuItem>
+                      <MenuItem key="retificador" value="retificador">Retificador</MenuItem>
+                      <MenuItem key="soldador" value="soldador">Soldador</MenuItem>
+                      <MenuItem key="supervisor" value="supervisor">Supervisor</MenuItem>
+                      <MenuItem key="tecnico" value="tecnico">Técnico</MenuItem>
+                      <MenuItem key="outros" value="outros">Outros</MenuItem>
+                    </Select>
+                  </FormControl>
                 }
               />
             </Grid>
@@ -525,10 +558,26 @@ export default function HorizontalLinearStepper() {
                 name="branch_activity"
                 control={control}
                 render={({ field }) => 
-                  <TextField key="branch_activity" id="branch_activity" label="Ramo de atividade" fullWidth
-                    sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
-                    {...field}
-                  />
+                  <FormControl variant="outlined" fullWidth>
+                    <InputLabel id="branch_activity">Ramo de atividade</InputLabel>
+                    <Select labelId="branch_activity" label="Cargo" fullWidth required
+                      sx={{backgroundColor: '#F8F8F8','& .MuiOutlinedInput-notchedOutline': {border: 'none'},}}
+                      {...field}
+                    >
+                      <MenuItem key="eletrica" value="eletrica">Auto Elétrica</MenuItem>
+                      <MenuItem key="automotivo" value="automotivo">Centro Automotivo</MenuItem>
+                      <MenuItem key="concessionaria" value="concessionaria">Concessionária</MenuItem>
+                      <MenuItem key="distribuidor" value="distribuidor">Distribuidor</MenuItem>
+                      <MenuItem key="frota" value="frota">Frota</MenuItem>
+                      <MenuItem key="funilaria" value="funilaria">Funilaria e Pintura</MenuItem>
+                      <MenuItem key="acessorios" value="acessorios">Loja de Acessórios</MenuItem>
+                      <MenuItem key="autopecas" value="autopecas">Loja de Autopeças</MenuItem>
+                      <MenuItem key="mecanica" value="mecanica">Oficina Mecânica</MenuItem>
+                      <MenuItem key="escapamentos" value="escapamentos">Posto de Escapamentos</MenuItem>
+                      <MenuItem key="retefica" value="retefica">Retífica</MenuItem>
+                      <MenuItem key="Outros" value="outros">Outros</MenuItem>
+                    </Select>
+                  </FormControl>
                 }
               />
             </Grid>
@@ -641,34 +690,59 @@ export default function HorizontalLinearStepper() {
                 name="fantasy_name"
                 control={control}
                 render={({ field }) => 
-                  <TextField key="fantasy_name" id="fantasy_name" label="Nome fantasia" fullWidth
+                  <TextField key="fantasy_name" id="fantasy_name" label="Nome fantasia" fullWidth InputProps={{
+                      readOnly: true,
+                    }}
                     sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
                     {...field}
                   />
                 }
               />
             </Grid>
+
             <Grid item xs={12}>
               <Controller
                 name="branch_activity"
                 control={control}
                 render={({ field }) => 
-                  <TextField key="branch_activity" id="branch_activity" label="Ramo de atividade" fullWidth
+                  <TextField key="branch_activity" id="branch_activity" label="Ramo de atividade" fullWidth InputProps={{
+                      readOnly: true,
+                    }}
                     sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
                     {...field}
                   />
                 }
               />
             </Grid>
+            
             <Grid item xs={12}>
               <Controller
                 name="role"
                 control={control}
                 render={({ field }) => 
-                  <TextField key="role" id="role" label="Cargo" fullWidth
-                    sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
-                    {...field}
-                  />
+                  <FormControl variant="outlined" fullWidth>
+                    <InputLabel id="role">Cargo</InputLabel>
+                    <Select labelId="role" label="Cargo" fullWidth required
+                      sx={{backgroundColor: '#F8F8F8','& .MuiOutlinedInput-notchedOutline': {border: 'none'},}}
+                      {...field}
+                    >
+                      <MenuItem key="chefe" value="chefe">Chefe de Oficina</MenuItem>
+                      <MenuItem key="comprador" value="comprador">Comprador</MenuItem>
+                      <MenuItem key="eletricista" value="eletricista">Eletricista</MenuItem>
+                      <MenuItem key="funileiro" value="funileiro">Funileiro</MenuItem>
+                      <MenuItem key="garantista" value="garantista">Garantista</MenuItem>
+                      <MenuItem key="gerente" value="gerente">Gerente</MenuItem>
+                      <MenuItem key="instalador" value="instalador">Instalador</MenuItem>
+                      <MenuItem key="mecanico" value="mecanico">Mecânico</MenuItem>
+                      <MenuItem key="pintor" value="pintor">Pintor</MenuItem>
+                      <MenuItem key="proprietario" value="proprietario">Proprietário</MenuItem>
+                      <MenuItem key="retificador" value="retificador">Retificador</MenuItem>
+                      <MenuItem key="soldador" value="soldador">Soldador</MenuItem>
+                      <MenuItem key="supervisor" value="supervisor">Supervisor</MenuItem>
+                      <MenuItem key="tecnico" value="tecnico">Técnico</MenuItem>
+                      <MenuItem key="outros" value="outros">Outros</MenuItem>
+                    </Select>
+                  </FormControl>
                 }
               />
             </Grid>
