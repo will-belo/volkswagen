@@ -27,7 +27,7 @@ import { useRouter } from "next/navigation";
 import moment from "moment";
 
 export default function SubscribeModal(props) {
-    const { isAuthenticated } = React.useContext(UserContext);
+    const { isAuthenticated, userData } = React.useContext(UserContext);
     const [concessionairesInfos, setConcessionairesInfos] = React.useState(null)
     const [concessionaires, setConcessionaires] = React.useState([])
     const [messageRender, setMessageRender] = React.useState(0)
@@ -46,9 +46,10 @@ export default function SubscribeModal(props) {
         concessionaire_city: '',
         concessionaireID: 0,
         concessionaire: '',
+        userId: userData && userData.id,
         trainingID: '',
     })
-
+    
     const estadosCidade = {}
     const date = moment(props.content.date).format("DD/MM/YYYY")
     const concessionaireAddress = props.concessionaire ? props.concessionaire.concessionaires : props.content.concessionaires
@@ -202,7 +203,7 @@ export default function SubscribeModal(props) {
         }
 
         const response = await request.json();
-
+        
         if (request.ok) {
             setOpen(false);
             toast.success(response, {

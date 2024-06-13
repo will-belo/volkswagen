@@ -4,7 +4,6 @@ import { cookies } from 'next/headers'
 
 export async function POST(req) {
     const jwt = cookies().get('token')
-    const user = cookies().get('context')
 
     if(jwt){
         const training =  await req.formData()
@@ -12,7 +11,7 @@ export async function POST(req) {
         const data = 
             'concessionaireId=' + encodeURIComponent(training.get('concessionaireID')) +
             '&trainingId='      + encodeURIComponent(training.get('trainingID')) +
-            '&userId='          + encodeURIComponent(user.value)
+            '&userId='          + encodeURIComponent(training.get('userId'))
             
         const request = await fetch('https://apivw.oficinabrasil.com.br/api/training', {
             method: 'POST',
