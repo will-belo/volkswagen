@@ -430,7 +430,7 @@ export default function HorizontalLinearStepper() {
                     name="complement"
                     control={control}
                     render={({ field }) => 
-                      <TextField key="complement" id="complement" label="Complemento" fullWidth required
+                      <TextField key="complement" id="complement" label="Complemento" fullWidth
                         sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
                         {...field} 
                       />
