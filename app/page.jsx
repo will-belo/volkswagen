@@ -65,27 +65,6 @@ export default function Home() {
           dateTime="Dia 16 de Abril | às 00:00"
           background={banner}
         >
-          <HeroCard
-            title="Motor V6 - Amarok"
-            subtitle="2º Treinamento"
-            date="16/04"
-            image={cardImage1}
-            status={false}
-          />
-          <HeroCard
-            title="Motor V6 - Amarok"
-            subtitle="2º Treinamento"
-            date="16/04"
-            image={cardImage2}
-            status={false}
-          />
-          <HeroCard
-            title="Motor V6 - Amarok"
-            subtitle="2º Treinamento"
-            date="16/04"
-            image={cardImage3}
-            status={false}
-          />
         </Hero>
       )}
 
