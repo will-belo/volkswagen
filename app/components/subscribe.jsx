@@ -46,7 +46,7 @@ export default function SubscribeModal(props) {
         concessionaire_city: '',
         concessionaireID: 0,
         concessionaire: '',
-        userId: userData && userData.id,
+        userId: '',
         trainingID: '',
     })
     
@@ -54,6 +54,15 @@ export default function SubscribeModal(props) {
     const date = moment(props.content.date).format("DD/MM/YYYY")
     const concessionaireAddress = props.concessionaire ? props.concessionaire.concessionaires : props.content.concessionaires
     
+    React.useEffect(() => {
+        if(userData){
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                userId: userData.id,
+            }))
+        }
+    }, [userData])
+
     React.useEffect(() => {
         if(concessionaireAddress){
             concessionaireAddress.forEach(element => {
