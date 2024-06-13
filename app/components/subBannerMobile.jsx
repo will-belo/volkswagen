@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 export default function SubBannerMobile(props) {
 
     return(
-        <Box className="my-20">
+        <Box className="my-20" id="economy">
             <Grid container spacing={7}>
                 <Grid item xs={12}>
                     <Box sx={{
