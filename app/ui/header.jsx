@@ -45,7 +45,7 @@ export default function Header() {
     useEffect(() => {
         if (isAuthenticated) {
             setUserState(
-                <div>
+                <Box className="flex justify-end items-center px-5">
                     <a className="cursor-pointer" onClick={handleClick}>
                         {userData.name}
                     </a>
@@ -54,11 +54,11 @@ export default function Header() {
                         <MenuItem onClick={() => { router.push('/dashboard') }}>Meus treinamentos</MenuItem>
                         <MenuItem onClick={handleLogout}>Sair</MenuItem>
                     </Menu>
-                </div>
+                </Box>
             );
         } else {
             setUserState(
-                <div className="flex justify-end items-center gap-2">
+                <Box className="flex justify-end items-center gap-2">
                     <Link
                         href="/cadastro"
                         className="hover:text-volks-blue-800 ease-in-out duration-200 uppercase text-black no-underline px-7 py-1 flex items-center"
@@ -72,7 +72,7 @@ export default function Header() {
                         Acessar
                         <PersonOutlineOutlinedIcon className="ml-1" />
                     </Link>
-                </div>
+                </Box>
             );
         }
     },[isAuthenticated, userData, anchorEl, open, router]);
