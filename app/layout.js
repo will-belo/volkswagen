@@ -1,6 +1,5 @@
 import "./globals.css";
 import { UserProvider } from "@/src/contexts/UserContext";
-import PreHeader from "./components/header";
 import { Inter } from "next/font/google";
 import Header from "./ui/header";
 import Footer from "./ui/footer";
@@ -15,9 +14,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <UserProvider>
-      <html lang="pt">
+      <html lang="pt" className="scroll-smooth">
         <body className={inter.className}>
-          <PreHeader />
           <Header />
           <main>{children}</main>
           <Footer />

@@ -13,20 +13,20 @@ export default function SubBannerMobile(props) {
                         position: 'relative',
                         backgroundImage: `url(${props.image.src})`,
                         backgroundRepeat: 'no-repeat',
-                        backgroundPosition: 'center',
+                        backgroundPosition: 'right',
                         backgroundSize: 'cover',
                         height: 200,
                         width: '100%',
                         padding: 0,
                         '::before': {
-                        content: '""',
-                        position: 'absolute',
-                        top: 0,
-                        right: 0,
-                        bottom: 0,
-                        width: 50,
-                        background: 'linear-gradient(to right, rgba(30,26,103,1) 75%, rgba(51,51,237,1) 75%)',
-                        zIndex: 1,
+                            content: '""',
+                            position: 'absolute',
+                            top: 0,
+                            right: 0,
+                            bottom: 0,
+                            width: 13,
+                            background: 'linear-gradient(to right, rgba(30,26,103,1) 75%, rgba(51,51,237,1) 75%)',
+                            zIndex: 1,
                         },
                     }}>
                         
@@ -46,7 +46,7 @@ export default function SubBannerMobile(props) {
                     }}>
                         <Box sx={{
                             textAlign: 'left',
-                            padding: 10,
+                            padding: 5,
                         }}>
                             <Typography variant="subtitle1" className="font-bold text-blue-400" gutterBottom>
                                 {props.subtitle}

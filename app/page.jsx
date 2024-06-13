@@ -40,6 +40,7 @@ import partsCover2 from "@/images/parts-cover-2.png";
 import partsCover3 from "@/images/parts-cover-3.png";
 import partsCover4 from "@/images/parts-cover-4.png";
 import Link from "next/link";
+import Agenda from "./components/agenda";
 
 export default function Home() {
   const [mobile, setMobile] = useState(false);
@@ -53,16 +54,16 @@ export default function Home() {
     }
   }, [windowSize]);
   const className = mobile
-    ? "flex flex-col gap-5 my-20 px-5"
-    : "flex flex-col gap-5 my-20 px-28";
+    ? "flex flex-col gap-5 my-10 px-5"
+    : "flex flex-col gap-5 my-10 px-28";
 
   return (
     <div>
       {!mobile && (
         <Hero
-          title="T-Cross Tecnologias em motores turbo"
-          subtitle="2º Treinamento"
-          dateTime="Dia 16 de Abril | às 00:00"
+          title="A importância do Óleo Certo para o motor - Maxi Performance"
+          subtitle="3º Treinamento"
+          dateTime="Dia 06 de Junho | às 19:30"
           background={banner}
         >
         </Hero>
@@ -71,9 +72,9 @@ export default function Home() {
       {mobile && (
         <>
           <HeroMobile
-            title="T-Cross Tecnologias em motores turbo"
-            subtitle="2º Treinamento"
-            dateTime="Dia 16 de Abril | às 00:00"
+            title="A importância do Óleo Certo para o motor - Maxi Performance"
+            subtitle="3º Treinamento"
+            dateTime="Dia 06 de Junho | às 19:30"
             background={banner}
           ></HeroMobile>
           <div
@@ -81,34 +82,16 @@ export default function Home() {
               height: 30,
             }}
           ></div>
-          <div className="px-5">
-            <HeroCardMobile
-              title="Motor V6 - Amarok"
-              subtitle="2º Treinamento"
-              date="16/04"
-              image={cardImage1}
-              status={false}
-            />
-            <HeroCardMobile
-              title="Motor V6 - Amarok"
-              subtitle="2º Treinamento"
-              date="16/04"
-              image={cardImage2}
-              status={false}
-            />
-            <HeroCardMobile
-              title="Motor V6 - Amarok"
-              subtitle="2º Treinamento"
-              date="16/04"
-              image={cardImage3}
-              status={false}
-            />
-          </div>
         </>
       )}
 
       <main className={className}>
-        {/* <Videos>
+        <Box>
+          <Title title="Agenda 2024" />
+        </Box>
+        <Agenda></Agenda>
+        {/* 
+        <Videos>
           <Video url="https://placehold.co/1360x768" />
           <Video url="https://placehold.co/1360x768" />
           <Video url="https://placehold.co/1360x768" />
@@ -131,7 +114,8 @@ export default function Home() {
             <CoverBox image={partsBanner1} />
             <CoverBox image={partsBanner1} />
           </Cover>
-        )} */}
+        )} 
+        */}
 
         {mobile ? (
           <SubBannerMobile title="Economy" subtitle="Catálogo" image={economy}>
@@ -154,6 +138,7 @@ export default function Home() {
         <Box>
           <Title title="Peças VW" />
         </Box>
+        
         {mobile ? (
           <PiecesMobile>
             <Cards
