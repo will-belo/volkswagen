@@ -51,7 +51,7 @@ export default function SubscribeModal(props) {
 
     const estadosCidade = {}
     const date = moment(props.content.date).format("DD/MM/YYYY")
-    const concessionaireAddress = props.content.concessionaires ? props.content.concessionaires : props.concessionaire.concessionaires
+    const concessionaireAddress = props.concessionaires ? props.concessionaire.concessionaires : props.content.concessionaires
     
     React.useEffect(() => {
         if(concessionaireAddress){

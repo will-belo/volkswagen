@@ -6,10 +6,6 @@ import { Box, Button, Grid, Typography } from "@mui/material";
 import Title from "../components/title";
 import SubscribeModal from "../components/subscribe";
 import moment from "moment";
-import DescriptionIcon from "@mui/icons-material/Description";
-import EventRoundedIcon from "@mui/icons-material/EventRounded";
-import TravelExploreRoundedIcon from "@mui/icons-material/TravelExploreRounded";
-import SavingsRoundedIcon from "@mui/icons-material/SavingsRounded";
 import UserContext from "@/src/contexts/UserContext";
 import { DialerSip } from "@mui/icons-material";
 import Image from "next/image";
@@ -55,9 +51,9 @@ export default function Training() {
           alt="Background Image"
           className="z-0 rounded-3xl"
         />
-        <div className="relative z-10 text-white font-bold lg:text-6xl text-4xl">
-          Treinamento
-        </div>
+        <Box className="relative z-10">
+          <Typography variant="h3" className="text-white font-bold ">Treinamento</Typography>
+        </Box>
       </div>
 
       <div className="lg:px-40">
