@@ -85,7 +85,9 @@ export default function Header() {
                         <Box className="flex-1"></Box>
 
                         <Box className="shrink-0">
-                            <Image src={logo} width={250} height={200} alt="card" />
+                            <Link href="/">
+                                <Image src={logo} width={250} height={200} alt="card" />
+                            </Link>
                         </Box>
 
                         <Box className="flex-1">{userState}</Box>
@@ -103,7 +105,7 @@ export default function Header() {
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link href="#economy" className="hover:text-volks-blue-800 ease-in-out duration-200">
+                                <Link href="/#economy" className="hover:text-volks-blue-800 ease-in-out duration-200">
                                     Catálogo Economy
                                 </Link>
                             </Grid>
