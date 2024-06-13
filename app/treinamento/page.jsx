@@ -2,7 +2,7 @@
 // @refresh reset
 
 import * as React from "react";
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Divider, Grid, Typography } from "@mui/material";
 import Title from "../components/title";
 import SubscribeModal from "../components/subscribe";
 import moment from "moment";
@@ -42,106 +42,105 @@ export default function Training() {
 
   return (
     <main className="flex flex-col gap-5 px-5">
-      <div className="relative lg:h-80 bg-blue-900 flex justify-center items-center lg:py-28 py-20 rounded-3xl">
-        <Image
-          src={kombiHeader}
-          layout="fill"
-          objectFit="cover"
-          quality={100}
-          alt="Background Image"
-          className="z-0 rounded-3xl"
-        />
-        <Box className="relative z-10">
+      <Box className="relative lg:h-80 flex justify-center items-center lg:py-28 py-20 rounded-xl mt-5" sx={{
+        backgroundImage: `url(${kombiHeader.src})`,
+        backgroundPosition: 'right',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+      }}>
+        <Box className="z-1">
           <Typography variant="h3" className="text-white font-bold ">Treinamento</Typography>
         </Box>
-      </div>
+      </Box>
 
-      <div className="lg:px-40">
-        <div className="grid lg:grid-cols-2 grid-cols-1 gap-x-20 gap-y-5">
-          <div className="col-span-1">
-            <div className="flex flex-col items-center gap-5">
-              <div className="bg-slate-200 rounded-xl font-bold text-blue-900 py-1 px-3 shadow shadow-slate-500">
-                Todos os treinamentos
-              </div>
-              <div className=" hidden bg-slate-200 shadow shadow-slate-500 rounded-xl w-full font-bold text-blue-900 py-1 px-5 mx-10 max-h-32 overflow-y-auto">
+      <Box className="lg:px-40">
+        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 1, sm: 8, md: 12 }}>
+          <Grid item xs={6}>
+            <Box className="flex flex-col items-center gap-5">
+              <Box className="bg-volks-grey-100 rounded-md font-bold py-1 px-3 shadow-md">
+                <Typography className="text-volks-blue-900 font-bold ">Todos os treinamentos</Typography>
+              </Box>
+              <Box className=" hidden bg-slate-200 shadow shadow-slate-500 rounded-xl w-full font-bold text-blue-900 py-1 px-5 mx-10 max-h-32 overflow-y-auto">
                 {trainings.map((training, key) => (
-                  <div key={key} className="my-3">
+                  <Box key={key} className="my-3">
                     <span className="">
                       Data: {moment(training.date).format("DD/MM/YYYY")} -
                     </span>
                     <span className="font-normal"> {training.name}</span>
-                  </div>
+                  </Box>
                 ))}
-              </div>
+              </Box>
 
-              <div className="bg-blue-900 flex flex-col gap-y-5 w-full rounded-xl py-10 px-5 shadow shadow-slate-500">
-                <div className="text-white text-center font-bold text-2xl lg:text-4xl">
-                  Treinamento - Volkswagen
-                </div>
-                <div className="text-center text-white font-semibold lg:text-3xl">
-                  {training.name}
-                </div>
-                <div className="text-center text-white font-thin lg:text-3xl text-xl">
-                  {moment(training.date).format("DD/MM/YYYY")} - às 19:30
-                </div>
+              <Box className="bg-blue-900 flex flex-col gap-y-5 w-full rounded-xl py-10 px-5 shadow shadow-slate-500">
+                <Box className="text-white text-center font-bold text-2xl lg:text-4xl">
+                  Treinamento
+                </Box>
+                <Box className="text-center text-white font-semibold lg:text-3xl">
+                  <Typography variant="h5">
+                    {training.name}
+                  </Typography>
+                </Box>
+                <Box className="text-center text-white lg:text-3xl text-xl">
+                  <Typography>
+                    {moment(training.date).format("DD/MM/YYYY")} - às 19:30
+                  </Typography>
+                </Box>
 
-                <div className="w-full flex justify-center">
+                <Box className="w-full flex justify-center">
                   <SubscribeModal content={training} type={"insert"}>
                     Fazer Inscrição
                   </SubscribeModal>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-span-1">
-            <div className="flex flex-col items-center gap-5">
-              <div className="bg-slate-200 rounded-xl font-bold text-blue-900 py-1 px-3 shadow shadow-slate-500">
-                Cronograma
-              </div>
+                </Box>
+              </Box>
+            </Box>
+          </Grid>
+          <Grid item xs={6}>
+            <Box className="flex flex-col items-center gap-5">
+              <Box className="bg-volks-blue-900 rounded-md font-bold py-1 px-3 shadow-md">
+                <Typography className="text-volks-grey-100 font-bold">Cronograma</Typography>
+              </Box>
 
-              <div className="bg-slate-200 shadow shadow-slate-500 rounded-tr-3xl rounded-bl-3xl flex flex-col gap-y-5 justify-center text-blue-900 w-full lg:px-32 px-4 py-10">
-                <div className="w-full flex items-center justify-between text-2xl">
-                  <div className="font-bold ">19h30</div>
-                  <div className="font-extralight flex flex-col items-center">
-                    Em breve
-                  </div>
+              <Box className="bg-slate-200 shadow-lg rounded-tr-xl rounded-bl-xl flex flex-col gap-y-5 justify-center text-blue-900 w-full lg:px-10 px-4 py-12">
+                <Box className="w-full flex items-center justify-between text-xl">
+                  <Box className="font-bold ">19h30</Box>
 
-                  <div className="font-bold">30 min</div>
-                </div>
-                <hr className="border-blue-900" />
+                  <Box className="font-extralight flex flex-col items-center">
+                    Início
+                  </Box>
 
-                <div className="w-full flex items-center justify-between text-2xl">
-                  <div className="font-bold ">20h00</div>
-                  <div className="font-extralight flex flex-col items-center">
-                    Em breve
-                  </div>
+                  <Box className="font-bold">60 min</Box>
+                </Box>
 
-                  <div className="font-bold">30 min</div>
-                </div>
-                <hr className="border-blue-900" />
-                <div className="w-full flex items-center justify-between text-2xl">
-                  <div className="font-bold ">20h30</div>
-                  <div className="font-extralight">Em breve</div>
-                  <div className="font-bold">30 min</div>
-                </div>
-                <hr className="border-blue-900" />
-                <div className="w-full flex items-center justify-between text-2xl">
-                  <div className="font-bold ">21h00</div>
-                  <div className="font-extralight">Em breve</div>
-                  <div className="font-bold">30 min</div>
-                </div>
-                <hr className="border-blue-900" />
-                <div className="w-full flex items-center justify-between text-2xl">
-                  <div className="font-bold ">21h30</div>
-                  <div className="font-extralight">Em breve</div>
-                  <div className="font-bold">30 min</div>
-                </div>
-                <hr className="border-blue-900" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+                <Divider className="border-blue-900" />
+
+                <Box className="w-full flex items-center justify-between text-xl">
+                  <Box className="font-bold ">20h30</Box>
+
+                  <Box className="font-extralight flex flex-col items-center">
+                    Intervalo
+                  </Box>
+
+                  <Box className="font-bold">60 min</Box>
+
+                </Box>
+
+                <Divider className="border-blue-900" />
+
+                <Box className="w-full flex items-center justify-between text-xl">
+                  <Box className="font-bold ">21h30</Box>
+
+                  <Box className="font-extralight flex flex-col items-center text-center">
+                    Emissão dos certificados
+                  </Box>
+
+                  <Box className="font-bold">30 min</Box>
+
+                </Box>
+              </Box>
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
     </main>
   );
 }

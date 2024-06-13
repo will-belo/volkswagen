@@ -9,6 +9,7 @@ import SubscribedCard from '../components/subscribed';
 
 export default function Dashboard() {
     const [trainings, setTrainings] = React.useState([])
+    const [alterButton, setAlterButton] = React.useState(false)
     const [subscribedTrainings, setSubscribedTrainingss] = React.useState([])
     const [concessionaireTransfer, setConcessionaireTransfer] = React.useState([])
 
@@ -57,9 +58,15 @@ export default function Dashboard() {
     }, [verifySubscribed])
     
     React.useEffect(() => {
-        trainings.map((training, index) => {
+        trainings.map((training) => {
             if(Boolean(parseInt(training.active))){
                 setConcessionaireTransfer(training)
+
+                subscribedTrainings.map((subTraining) => {
+                    if(subTraining.id == training.id){
+                        setAlterButton(true)
+                    }
+                })
             }
         })
     })
@@ -73,7 +80,7 @@ export default function Dashboard() {
                 {verify ?
                     trainings.map((training, index) => (
                         <Grid item xs={1} sm={4} md={3} key={index} className='flex content-center justify-center'>
-                            <TrainingCard key={index} content={training} />
+                            <TrainingCard key={index} content={training} justSubscribed={alterButton} />
                         </Grid>
                     ))
                     :

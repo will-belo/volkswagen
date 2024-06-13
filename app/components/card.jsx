@@ -8,11 +8,11 @@ import Link from "next/link";
 export default function Cards(props) {
   return (
     <Grid item xs={3}>
-      <Box className="drop-shadow-[0_2px_10px_rgba(0,0,0,0.25)]">
+      <Box className="drop-shadow-[0_2px_10px_rgba(0,0,0,0.25)] flex flex-col justify-between">
         <Box className="flex items-center justify-center pt-5">
-          <Image src={props.image} width={200} height={200} alt="card" />
+          <Image src={props.image} width={170} height={200} alt="card" />
         </Box>
-        <Box sx={{ paddingX: 4, paddingY: 2, position: "relative" }}>
+        <Box sx={{ paddingX: 4, paddingY: 2}}>
           <Box
             sx={{
               position: "relative",
@@ -32,7 +32,7 @@ export default function Cards(props) {
               },
             }}
           >
-            <Typography variant="subtitle1" className="uppercase font-bold">
+            <Typography variant="subtitle2" className="uppercase font-bold">
               {props.title}
             </Typography>
             <Typography variant="overline" className="uppercase">
@@ -44,14 +44,14 @@ export default function Cards(props) {
             {props.children}
           </Typography>
 
-          <Box className="flex justify-center relative">
-            <Link
-              href={props.link}
-              target="_blank"
-              variant="contained"
-              className="absolute px-8 bg-blue-500 rounded-sm p-1 text-white hover:bg-blue-400"
-            >
-              Saiba Mais
+          <Box className="flex justify-center">
+            <Link href={props.link} target="_blank">
+              <Button
+                variant="contained"
+                className="px-8 bg-volks-blue-800 rounded p-1 text-white hover:bg-volks-blue-900"
+              >
+                Saiba Mais
+              </Button>
             </Link>
           </Box>
         </Box>

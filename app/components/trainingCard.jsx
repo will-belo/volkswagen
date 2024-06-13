@@ -32,9 +32,14 @@ export default function TrainingCard(props) {
                 </Typography>
 
                 {props.content.active == 1 ?
-                    <SubscribeModal content={props.content} type="insert">Fazer Inscrição</SubscribeModal>
+                    props.justSubscribed ?
+                        <Typography variant="subtitle2" color="text.secondary" className="text-right">
+                            Inscrição já realizada
+                        </Typography>
+                        :
+                        <SubscribeModal content={props.content} type="insert">Fazer Inscrição</SubscribeModal>
                     :
-                    <Typography variant="button" color="text.secondary">
+                    <Typography variant="subtitle2" color="text.secondary" className="text-right">
                         Treinamento encerrado
                     </Typography>
                 }

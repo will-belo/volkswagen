@@ -6,9 +6,10 @@ export default function Pieces(props) {
             background: 'linear-gradient(180deg, rgba(2,39,96,1) 35%, rgba(8,74,176,1) 35%, rgba(8,74,176,1) 50%, rgba(255,255,255,1) 50%);',
             borderTopLeftRadius: 25,
             width: '100%',
-            padding: 7,
+            py: 6,
+            px: 4,
         }}>
-            <Grid container spacing={9} sx={{
+            <Grid container spacing={5} sx={{
                 '& > *': {
                     '& > div': {
                         height: '100%',

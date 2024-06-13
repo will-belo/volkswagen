@@ -1,11 +1,26 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
+import useWindowSize from "../hooks/useWindowsSize";
+import * as React from 'react';
+import Link from "next/link";
 
 export default function Agenda(){
+    const [mobile, setMobile] = React.useState(false);
+
+    const windowSize = useWindowSize();
+
+    React.useEffect(() => {
+        if (windowSize.width <= 1080) {
+            setMobile(true);
+        } else {
+            setMobile(false);
+        }
+    }, [windowSize]);
+
     return(
         <Box>
-            <Grid container columnSpacing={{ xs: 2, sm: 3, md: 5 }}>
+            <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} className="flex justify-center">
                 <Grid item xs={3} className="flex flex-col justify-between ">
                     <Box className="h-full flex flex-col justify-between bg-volks-grey-100 py-3 px-5 border-rounded">
                         <Typography className="flex items-center text-volks-blue-800 font-bold" gutterBottom>
@@ -17,7 +32,9 @@ export default function Agenda(){
                         <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
                             Dia 16 de Abril
                         </Typography>
-                        <Button variant="contained" sx={{ backgroundColor: "#022663", ":hover": { backgroundColor: "#184a9b" } }} fullWidth>Inscreva-se</Button>
+                        <Link href="/treinamento">
+                            <Button variant="contained" sx={{ backgroundColor: "#022663", ":hover": { backgroundColor: "#184a9b" } }} fullWidth>Inscreva-se</Button>
+                        </Link>
                     </Box>
                 </Grid>
 
@@ -32,7 +49,7 @@ export default function Agenda(){
                         <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
                             Dia 16 de Abril
                         </Typography>
-                        <Button variant="contained" sx={{ backgroundColor: "#022663", ":hover": { backgroundColor: "#184a9b" } }} fullWidth>Em Breve</Button>
+                        <Button variant="outlined" sx={{ cursor: "default" }} fullWidth>Em Breve</Button>
                     </Box>
                 </Grid>
 
@@ -47,7 +64,7 @@ export default function Agenda(){
                         <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
                             Dia 16 de Abril
                         </Typography>
-                        <Button variant="contained" sx={{ backgroundColor: "#022663", ":hover": { backgroundColor: "#184a9b" } }} fullWidth>Em Breve</Button>
+                        <Button variant="outlined" sx={{ cursor: "default" }} fullWidth>Em Breve</Button>
                     </Box>
                 </Grid>
 
@@ -62,7 +79,7 @@ export default function Agenda(){
                         <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
                             Dia 16 de Abril
                         </Typography>
-                        <Button variant="contained" sx={{ backgroundColor: "#022663", ":hover": { backgroundColor: "#184a9b" } }} fullWidth>Em Breve</Button>
+                        <Button variant="outlined" sx={{ cursor: "default" }} fullWidth>Em Breve</Button>
                     </Box>
                 </Grid>
             </Grid>

@@ -4,26 +4,26 @@ import EastIcon from '@mui/icons-material/East'
 export default function SubBanner(props) {
     return(
         <Box className="mb-20 mt-36" id="economy">
-            <Grid container spacing={7}>
+            <Grid container spacing={7} className="flex items-center">
                 <Grid item xs={8}>
                     <Box sx={{
                         position: 'relative',
                         backgroundImage: `url(${props.image.src})`,
                         backgroundRepeat: 'no-repeat',
-                        backgroundPosition: 'center',
-                        backgroundSize: 'cover',
-                        minHeight: 500,
+                        backgroundPosition: 'right',
+                        backgroundSize: 'contain',
+                        height: 350,
                         width: '100%',
                         padding: 0,
                         '::before': {
-                        content: '""',
-                        position: 'absolute',
-                        top: 0,
-                        right: -60,
-                        bottom: 0,
-                        width: 50,
-                        background: 'linear-gradient(to right, rgba(2,39,96,1) 75%, rgba(8,74,176,1) 75%)',
-                        zIndex: 1,
+                            content: '""',
+                            position: 'absolute',
+                            top: 0,
+                            right: -60,
+                            bottom: 0,
+                            width: 50,
+                            background: 'linear-gradient(to right, rgba(2,39,96,1) 75%, rgba(8,74,176,1) 75%)',
+                            zIndex: 1,
                         },
                     }}>
                         
@@ -43,7 +43,7 @@ export default function SubBanner(props) {
                     }}>
                         <Box sx={{
                             textAlign: 'left',
-                            padding: 10,
+                            padding: 5,
                         }}>
                             <Typography variant="subtitle1" className="font-bold text-blue-400" gutterBottom>
                                 {props.subtitle}
@@ -54,7 +54,9 @@ export default function SubBanner(props) {
                             <Typography variant="body1" className="" gutterBottom>
                                 {props.children}
                             </Typography>
-                            <Button variant="text" endIcon={<EastIcon />}>Saiba Mais</Button>
+                            <a href="/documents/CATALOGO_ECONOMY.pdf" download="CATALOGO_ECONOMY.pdf">
+                                <Button variant="text" endIcon={<EastIcon />}>Saiba Mais</Button>
+                            </a>
                         </Box>
                     </Box>
                 </Grid>

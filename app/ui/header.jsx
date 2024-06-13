@@ -5,6 +5,7 @@ import UserContext from "@/src/contexts/UserContext";
 import useWindowSize from "@/app/hooks/useWindowsSize";
 import { Box, Button, Grid, Menu, MenuItem, Typography } from "@mui/material";
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import MenuIcon from '@mui/icons-material/Menu';
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
 import logo from '@/images/oficinaLogo.jpeg';
@@ -46,8 +47,8 @@ export default function Header() {
         if (isAuthenticated) {
             setUserState(
                 <Box className="flex justify-end items-center px-5">
-                    <a className="cursor-pointer" onClick={handleClick}>
-                        {userData.name}
+                    <a className="cursor-pointer flex items-center" onClick={handleClick}>
+                        {userData.name} <MenuIcon className="ml-1" />
                     </a>
 
                     <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
@@ -90,7 +91,9 @@ export default function Header() {
                             </Link>
                         </Box>
 
-                        <Box className="flex-1">{userState}</Box>
+                        <Box className="flex-1">
+                            {userState}
+                        </Box>
                     </Box>
                     <Box className="flex items-center justify-center bg-volks-blue-900">
                         <Typography variant="overline" className="uppercase font-bold text-white">
@@ -98,7 +101,7 @@ export default function Header() {
                         </Typography>
                     </Box>
                     <Box>
-                        <Grid container className="flex items-center justify-center py-3" gap={20}>
+                        <Grid container className="flex items-center justify-center py-3 border-b-2 border-black" gap={20}>
                             <Grid item>
                                 <Link href="/treinamento" className="hover:text-volks-blue-800 ease-in-out duration-200">
                                     Treinamentos
@@ -118,9 +121,41 @@ export default function Header() {
                     </Box>
                 </>
             ) : (
-                <div className="flex flex-row items-center justify-center p-4">
-                    <div className="justify-items-center">{userState}</div>
-                </div>
+                <Box className="flex flex-col items-center justify-center py-4">
+                    <Link href="/">
+                        <Image src={logo} width={250} height={200} alt="card" />
+                    </Link>
+
+                    <Box className="w-full flex items-center justify-center bg-volks-blue-900 mt-5">
+                        <Typography variant="overline" className="uppercase font-bold text-white">
+                            TV Notícias da Oficina VW
+                        </Typography>
+                    </Box>
+
+                    <Box className="w-full">
+                        <Grid container className="flex items-center justify-center py-3 border-b-2 border-black" gap={3}>
+                            <Grid item>
+                                <Link href="/treinamento" className="hover:text-volks-blue-800 ease-in-out duration-200">
+                                    Treinamentos
+                                </Link>
+                            </Grid>
+                            <Grid item>
+                                <Link href="/#economy" className="hover:text-volks-blue-800 ease-in-out duration-200">
+                                    Catálogo Economy
+                                </Link>
+                            </Grid>
+                            <Grid item>
+                                <Link href="/" className="hover:text-volks-blue-800 ease-in-out duration-200">
+                                    Notícias
+                                </Link>
+                            </Grid>
+                        </Grid>
+                    </Box>
+                    
+                    <Box className="flex flex-row justify-items-center mt-5">
+                        {userState}
+                    </Box>
+                </Box>
             )}
         </>
     );
