@@ -6,6 +6,7 @@ import { Box, Grid, Typography } from "@mui/material"
 import Title from '../components/title';
 import TrainingCard from '../components/trainingCard';
 import SubscribedCard from '../components/subscribed';
+import { ToastContainer } from 'react-toastify';
 
 export default function Dashboard() {
     const [trainings, setTrainings] = React.useState([])
@@ -74,8 +75,9 @@ export default function Dashboard() {
     // Corrigir o card de atualização de inscrição (Estados e cidade não estão aparecendo)
     return (
         <main className="flex flex-col gap-5 my-5 px-20">
-
+            <ToastContainer />
             <Title title="Treinamentos" />
+
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 1, sm: 8, md: 12 }}>
                 {verify ?
                     trainings.map((training, index) => (
