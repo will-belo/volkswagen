@@ -63,7 +63,7 @@ export default function Home() {
         <Hero
           title="A importância do Óleo Certo para o motor - Maxi Performance"
           subtitle="3º Treinamento"
-          dateTime="Dia 06 de Junho | às 19:30"
+          dateTime="Dia 04 de Julho  | às 19:30"
           background={banner}
         >
         </Hero>
@@ -74,7 +74,7 @@ export default function Home() {
           <HeroMobile
             title="A importância do Óleo Certo para o motor - Maxi Performance"
             subtitle="3º Treinamento"
-            dateTime="Dia 06 de Junho | às 19:30"
+            dateTime="Dia 04 de Julho | às 19:30"
             background={banner}
           ></HeroMobile>
           <div

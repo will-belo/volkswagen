@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography, colors } from "@mui/material";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 import useWindowSize from "../hooks/useWindowsSize";
@@ -21,22 +21,7 @@ export default function Agenda(){
     return(
         <Box>
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} className="flex justify-center">
-                <Grid item xs={3} className="flex flex-col justify-between ">
-                    <Box className="h-full flex flex-col justify-between bg-volks-grey-100 py-3 px-5 border-rounded">
-                        <Typography className="flex items-center text-volks-blue-800 font-bold" gutterBottom>
-                            <LockOpenOutlinedIcon className="mr-2" />Injeção Eletrônica
-                        </Typography>
-                        <Typography variant="subtitle uppercase">
-                            Virtus 1.6 - 16 Válvulas
-                        </Typography>
-                        <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
-                            Dia 16 de Abril
-                        </Typography>
-                        <Link href="/treinamento">
-                            <Button variant="contained" sx={{ backgroundColor: "#022663", ":hover": { backgroundColor: "#184a9b" } }} fullWidth>Inscreva-se</Button>
-                        </Link>
-                    </Box>
-                </Grid>
+              
 
                 <Grid item xs={3} className="flex flex-col justify-between ">
                     <Box className="h-full flex flex-col justify-between bg-volks-grey-100 py-3 px-5 border-rounded">
@@ -47,7 +32,7 @@ export default function Agenda(){
                             Golf GTI 2.0 EA888
                         </Typography>
                         <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
-                            Dia 16 de Abril
+                            Dia 05 de Novembro
                         </Typography>
                         <Button variant="outlined" sx={{ cursor: "default" }} fullWidth>Em Breve</Button>
                     </Box>
@@ -62,24 +47,43 @@ export default function Agenda(){
                             Amarok V6
                         </Typography>
                         <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
-                            Dia 16 de Abril
+                            Dia 13 de Agosto
                         </Typography>
                         <Button variant="outlined" sx={{ cursor: "default" }} fullWidth>Em Breve</Button>
+                    </Box>
+                </Grid>
+
+
+                <Grid item xs={3} className="flex flex-col justify-between ">
+                    <Box className="h-full flex flex-col justify-between bg-volks-grey-100 py-3 px-5 border-rounded">
+                        <Typography className="flex items-center text-volks-blue-800 font-bold" gutterBottom>
+                            <LockOpenOutlinedIcon className="mr-2" />Novas Tecnologias 
+                        </Typography>
+                        <Typography variant="subtitle uppercase">
+                            Em motores turbos T-Cross
+                        </Typography>
+                        <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
+                            Dia 04 de Junho
+                        </Typography>
+                        <Link href="/treinamento">
+                            {/* <Button variant="contained" sx={{ backgroundColor: "#022663", ":hover": { backgroundColor: "#184a9b" } }} fullWidth>FINALIZADO</Button>*/}
+                            <Button  style={{ background: '#006699', color:'#FFF' }} variant="outlined" sx={{ cursor: "default" }} fullWidth>FINALIZADO</Button> 
+                        </Link>
                     </Box>
                 </Grid>
 
                 <Grid item xs={3} className="flex flex-col justify-between ">
                     <Box className="h-full flex flex-col justify-between bg-volks-grey-100 py-3 px-5 border-rounded">
                         <Typography className="flex items-center text-volks-blue-800 font-bold" gutterBottom>
-                            <LockOutlinedIcon className="mr-2" /> Treinamento
+                            <LockOutlinedIcon className="mr-2" /> Injeção Eletrônica
                         </Typography>
                         <Typography variant="subtitle uppercase">
-                            Novas técnolgioas em motores turbo T-Cross
+                        Virtus 1.6 16V
                         </Typography>
                         <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
                             Dia 16 de Abril
                         </Typography>
-                        <Button variant="outlined" sx={{ cursor: "default" }} fullWidth>Em Breve</Button>
+                        <Button  style={{ background: '#006699', color:'#FFF' }} variant="outlined" sx={{ cursor: "default" }} fullWidth>FINALIZADO</Button>
                     </Box>
                 </Grid>
             </Grid>

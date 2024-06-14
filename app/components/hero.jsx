@@ -52,11 +52,12 @@ export default function Hero(props) {
                     <Typography variant="subtitle1" gutterBottom>
                         {props.dateTime} {/* Formatar date time vindo do banco */}
                     </Typography>
-                    <Link href="/treinamento">
-                        <Button variant="outlined">
+                    <Link href="/treinamento" className="font-bold size-90">
+                        <Button variant="outlined" className="uppercase text-amber-500" style={{ fontSize: '1.8rem' }} >
                             Inscreva-se!
                         </Button>
                     </Link>
+
                 </Grid>
 
                 <Grid item xs={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around', alignItems: 'end' }}>
