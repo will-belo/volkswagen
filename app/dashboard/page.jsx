@@ -63,11 +63,13 @@ export default function Dashboard() {
             if(Boolean(parseInt(training.active))){
                 setConcessionaireTransfer(training)
 
-                subscribedTrainings.map((subTraining) => {
-                    if(subTraining.id == training.id){
-                        setAlterButton(true)
-                    }
-                })
+                if(verifySubscribed){
+                    subscribedTrainings.map((subTraining) => {
+                        if(subTraining.id == training.id){
+                            setAlterButton(true)
+                        }
+                    })
+                }
             }
         })
     })
