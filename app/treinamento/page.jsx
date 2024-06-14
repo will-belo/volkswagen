@@ -10,6 +10,7 @@ import UserContext from "@/src/contexts/UserContext";
 import { DialerSip } from "@mui/icons-material";
 import Image from "next/image";
 import kombiHeader from "@/images/kombi.png";
+import { ToastContainer } from "react-toastify";
 
 export default function Training() {
   const [trainings, setTrainings] = React.useState([]);
@@ -42,6 +43,7 @@ export default function Training() {
 
   return (
     <main className="flex flex-col gap-5 px-5">
+      <ToastContainer />
       <Box className="relative lg:h-80 flex justify-center items-center lg:py-28 py-20 rounded-xl mt-5" sx={{
         backgroundImage: `url(${kombiHeader.src})`,
         backgroundPosition: 'right',

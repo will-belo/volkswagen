@@ -52,7 +52,6 @@ export default function SubscribedCard(props) {
   
   return (
     <Card className="flex flex-col" sx={{ maxWidth: 345 }}>
-      <ToastContainer />
       <CardMedia
         sx={{ height: 194 }}
         component="img"
