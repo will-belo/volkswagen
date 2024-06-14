@@ -1,20 +1,15 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import EastIcon from '@mui/icons-material/East'
+import Image from "next/image";
 
 export default function SubBanner(props) {
     return(
         <Box className="mb-20 mt-36" id="economy">
-            <Grid container spacing={7} className="flex items-center">
-                <Grid item xs={8}>
+            <Grid container spacing={10} className="flex justify-between items-center">
+                <Grid item xs={7}>
                     <Box sx={{
-                        position: 'relative',
-                        backgroundImage: `url(${props.image.src})`,
-                        backgroundRepeat: 'no-repeat',
-                        backgroundPosition: 'right',
-                        backgroundSize: 'contain',
-                        height: 350,
                         width: '100%',
-                        padding: 0,
+                        position: 'relative',
                         '::before': {
                             content: '""',
                             position: 'absolute',
@@ -26,16 +21,15 @@ export default function SubBanner(props) {
                             zIndex: 1,
                         },
                     }}>
-                        
+                        <Image src={props.image} />
                     </Box>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={5}>
                     <Box sx={{ 
                         backgroundColor: 'rgb(250, 250, 250)',
                         width: '100%',
                         height: '100%',
-                        borderTopRightRadius: 15,
-                        borderBottomRightRadius: 15,
+                        borderRadius: 4,
                         display: 'flex',
                         alignItems: 'center',
                         flexDirection: 'column',
@@ -51,7 +45,7 @@ export default function SubBanner(props) {
                             <Typography variant="h5" className="font-bold" gutterBottom>
                                 {props.title}
                             </Typography>
-                            <Typography variant="body1" className="" gutterBottom>
+                            <Typography variant="body1" className="mb-5">
                                 {props.children}
                             </Typography>
                             <a href="/documents/CATALOGO_ECONOMY.pdf" download="CATALOGO_ECONOMY.pdf">
