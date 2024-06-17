@@ -57,6 +57,7 @@ export default function Hero(props) {
                             Inscreva-se!
                         </Button>
                     </Link>
+
                 </Grid>
 
                 <Grid item xs={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around', alignItems: 'end' }}>
