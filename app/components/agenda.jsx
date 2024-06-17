@@ -24,7 +24,7 @@ export default function Agenda(){
                 <Grid item xs={3} className="flex flex-col justify-between ">
                     <Box className="h-full flex flex-col justify-between bg-volks-grey-100 py-3 px-5 border-rounded">
                         <Typography className="flex items-center text-volks-blue-800 font-bold" gutterBottom>
-                            <LockOpenOutlinedIcon className="mr-2" />Arrefecimento
+                            <LockOutlinedIcon className="mr-2" />Arrefecimento
                         </Typography>
                         <Typography variant="subtitle uppercase">
                             Golf GTI 2.0 EA888
