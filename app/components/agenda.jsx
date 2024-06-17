@@ -34,7 +34,9 @@ export default function Agenda(){
                         <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
                             Dia 05 de Novembro
                         </Typography>
-                        <Button variant="outlined" sx={{ cursor: "default" }} fullWidth>Em Breve</Button>
+                        <Link href="#">
+                            <Button variant="contained" sx={{ cursor: "default", backgroundColor: "#022663", ":hover": { backgroundColor: "#022663" } }} fullWidth>Em breve</Button>
+                        </Link>
                     </Box>
                 </Grid>
 
@@ -49,7 +51,9 @@ export default function Agenda(){
                         <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
                             Dia 13 de Agosto
                         </Typography>
-                        <Button variant="outlined" sx={{ cursor: "default" }} fullWidth>Em Breve</Button>
+                        <Link href="#">
+                            <Button variant="contained" sx={{ cursor: "default", backgroundColor: "#022663", ":hover": { backgroundColor: "#022663" } }} fullWidth>Em breve</Button>
+                        </Link>
                     </Box>
                 </Grid>
 
@@ -60,30 +64,27 @@ export default function Agenda(){
                             <LockOpenOutlinedIcon className="mr-2" />Novas Tecnologias 
                         </Typography>
                         <Typography variant="subtitle uppercase">
-                            Em motores turbos T-Cross
+                            Novas tecnologias em motores turbos T-Cross
                         </Typography>
                         <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
                             Dia 04 de Junho
                         </Typography>
-                        <Link href="/treinamento">
-                            {/* <Button variant="contained" sx={{ backgroundColor: "#022663", ":hover": { backgroundColor: "#184a9b" } }} fullWidth>FINALIZADO</Button>*/}
-                            <Button  style={{ background: '#006699', color:'#FFF' }} variant="outlined" sx={{ cursor: "default" }} fullWidth>FINALIZADO</Button> 
-                        </Link>
+                        <Button variant="outlined" sx={{ cursor: "default" }} fullWidth>Finalizado</Button>
                     </Box>
                 </Grid>
 
                 <Grid item xs={3} className="flex flex-col justify-between ">
                     <Box className="h-full flex flex-col justify-between bg-volks-grey-100 py-3 px-5 border-rounded">
                         <Typography className="flex items-center text-volks-blue-800 font-bold" gutterBottom>
-                            <LockOutlinedIcon className="mr-2" /> Injeção Eletrônica
+                            <LockOutlinedIcon className="mr-2" /> Injeção eletrônica
                         </Typography>
                         <Typography variant="subtitle uppercase">
-                        Virtus 1.6 16V
+                            Virtus 1.6 16V
                         </Typography>
                         <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
                             Dia 16 de Abril
                         </Typography>
-                        <Button  style={{ background: '#006699', color:'#FFF' }} variant="outlined" sx={{ cursor: "default" }} fullWidth>FINALIZADO</Button>
+                        <Button variant="outlined" sx={{ cursor: "default" }} fullWidth>Finalizado</Button>
                     </Box>
                 </Grid>
             </Grid>
