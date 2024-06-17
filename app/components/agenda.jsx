@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Typography, colors } from "@mui/material";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import LockOpenOutlinedIcon from '@mui/icons-material/LockOpenOutlined';
 import useWindowSize from "../hooks/useWindowsSize";
@@ -21,10 +21,12 @@ export default function Agenda(){
     return(
         <Box>
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} className="flex justify-center">
+              
+
                 <Grid item xs={3} className="flex flex-col justify-between ">
                     <Box className="h-full flex flex-col justify-between bg-volks-grey-100 py-3 px-5 border-rounded">
                         <Typography className="flex items-center text-volks-blue-800 font-bold" gutterBottom>
-                            <LockOpenOutlinedIcon className="mr-2" />Arrefecimento
+                            <LockOutlinedIcon className="mr-2" /> Arrefecimento
                         </Typography>
                         <Typography variant="subtitle uppercase">
                             Golf GTI 2.0 EA888
@@ -38,7 +40,7 @@ export default function Agenda(){
                     </Box>
                 </Grid>
 
-                <Grid item xs={3} className="flex flex-col justify-between ">
+                <Grid item xs={3}>
                     <Box className="h-full flex flex-col justify-between bg-volks-grey-100 py-3 px-5 border-rounded">
                         <Typography className="flex items-center text-volks-blue-800 font-bold" gutterBottom>
                             <LockOutlinedIcon className="mr-2" /> Motor
@@ -55,10 +57,11 @@ export default function Agenda(){
                     </Box>
                 </Grid>
 
-                <Grid item xs={3}>
+
+                <Grid item xs={3} className="flex flex-col justify-between ">
                     <Box className="h-full flex flex-col justify-between bg-volks-grey-100 py-3 px-5 border-rounded">
                         <Typography className="flex items-center text-volks-blue-800 font-bold" gutterBottom>
-                            <LockOutlinedIcon className="mr-2" /> Motor
+                            <LockOpenOutlinedIcon className="mr-2" />Novas Tecnologias 
                         </Typography>
                         <Typography variant="subtitle uppercase">
                             Novas tecnologias em motores turbos T-Cross
