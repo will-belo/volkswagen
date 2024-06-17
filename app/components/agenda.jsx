@@ -24,16 +24,16 @@ export default function Agenda(){
                 <Grid item xs={3} className="flex flex-col justify-between ">
                     <Box className="h-full flex flex-col justify-between bg-volks-grey-100 py-3 px-5 border-rounded">
                         <Typography className="flex items-center text-volks-blue-800 font-bold" gutterBottom>
-                            <LockOpenOutlinedIcon className="mr-2" />Injeção Eletrônica
+                            <LockOpenOutlinedIcon className="mr-2" />Arrefecimento
                         </Typography>
                         <Typography variant="subtitle uppercase">
-                            Virtus 1.6 - 16 Válvulas
+                            Golf GTI 2.0 EA888
                         </Typography>
                         <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
-                            Dia 16 de Abril
+                            Dia 05 de Novembro
                         </Typography>
-                        <Link href="/treinamento">
-                            <Button variant="contained" sx={{ backgroundColor: "#022663", ":hover": { backgroundColor: "#184a9b" } }} fullWidth>Inscreva-se</Button>
+                        <Link href="#">
+                            <Button variant="contained" sx={{ cursor: "default", backgroundColor: "#022663", ":hover": { backgroundColor: "#022663" } }} fullWidth>Em breve</Button>
                         </Link>
                     </Box>
                 </Grid>
@@ -41,15 +41,17 @@ export default function Agenda(){
                 <Grid item xs={3} className="flex flex-col justify-between ">
                     <Box className="h-full flex flex-col justify-between bg-volks-grey-100 py-3 px-5 border-rounded">
                         <Typography className="flex items-center text-volks-blue-800 font-bold" gutterBottom>
-                            <LockOutlinedIcon className="mr-2" /> Arrefecimento
+                            <LockOutlinedIcon className="mr-2" /> Motor
                         </Typography>
                         <Typography variant="subtitle uppercase">
-                            Golf GTI 2.0 EA888
+                            Amarok V6
                         </Typography>
                         <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
-                            Dia 16 de Abril
+                            Dia 13 de Agosto
                         </Typography>
-                        <Button variant="outlined" sx={{ cursor: "default" }} fullWidth>Em Breve</Button>
+                        <Link href="#">
+                            <Button variant="contained" sx={{ cursor: "default", backgroundColor: "#022663", ":hover": { backgroundColor: "#022663" } }} fullWidth>Em breve</Button>
+                        </Link>
                     </Box>
                 </Grid>
 
@@ -59,27 +61,27 @@ export default function Agenda(){
                             <LockOutlinedIcon className="mr-2" /> Motor
                         </Typography>
                         <Typography variant="subtitle uppercase">
-                            Amarok V6
+                            Novas tecnologias em motores turbos T-Cross
                         </Typography>
                         <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
-                            Dia 16 de Abril
+                            Dia 04 de Junho
                         </Typography>
-                        <Button variant="outlined" sx={{ cursor: "default" }} fullWidth>Em Breve</Button>
+                        <Button variant="outlined" sx={{ cursor: "default" }} fullWidth>Finalizado</Button>
                     </Box>
                 </Grid>
 
                 <Grid item xs={3} className="flex flex-col justify-between ">
                     <Box className="h-full flex flex-col justify-between bg-volks-grey-100 py-3 px-5 border-rounded">
                         <Typography className="flex items-center text-volks-blue-800 font-bold" gutterBottom>
-                            <LockOutlinedIcon className="mr-2" /> Treinamento
+                            <LockOutlinedIcon className="mr-2" /> Injeção eletrônica
                         </Typography>
                         <Typography variant="subtitle uppercase">
-                            Novas técnolgioas em motores turbo T-Cross
+                            Virtus 1.6 16V
                         </Typography>
                         <Typography className="text-volks-blue-800 font-bold mt-5" gutterBottom>
                             Dia 16 de Abril
                         </Typography>
-                        <Button variant="outlined" sx={{ cursor: "default" }} fullWidth>Em Breve</Button>
+                        <Button variant="outlined" sx={{ cursor: "default" }} fullWidth>Finalizado</Button>
                     </Box>
                 </Grid>
             </Grid>

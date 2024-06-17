@@ -43,7 +43,7 @@ export default function Hero(props) {
         }}>
             <Grid container sx={{ height: '100%' }}>
                 <Grid item sx={{ width: '100%' ,height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', textAlign: 'center', padding: '15%' }}>
-                    <Typography variant="h4" className="uppercase text-amber-500 font-bold">
+                    <Typography variant="h4" className="uppercase text-amber-500 font-bold" gutterBottom>
                         {props.subtitle}
                     </Typography>
                     <Typography variant="h4" className="uppercase font-bold" gutterBottom>
@@ -52,8 +52,8 @@ export default function Hero(props) {
                     <Typography variant="subtitle1" gutterBottom>
                         {props.dateTime} {/* Formatar date time vindo do banco */}
                     </Typography>
-                    <Link href="/treinamento">
-                        <Button variant="outlined">
+                    <Link href="/treinamento" className="mt-5">
+                        <Button variant="outlined" size="large" sx={{ px: 5, py: 1, borderColor: "#F59E0B", color: "#F59E0B", ":hover": { borderColor: "#F59E0B", backgroundColor: "#FFB53F", color: "#FFFFFF" } }}>
                             Inscreva-se!
                         </Button>
                     </Link>
