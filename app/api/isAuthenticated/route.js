@@ -15,14 +15,13 @@ export async function GET(req) {
         const request = await fetch(`https://apivw.oficinabrasil.com.br/api/users/${user.value}`, {
             method: 'GET',
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': 'Bearer ' + jwt.value
             },
             cache: 'no-store',
         })
     
         const response = await request.json()
-
+        
         if(request.ok){
             response.role = role.role
             
