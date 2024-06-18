@@ -60,8 +60,8 @@ export default function Agenda(){
 
                 <Grid item xs={3} className="flex flex-col justify-between ">
                     <Box className="h-full flex flex-col justify-between bg-volks-grey-100 py-3 px-5 border-rounded">
-                        <Typography className="flex items-center text-volks-blue-800 font-bold" gutterBottom>
-                            <LockOpenOutlinedIcon className="mr-2" />Novas Tecnologias 
+                        <Typography className="flex items-center text-rose-700 font-bold" gutterBottom>
+                            <LockOutlinedIcon className="mr-2" />Novas Tecnologias 
                         </Typography>
                         <Typography variant="subtitle uppercase">
                             Novas tecnologias em motores turbos T-Cross
@@ -75,7 +75,7 @@ export default function Agenda(){
 
                 <Grid item xs={3} className="flex flex-col justify-between ">
                     <Box className="h-full flex flex-col justify-between bg-volks-grey-100 py-3 px-5 border-rounded">
-                        <Typography className="flex items-center text-volks-blue-800 font-bold" gutterBottom>
+                        <Typography className="flex items-center text-rose-700 font-bold" gutterBottom>
                             <LockOutlinedIcon className="mr-2" /> Injeção eletrônica
                         </Typography>
                         <Typography variant="subtitle uppercase">
