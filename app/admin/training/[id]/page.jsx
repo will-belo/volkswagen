@@ -25,6 +25,17 @@ export default function Page({ params }) {
 
         getTrainings()
     }, [])
+
+    let counter = 0
+    users.map((user) => {
+        if(user.pivot.concessionaire_id == 0){
+            counter++
+        }
+    })
+
+    const totalUsers = Object.keys(users).length
+    const onlineUsers = counter
+    const presencialUser = totalUsers - onlineUsers
     
     return(
         <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
@@ -36,9 +47,17 @@ export default function Page({ params }) {
                                 <Typography component="h2" variant="h6" color="primary" gutterBottom>
                                     Treinamento {trainingInfo.name}
                                 </Typography>
-                                <Typography component="h2" variant="h6" color="secondary" gutterBottom>
-                                    Quantidade de inscritos: {Object.keys(users).length}
-                                </Typography>
+                                <Box className="text-right">
+                                    <Typography component="h2" variant="h6" color="secondary" gutterBottom>
+                                        Total de inscritos: {totalUsers}
+                                    </Typography>
+                                    <Typography component="h4" variant="subtitle" color="secondary" gutterBottom>
+                                        Online: {onlineUsers}
+                                    </Typography>
+                                    <Typography component="h4" variant="subtitle" color="secondary" gutterBottom>
+                                        Presencial: {presencialUser}
+                                    </Typography>
+                                </Box>
                             </Box>
                             <Table size="small">
                                 <TableHead>
