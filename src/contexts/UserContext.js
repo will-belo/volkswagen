@@ -63,7 +63,7 @@ export const UserProvider = ({ children }) => {
 
         verify()
     }, [])
-
+    
     return (
         <UserContext.Provider value={{ isAuthenticated, userData, logout, verify }}>
             {children}

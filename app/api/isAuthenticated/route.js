@@ -9,9 +9,9 @@ export async function GET(req) {
 
     const request = await singlePassValidate(jwt)
     
-    const response = await request.json()
+    const role = await request.json()
     
-    if(request.status == 200 && response.role == 'common'){
+    if(request.status == 200){ // && role.role == 'common'
         const request = await fetch(`https://apivw.oficinabrasil.com.br/api/users/${user.value}`, {
             method: 'GET',
             headers: {
@@ -24,6 +24,8 @@ export async function GET(req) {
         const response = await request.json()
 
         if(request.ok){
+            response.role = role.role
+            
             return Response.json(response)
         }
     }

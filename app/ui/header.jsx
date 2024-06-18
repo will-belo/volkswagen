@@ -44,7 +44,7 @@ export default function Header() {
     };
   
     useEffect(() => {
-        if (isAuthenticated) {
+        if (isAuthenticated && userData.role == "common") {
             setUserState(
                 <Box className="flex justify-end items-center px-5">
                     <a className="cursor-pointer flex items-center" onClick={handleClick}>
@@ -53,6 +53,19 @@ export default function Header() {
 
                     <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
                         <MenuItem onClick={() => { router.push('/dashboard') }}>Meus treinamentos</MenuItem>
+                        <MenuItem onClick={handleLogout}>Sair</MenuItem>
+                    </Menu>
+                </Box>
+            );
+        } else if (isAuthenticated && userData.role == "admin") {
+            setUserState(
+                <Box className="flex justify-end items-center px-5">
+                    <a className="cursor-pointer flex items-center" onClick={handleClick}>
+                        {userData.name} <MenuIcon className="ml-1" />
+                    </a>
+
+                    <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+                        <MenuItem onClick={() => { router.push('/admin') }}>Painel de administrador</MenuItem>
                         <MenuItem onClick={handleLogout}>Sair</MenuItem>
                     </Menu>
                 </Box>
