@@ -51,7 +51,7 @@ export default function Trainings() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                {trainings.map((row) => (
+                {[...trainings].reverse().map((row) => (
                     <TableRow key={row.id}>
                         <TableCell className='font-bold'>#{row.id}</TableCell>
                         <TableCell>{moment(row.date).format("DD/MM/YYYY")}</TableCell>
