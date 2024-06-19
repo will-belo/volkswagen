@@ -10,6 +10,7 @@ export async function POST(req) {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: data,
+        cache: 'no-cache',
     })
     
     const response = await request.json()
