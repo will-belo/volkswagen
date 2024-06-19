@@ -30,7 +30,6 @@ export default function Training() {
         response.map((training, index) => {
           if (training.active == 1) {
             setTraining(training);
-            console.log(training);
           }
         });
       } else {
