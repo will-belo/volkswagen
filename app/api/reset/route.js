@@ -13,12 +13,13 @@ export async function POST(req) {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: data,
+        cache: 'no-cache',
     })
     
     const response = await request.json()
 
     if( request.status != 200 ){
-        return new Response(response, {
+        return new Response('Erro ao atualizar a senha', {
             status: 401,
         })
     }
