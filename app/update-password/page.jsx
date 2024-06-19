@@ -15,8 +15,15 @@ import Image from 'next/image';
 import VolksButton from '@/app/components/defaultButton';
 import { Bounce, toast, ToastContainer } from 'react-toastify';
 import { useRouter, useSearchParams } from 'next/navigation';
+import "react-toastify/dist/ReactToastify.css";
 
 const defaultTheme = createTheme();
+
+function SearchParams(){
+  const params = useSearchParams()
+
+  return <TextField type="hidden" name="token" value={params.get('token')} sx={{ display: 'none' }} />
+}
 
 export default function SignIn(){
   const [alert, setAlert] = React.useState(null)
@@ -33,11 +40,11 @@ export default function SignIn(){
     })
 
     const response = await request.text()
-
+    
     if( ! request.ok ){
       setAlert(response)
     }else{
-      toast.success("Senha atualizada com sucesso@", {
+      toast.success("Senha atualizada com sucesso!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -71,8 +78,10 @@ export default function SignIn(){
           </Typography>
 
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField type="hidden" name="token" sx={{ display: 'none' }} />
-            
+            <React.Suspense>
+              <SearchParams />
+            </React.Suspense>
+
             <TextField
               margin="normal"
               required
