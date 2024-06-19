@@ -129,7 +129,7 @@ export default function Training() {
                 <Divider className="border-blue-900" />
 
                 <Box className="w-full flex items-center justify-between text-xl">
-                  <Box className="font-bold ">21h30</Box>
+                  <Box className="font-bold ">21h20</Box>
 
                   <Box className="font-extralight flex flex-col items-center text-center">
                     Emissão dos certificados
