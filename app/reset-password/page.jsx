@@ -5,30 +5,28 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
-import Checkbox from '@mui/material/Checkbox';
 import TextField from '@mui/material/TextField';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import CssBaseline from '@mui/material/CssBaseline';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Alert } from '@mui/material';
-import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import VolksButton from '@/app/components/defaultButton';
+import { Bounce, toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const defaultTheme = createTheme();
 
 export default function SignIn(){
   const [alert, setAlert] = React.useState(null)
-  const router = useRouter()
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
 
-    const request = await fetch('/api/auth',{
+    const request = await fetch('/api/getResetLink',{
       method: 'POST',
       body: formData,
     })
@@ -38,14 +36,24 @@ export default function SignIn(){
     if( ! request.ok ){
       setAlert(response)
     }else{
-      setAlert(null)
-      router.push('/redirect')
+      toast.success("Email de redefinição enviado com sucesso!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
     }
   }
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
+        <ToastContainer />
         <CssBaseline />
 
         <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
@@ -55,7 +63,7 @@ export default function SignIn(){
           </Avatar>
 
           <Typography component="h1" variant="h5">
-            Acessar
+            Recuperar Senha
           </Typography>
 
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
@@ -71,33 +79,13 @@ export default function SignIn(){
               sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
             />
 
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Senha"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              sx={{'& .MuiOutlinedInput-root': {backgroundColor: '#F8F8F8', '& fieldset': {border: 'none'},},}}
-            />
-
-            <FormControlLabel control={<Checkbox value="remember" color="primary" />} label="Lembrar senha" />
-
             { alert && <Alert severity="error">{alert}</Alert> }
 
             <VolksButton type="submit" fullWidth>
-              Login
+              Enviar link
             </VolksButton>
 
             <Grid container>
-              <Grid item xs>
-                <Link href="/reset-password" variant="body2">
-                  Esqueceu a senha?
-                </Link>
-              </Grid>
-
               <Grid item>
                 <Link href="/cadastro" variant="body2">
                   {"Ainda não tem uma conta? Cadastre-se"}
