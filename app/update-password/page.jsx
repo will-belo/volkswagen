@@ -21,7 +21,6 @@ const defaultTheme = createTheme();
 export default function SignIn(){
   const [alert, setAlert] = React.useState(null)
   const router = useRouter()
-  const params = useSearchParams()
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -72,7 +71,7 @@ export default function SignIn(){
           </Typography>
 
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-            <TextField type="hidden" name="token" value={params.get('token')} sx={{ display: 'none' }} />
+            <TextField type="hidden" name="token" sx={{ display: 'none' }} />
             
             <TextField
               margin="normal"
