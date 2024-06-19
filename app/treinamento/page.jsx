@@ -122,7 +122,7 @@ export default function Training() {
                     Intervalo
                   </Box>
 
-                  <Box className="font-bold">60 min</Box>
+                  <Box className="font-bold">20 min</Box>
 
                 </Box>
 
