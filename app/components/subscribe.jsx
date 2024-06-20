@@ -174,13 +174,11 @@ export default function SubscribeModal(props) {
                 trainingID: props.content.id,
             }));
 
-            if (concessionaires[event.target.value].vacancies != 0) {
+            if (concessionaires[event.target.value].vacancies > 0) {
                 setInfosRender(1);
             } else {
                 setInfosRender(2);
             }
-
-            setInfosRender(1);
         }
     };
 
@@ -434,9 +432,9 @@ export default function SubscribeModal(props) {
             );
         }
     }
-
-    function ConcessionaireInfos(form) {
-        switch (form) {
+    
+    function ConcessionaireInfos(infosRender) {
+        switch (infosRender) {
         case 1:
             return (
             <Box component="form" noValidate sx={{ mt: 3 }}>
@@ -469,11 +467,11 @@ export default function SubscribeModal(props) {
             return (
             <Box component="form" noValidate sx={{ mt: 3 }}>
                 <Grid container spacing={2}>
-                <Grid item xs={12} className="text-center">
-                    <Typography>
-                    Sem vagas disponíveis para essa concessionária
-                    </Typography>
-                </Grid>
+                    <Grid item xs={12} className="text-center">
+                        <Typography>
+                        Sem vagas disponíveis para essa concessionária
+                        </Typography>
+                    </Grid>
                 </Grid>
             </Box>
             );
