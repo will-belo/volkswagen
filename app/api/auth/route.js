@@ -28,8 +28,8 @@ export async function POST(req) {
         value: response.user_id,
         path: '/',
         sameSite: 'lax',
-        httpOnly: true, // Temporariamente para visualização em ferramentas de desenvolvimento
-        secure: true // true em ambientes de produção que usam HTTPS
+        httpOnly: false, // Temporariamente para visualização em ferramentas de desenvolvimento
+        secure: false // true em ambientes de produção que usam HTTPS
     })
 
     cookies().set({
@@ -37,8 +37,8 @@ export async function POST(req) {
         value: response.token,
         path: '/',
         sameSite: 'lax',
-        httpOnly: true, // Temporariamente para visualização em ferramentas de desenvolvimento
-        secure: true // true em ambientes de produção que usam HTTPS
+        httpOnly: false, // Temporariamente para visualização em ferramentas de desenvolvimento
+        secure: false // true em ambientes de produção que usam HTTPS
     })
     
     return Response.json(response)
