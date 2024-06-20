@@ -7,7 +7,7 @@ export async function POST(req) {
         '&password=' + encodeURIComponent(formData.get('password')) +
         '&password_confirmation=' + encodeURIComponent(formData.get('password_confirmation'))
         
-    const request = await fetch('https://login.oficinabrasil.com.br/api/reset-password', {
+    const request = await fetch(`${process.env.NEXT_PUBLIC_SINGLEPASS_URL}/api/reset-password`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',

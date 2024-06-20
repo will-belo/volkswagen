@@ -3,19 +3,14 @@
 
 import * as React from "react";
 import { Box, Button, Divider, Grid, Typography } from "@mui/material";
-import Title from "../components/title";
 import SubscribeModal from "../components/subscribe";
 import moment from "moment";
-import UserContext from "@/src/contexts/UserContext";
-import { DialerSip } from "@mui/icons-material";
-import Image from "next/image";
 import kombiHeader from "@/images/kombi.png";
 import { ToastContainer } from "react-toastify";
 
 export default function Training() {
   const [trainings, setTrainings] = React.useState([]);
   const [training, setTraining] = React.useState([]);
-  const { isAuthenticated, userData, logout } = React.useContext(UserContext);
 
   React.useEffect(() => {
     const getTrainings = async () => {

@@ -5,10 +5,10 @@ import { useRouter } from "next/navigation";
 import { useContext } from "react";
 
 export default function RedirectPage(){
+    const { verify } = useContext(UserContext)
     const router = useRouter()
-    const { verify } = useContext(UserContext);
 
     verify()
-    
-    router.push('/dashboard')
+
+    router.push('/sucesso')
 }

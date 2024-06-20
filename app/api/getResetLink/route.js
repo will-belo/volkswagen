@@ -4,7 +4,7 @@ export async function POST(req) {
     const formData = await req.formData()
     const data = 'email=' + encodeURIComponent(formData.get('email'))
         
-    const request = await fetch('https://login.oficinabrasil.com.br/api/forgot-password', {
+    const request = await fetch(`${process.env.NEXT_PUBLIC_SINGLEPASS_URL}/api/forgot-password`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',

@@ -64,7 +64,7 @@ export default function HorizontalLinearStepper() {
 
       const data = 'cpf=' + encodeURIComponent(event.target.value)
 
-      const request = await fetch('https://apivw.oficinabrasil.com.br/api/getByCpf', { // 127.0.0.1:80
+      const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getByCpf`, { // 127.0.0.1:80
         cache: 'no-store',
         method: 'POST',
         body: data,
@@ -127,7 +127,7 @@ export default function HorizontalLinearStepper() {
     if(event.target.value.length >= 18){
       const data = 'cnpj=' + encodeURIComponent(event.target.value)
 
-      const request = await fetch('https://apivw.oficinabrasil.com.br/api/getByCNPJ', {
+      const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getByCNPJ`, {
         cache: 'no-store',
         method: 'POST',
         body: data,
@@ -202,7 +202,7 @@ export default function HorizontalLinearStepper() {
       setAlert(response)
     }else{
       setAlert(null)
-      router.push('/login')
+      router.push('/redirect')
     }
   }
 
