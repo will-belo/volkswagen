@@ -1,7 +1,7 @@
 'use server'
 
 export async function GET(req) {
-    const request = await fetch('https://apivw.oficinabrasil.com.br/api/trainings', {
+    const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/trainings`, {
         method: 'GET',
         cache: 'no-store',
     })

@@ -6,7 +6,7 @@ export async function GET(req) {
     const jwt = cookies().get('token')
 
     if(jwt){
-        const request = await fetch('https://apivw.oficinabrasil.com.br/api/admin/trainings', {
+        const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admin/trainings`, {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + jwt.value

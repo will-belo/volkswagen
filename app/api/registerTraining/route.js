@@ -13,7 +13,7 @@ export async function POST(req) {
             '&trainingId='      + encodeURIComponent(training.get('trainingID')) +
             '&userId='          + encodeURIComponent(training.get('userId'))
             
-        const request = await fetch('https://apivw.oficinabrasil.com.br/api/training', {
+        const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/training`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',

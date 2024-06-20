@@ -12,7 +12,7 @@ export async function GET(req) {
     const role = await request.json()
     
     if(request.status == 200){ // && role.role == 'common'
-        const request = await fetch(`https://apivw.oficinabrasil.com.br/api/users/${user.value}`, {
+        const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/${user.value}`, {
             method: 'GET',
             headers: {
                 'Authorization': 'Bearer ' + jwt.value
