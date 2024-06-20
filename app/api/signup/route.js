@@ -1,5 +1,7 @@
 'use server'
 
+import { cookies } from "next/headers"
+
 export async function POST(req) {
     const formData = await req.formData()
     
@@ -31,7 +33,7 @@ export async function POST(req) {
         '&auto_repair_number=' + encodeURIComponent(formData.get('auto_repair_number')) +
         '&auto_repair_street=' + encodeURIComponent(formData.get('auto_repair_street'))
 
-    const request = await fetch('https://apivw.oficinabrasil.com.br/api/signup', {
+    const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/signup`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
@@ -47,6 +49,24 @@ export async function POST(req) {
             status: 401,
         })
     }
+
+    cookies().set({
+        name: 'context',
+        value: response.user_id,
+        path: '/',
+        sameSite: 'lax',
+        httpOnly: false, // Temporariamente para visualização em ferramentas de desenvolvimento
+        secure: false // true em ambientes de produção que usam HTTPS
+    })
+
+    cookies().set({
+        name: 'token',
+        value: response.token,
+        path: '/',
+        sameSite: 'lax',
+        httpOnly: false, // Temporariamente para visualização em ferramentas de desenvolvimento
+        secure: false // true em ambientes de produção que usam HTTPS
+    })
     
-    return Response.json(response)
+    return Response.json(response.message)
 }
