@@ -12,7 +12,7 @@ export async function POST(req) {
         '&role='               + encodeURIComponent(formData.get('role')) + 
         '&name='               + encodeURIComponent(formData.get('name')) + 
         '&exist='              + encodeURIComponent(formData.get('exist')) + 
-        '&email='              + encodeURIComponent(formData.get('email')) + 
+        '&email='              + encodeURIComponent(formData.get('email').toLowerCase()) + 
         '&state='              + encodeURIComponent(formData.get('state')) + 
         '&check='              + encodeURIComponent(formData.get('check')) +
         '&phone='              + encodeURIComponent(formData.get('phone')) +
