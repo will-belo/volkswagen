@@ -42,7 +42,7 @@ export default function Header() {
     const handleClose = () => {
         setAnchorEl(null);
     };
-  
+    
     useEffect(() => {
         if (isAuthenticated && userData.role == "common") {
             setUserState(
@@ -52,7 +52,7 @@ export default function Header() {
                     </a>
 
                     <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-                        <MenuItem onClick={() => { router.push('/dashboard') }}>Meus treinamentos</MenuItem>
+                        <MenuItem onClick={() => { router.push('/users/dashboard') }}>Meus treinamentos</MenuItem>
                         <MenuItem onClick={handleLogout}>Sair</MenuItem>
                     </Menu>
                 </Box>
@@ -66,6 +66,19 @@ export default function Header() {
 
                     <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
                         <MenuItem onClick={() => { router.push('/admin') }}>Painel de administrador</MenuItem>
+                        <MenuItem onClick={handleLogout}>Sair</MenuItem>
+                    </Menu>
+                </Box>
+            );
+        } else if (isAuthenticated && userData.role == "manager") {
+            setUserState(
+                <Box className="flex justify-end items-center px-5">
+                    <a className="cursor-pointer flex items-center" onClick={handleClick}>
+                        {userData.fantasy_name} <MenuIcon className="ml-1" />
+                    </a>
+
+                    <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+                        <MenuItem onClick={() => { router.push('/concessionaria') }}>Painel da concessionária</MenuItem>
                         <MenuItem onClick={handleLogout}>Sair</MenuItem>
                     </Menu>
                 </Box>
@@ -90,7 +103,7 @@ export default function Header() {
             );
         }
     },[isAuthenticated, userData, anchorEl, open, router]);
-
+    
     return (
         <>
             {!mobile ? (

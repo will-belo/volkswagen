@@ -1,11 +1,22 @@
 'use server'
 
+import singlePassValidate from '@/src/validate/singlePassValidate'
 import { cookies } from 'next/headers'
 
 export async function POST(req) {
     const jwt = cookies().get('token')
 
     if(jwt){
+        const validate = await singlePassValidate(jwt)
+        
+        const validateResponse = await validate.json()
+        
+        if( validate.status == 200 && validateResponse.role != 'common' ){
+            return Response.json("Apenas usuários podem se cadastrar em um treinamento",{
+                status: 401,
+            })
+        }
+
         const training =  await req.formData()
         
         const data = 

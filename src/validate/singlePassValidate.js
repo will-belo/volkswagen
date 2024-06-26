@@ -4,7 +4,8 @@ export default async function singlePassValidate(token){
       method: 'GET',
       headers: {
         'Authorization': 'Bearer ' + token.value,
-      }
+      },
+      cache: 'no-store',
     })
     
     return request
