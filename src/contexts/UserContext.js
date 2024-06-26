@@ -9,7 +9,7 @@ const UserContext = createContext();
 export const UserProvider = ({ children }) => {
     const router = useRouter()
     const [isAuthenticated, setIsAuthenticated] = useState(false)
-    const [userData, setuserData] = useState(null)
+    const [userData, setuserData] = useState('')
 
     const verify = async () => {
         const request = await fetch('/api/isAuthenticated',{

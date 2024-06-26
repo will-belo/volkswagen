@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { userIsLoggedInMiddleware, adminIsLoggedInMiddleware, redirectIfLoggedMiddleware } from '@/middlewares';
+import { userIsLoggedInMiddleware, adminIsLoggedInMiddleware, redirectIfLoggedMiddleware, managerIsLoggedInMiddleware } from '@/middlewares';
 import { redirect } from "next/dist/server/api-utils";
 
 export const config = {
@@ -45,13 +45,18 @@ export async function middleware(req) {
     const url = req.nextUrl.clone()
     
     // Redireciona caso o usuário esteja logado
-    if (req.nextUrl.pathname.startsWith('/dashboard')){
+    if (req.nextUrl.pathname.startsWith('/users')){
       return userIsLoggedInMiddleware(token, url)
     }
 
     // Redireciona caso o usuário não seja um administrador
     if (req.nextUrl.pathname.startsWith('/admin')){
       return adminIsLoggedInMiddleware(token, url)
+    }
+
+    // Redireciona caso o usuário não seja uma concessionária
+    if (req.nextUrl.pathname.startsWith('/concessionaria')){
+      return managerIsLoggedInMiddleware(token, url)
     }
 
     // Redirecionamento caso o usuário esteja logado

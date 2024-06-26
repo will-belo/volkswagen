@@ -3,9 +3,9 @@
 
 import * as React from 'react';
 import { Box, Grid, Typography } from "@mui/material"
-import Title from '../components/title';
-import TrainingCard from '../components/trainingCard';
-import SubscribedCard from '../components/subscribed';
+import Title from '../../components/title';
+import TrainingCard from '../../components/trainingCard';
+import SubscribedCard from '../../components/subscribed';
 import { ToastContainer } from 'react-toastify';
 
 export default function Dashboard() {

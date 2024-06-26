@@ -8,7 +8,7 @@ export default async function adminIsLoggedInMiddleware(token, url){
     
     const response = await request.json()
 
-    if ( request.status != 200 || response.role != 'admin' ){
+    if ( request.status != 200 || response.role != 'manager' ){
         return NextResponse.redirect(url)
     }
 
