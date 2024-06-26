@@ -24,6 +24,7 @@ export default function HorizontalLinearStepper() {
   const [formRender, setformRender] = React.useState(0)
   const [isChecked, setIsChecked] = React.useState(true) 
   const [autoRepairInfo, setautoRepairInfo] = React.useState(null)
+  const [isLoading, setIsLoading] = React.useState(false)
   
   const { register, handleSubmit, setValue, control } = useForm({
     defaultValues: {
@@ -185,22 +186,29 @@ export default function HorizontalLinearStepper() {
 }, [autoRepairInfo])
   
   const onSubmit = async (data) => {
+    setIsLoading(true)
+
     const formData = new FormData()
 
     for (const key in data) {
       formData.append(key, data[key])
     }
 
-    const request = await fetch('/api/signup',{
-      method: 'POST',
-      body: formData,
-    })
+    try{
+      const request = await fetch('/api/signup',{
+        method: 'POST',
+        body: formData,
+      })
+  
+      const response = await request.text()
 
-    const response = await request.text()
-    
-    if( !request.ok ){
-      setAlert(response)
-    }else{
+      if(!response.ok){
+        throw new Error(response)
+      }
+    }catch(error){
+      setAlert(error)
+      setIsLoading(false)
+    }finally{
       setAlert(null)
       router.push('/redirect')
     }
@@ -493,7 +501,9 @@ export default function HorizontalLinearStepper() {
             { alert && <Box className="mt-5"><Alert severity="error">{alert}</Alert></Box> }
 
             <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-              <Button type="submit" variant="contained" sx={{ mr: 1, backgroundColor: "#022663", ":hover": { backgroundColor: "#184a9b" } }}>Finalizar</Button>
+              <Button type="submit" variant="contained" sx={{ mr: 1, backgroundColor: "#022663", ":hover": { backgroundColor: "#184a9b" } }} disabled={isLoading}>
+                {isLoading ? 'Enviando...' : 'Finalizar'}
+              </Button>
             </Box>
           </form>
           
