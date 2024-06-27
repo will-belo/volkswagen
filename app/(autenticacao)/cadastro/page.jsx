@@ -3,13 +3,15 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import locations from '@/src/locations.json';
-import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Alert, Checkbox, Container, CssBaseline, FormControl, FormControlLabel, Grid, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { useRouter } from 'next/navigation';
+import "react-toastify/dist/ReactToastify.css";
+import Typography from '@mui/material/Typography';
 import { Controller, useForm } from 'react-hook-form';
 import MaskedInput from '@/app/components/mask/inputMask';
+import { Bounce, toast, ToastContainer } from 'react-toastify';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { handleSearchDocument, handleSearchCep, handleCheckboxChange, handleCNPJVerify } from './handlers';
+import { Alert, Checkbox, Container, CssBaseline, FormControl, FormControlLabel, Grid, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 
 
 const steps = ['Cadastro básico', 'Adicionar endereço', 'Informações finais'];
@@ -59,96 +61,6 @@ export default function HorizontalLinearStepper() {
       auto_repair_number: '',
     },
   })
-
-  const handleSearchDocument = async (event) => {
-    if(event.target.value.length >= 14){
-
-      const data = 'cpf=' + encodeURIComponent(event.target.value)
-
-      const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getByCpf`, { // 127.0.0.1:80
-        cache: 'no-store',
-        method: 'POST',
-        body: data,
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Access-Control-Allow-Origin': 'no-Cors'
-        }
-      })
-
-      const response = await request.json()
-      
-      if(request.ok){
-        setValue('name', response.Nome)
-        setValue('phone', response.Celular)
-        setValue('born_at', response.Nascimento)
-        setValue('email', response.Email)
-      }else{
-        setValue('name', '')
-        setValue('phone', '')
-        setValue('born_at', '')
-        setValue('email', '')
-      }
-    }else{
-      setValue('name', '')
-      setValue('phone', '')
-      setValue('born_at', '')
-      setValue('email', '')
-    }
-  }
-
-  const handleSearchCep = async (event) => {
-    if(event.target.value.length == 9){
-      const cep = event.target.value.replace(/-/g, '')
-      const request = await fetch(`https://viacep.com.br/ws/${cep}/json/ `, {
-        cache: 'no-store',
-        method: 'GET',
-      })
-
-      const response = await request.json()
-
-      if(response.erro){
-        setAlert('CEP não encontrado')
-        return null
-      }else{
-        setAlert(null)
-        return response
-      }
-    }else{
-      setAlert(null)
-    }
-  }
-
-  const handleCheckboxChange = (event) => {
-    setIsChecked(event.target.value)
-    
-    setValue('check', event.target.value)
-  }
-
-  const handleCNPJVerify = async (event) => {
-    if(event.target.value.length >= 18){
-      const data = 'cnpj=' + encodeURIComponent(event.target.value)
-
-      const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/getByCNPJ`, {
-        cache: 'no-store',
-        method: 'POST',
-        body: data,
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          'Access-Control-Allow-Origin': 'no-Cors'
-        }
-      })
-
-      const response = await request.json()
-      
-      if(!response){
-        setformRender(1)
-      }else{
-        setautoRepairInfo(response)
-      }
-    }else{
-      setformRender(0)
-    }
-  }
 
   React.useEffect(() => {
     if(address){
@@ -201,22 +113,40 @@ export default function HorizontalLinearStepper() {
       })
   
       const response = await request.text()
-
-      if(!response.ok){
+      
+      if(!request.ok){
         throw new Error(response)
       }
-    }catch(error){
-      setAlert(error)
-      setIsLoading(false)
-    }finally{
+
       setAlert(null)
-      router.push('/redirect')
+
+      toast.success("Cadastro realizado com sucesso!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      })
+
+      setTimeout(() => {
+        setIsLoading(false)
+
+        router.push('/login')
+      }, 5000)
+    }catch(error){
+      setAlert(error.message)
+      setIsLoading(false)
     }
   }
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="md">
+        <ToastContainer />
         <CssBaseline />
         <Box sx={{ marginTop: 8 }}>
 
@@ -234,7 +164,7 @@ export default function HorizontalLinearStepper() {
                   <Controller
                     name="document"
                     control={control}
-                    {...register('document', {onChange: handleSearchDocument})}
+                    {...register('document', {onChange: (event) => handleSearchDocument(event, setValue)})}
                     render={({ field }) => 
                       <TextField key="document" id="document" label="CPF" fullWidth required InputProps={{
                         inputComponent: MaskedInput,
@@ -360,7 +290,7 @@ export default function HorizontalLinearStepper() {
                     control={control}
                     {...register('cep', {
                       onChange: async (event) => {
-                        setAddress(await handleSearchCep(event))
+                        setAddress(await handleSearchCep(event, setAlert))
                       }
                     })}
                     render={({ field }) => 
@@ -461,7 +391,7 @@ export default function HorizontalLinearStepper() {
                     name="check"
                     control={control}
                     {...register('check', { 
-                      onChange: handleCheckboxChange 
+                      onChange: (event) => handleCheckboxChange(event, setIsChecked, setValue)
                     })}
                     render={({ field }) =>
                       <FormControlLabel control={<Checkbox checked={isChecked} {...field} />} label="Possui ou trabalha em oficina?" />
@@ -477,7 +407,7 @@ export default function HorizontalLinearStepper() {
                       name="cnpj"
                       control={control}
                       {...register('cnpj', { 
-                        onChange: handleCNPJVerify
+                        onChange: (event) => handleCNPJVerify(event, setformRender, setautoRepairInfo)
                       })}
                       render={({ field }) =>
                         <TextField key="cnpj" id="cnpj" label="CNPJ" fullWidth InputProps={{
@@ -616,7 +546,7 @@ export default function HorizontalLinearStepper() {
                 control={control}
                 {...register('auto_repair_cep', {
                   onChange: async (event) => {
-                    setAutoRepairAddress(await handleSearchCep(event))
+                    setAutoRepairAddress(await handleSearchCep(event, setAlert))
                   }
                 })}
                 render={({ field }) => 
