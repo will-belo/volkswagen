@@ -32,7 +32,7 @@ export async function POST(req) {
         '&auto_repair_state='  + encodeURIComponent(formData.get('auto_repair_state')) + 
         '&auto_repair_number=' + encodeURIComponent(formData.get('auto_repair_number')) +
         '&auto_repair_street=' + encodeURIComponent(formData.get('auto_repair_street'))
-
+        
     const request = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/signup`, {
         method: 'POST',
         headers: {
@@ -46,10 +46,11 @@ export async function POST(req) {
     
     if( request.status != 201 ){
         return new Response(response, {
-            status: 401,
+            status: 400,
         })
     }
 
+    /*
     cookies().set({
         name: 'context',
         value: response.user_id,
@@ -67,6 +68,7 @@ export async function POST(req) {
         httpOnly: false, // Temporariamente para visualização em ferramentas de desenvolvimento
         secure: false // true em ambientes de produção que usam HTTPS
     })
+    */
     
     return Response.json(response.message)
 }
