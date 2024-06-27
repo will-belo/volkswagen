@@ -1,11 +1,11 @@
 "use client"
 
-import UserContext from '@/src/contexts/UserContext';
-import { Box, Button, Container, Grid, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material';
 import * as React from 'react';
 import Layout from '../../components/Layout';
-import { Bounce, toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import UserContext from '@/src/contexts/UserContext';
+import { Bounce, toast, ToastContainer } from 'react-toastify';
+import { Box, Button, Container, Grid, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material';
 
 export default function Page({ params }) {
     const [users, setUsers] = React.useState([])
@@ -64,7 +64,7 @@ export default function Page({ params }) {
               });
         }
     }
-
+    console.log(params)
     return(
         <Layout>
             <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
