@@ -5,10 +5,9 @@ import * as React from "react";
 import { Box, Divider, Grid, Typography } from "@mui/material";
 import SubscribeModal from "../components/subscribe";
 import moment from "moment";
-import kombiHeader from "@/images/kombi.png";
 import { ToastContainer } from "react-toastify";
 
-export default function RedirectPage(){
+export default function SucessPage(){
     const [trainings, setTrainings] = React.useState([]);
     const [training, setTraining] = React.useState([]);
   

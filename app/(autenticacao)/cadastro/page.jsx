@@ -12,6 +12,7 @@ import { Bounce, toast, ToastContainer } from 'react-toastify';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { handleSearchDocument, handleSearchCep, handleCheckboxChange, handleCNPJVerify } from './handlers';
 import { Alert, Checkbox, Container, CssBaseline, FormControl, FormControlLabel, Grid, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { deleteTokens } from '../handler';
 
 
 const steps = ['Cadastro básico', 'Adicionar endereço', 'Informações finais'];
@@ -63,6 +64,14 @@ export default function HorizontalLinearStepper() {
   })
 
   React.useEffect(() => {
+    const deleteOldTokens = async () => {
+      deleteTokens()
+    }
+
+    deleteOldTokens()
+  }, [])
+
+  React.useEffect(() => {
     if(address){
       setValue('state', address.uf)
       setValue('city', address.localidade)
@@ -95,7 +104,7 @@ export default function HorizontalLinearStepper() {
         setValue('fantasy_name', autoRepairInfo.fantasy_name)
         setValue('branch_activity', autoRepairInfo.branch_activity)
     }
-}, [autoRepairInfo])
+  }, [autoRepairInfo])
   
   const onSubmit = async (data) => {
     setIsLoading(true)
@@ -112,15 +121,15 @@ export default function HorizontalLinearStepper() {
         body: formData,
       })
   
-      const response = await request.text()
+      const response = await request.json()
       
       if(!request.ok){
-        throw new Error(response)
+        throw new Error(response.message)
       }
 
       setAlert(null)
 
-      toast.success("Cadastro realizado com sucesso!", {
+      toast.success(response.message, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,

@@ -70,5 +70,5 @@ export async function POST(req) {
     })
     */
     
-    return Response.json(response.message)
+    return Response.json(response)
 }
